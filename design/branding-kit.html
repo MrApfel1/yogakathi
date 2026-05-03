@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoga Kathi – Branding Kit & Website Wireframes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600&family=Karla:wght@300;400;500;600&family=Kalam:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Karla', sans-serif;
+      background: #F9F8F4;
+      color: #2A2A2A;
+    }
+    
+    .canvas-container {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel">
+    const { DesignCanvas, DCSection, DCArtboard } = window;
+
+    // Color palette component
+    const ColorSwatch = ({ color, name, hex }) => (
+      <div style={{ textAlign: 'center' }}>
+        <div style={{
+          width: '100%',
+          height: '140px',
+          background: color,
+          borderRadius: '60px',
+          marginBottom: '12px',
+          border: color === '#F9FBF2' || color === '#FAF6F0' ? '2px solid #E8E3DC' : 'none'
+        }}></div>
+        <div style={{ 
+          fontFamily: 'Kalam', 
+          fontSize: '13px',
+          fontWeight: '400',
+          color: '#5A5A5A',
+          marginBottom: '4px'
+        }}>{name}</div>
+        <div style={{ 
+          fontFamily: 'Karla', 
+          fontSize: '11px',
+          color: '#8A8A8A',
+          letterSpacing: '0.5px'
+        }}>{hex}</div>
+      </div>
+    );
+
+    // Typography specimen
+    const TypeSpecimen = ({ family, weight, size, text, label }) => (
+      <div style={{ marginBottom: '28px' }}>
+        <div style={{
+          fontFamily: family,
+          fontWeight: weight,
+          fontSize: size,
+          lineHeight: 1.3,
+          color: '#2A2A2A',
+          marginBottom: '8px'
+        }}>{text}</div>
+        <div style={{
+          fontFamily: 'Kalam',
+          fontSize: '12px',
+          color: '#8A8A8A'
+        }}>{label}</div>
+      </div>
+    );
+
+    // Wireframe components
+    const WireBox = ({ width = '100%', height = '40px', bg = '#E8E3DC', children, style = {} }) => (
+      <div style={{
+        width,
+        height,
+        background: bg,
+        borderRadius: '4px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'Kalam',
+        fontSize: '12px',
+        color: '#8A8A8A',
+        ...style
+      }}>
+        {children}
+      </div>
+    );
+
+    const WireText = ({ lines = 3, spacing = '8px' }) => (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: spacing }}>
+        {[...Array(lines)].map((_, i) => (
+          <div key={i} style={{
+            height: '3px',
+            background: '#C5BFB5',
+            borderRadius: '2px',
+            width: i === lines - 1 ? '70%' : '100%'
+          }}></div>
+        ))}
+      </div>
+    );
+
+    function App() {
+      return (
+        <DesignCanvas>
+          <DCSection id="colors" title="🎨 Farbpalette">
+            
+            <DCArtboard id="palette-main" label="Hauptpalette" width={900} height={700}>
+              <div style={{ padding: '50px', background: '#FDFCFA' }}>
+                <h2 style={{
+                  fontFamily: 'Cormorant',
+                  fontSize: '42px',
+                  fontWeight: '300',
+                  marginBottom: '40px',
+                  color: '#084A5E'
+                }}>Farbpalette</h2>
+                
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '30px',
+                  marginBottom: '50px'
+                }}>
+                  <ColorSwatch color="#084A5E" name="Tiefer Ozean" hex="#084A5E" />
+                  <ColorSwatch color="#F9FBF2" name="Cremeweiß" hex="#F9FBF2" />
+                  <ColorSwatch color="#7796CB" name="Himmelblau" hex="#7796CB" />
+                  <ColorSwatch color="#6B4E71" name="Dunkles Mauve" hex="#6B4E71" />
+                </div>
+
+                <h3 style={{
+                  fontFamily: 'Cormorant',
+                  fontSize: '32px',
+                  fontWeight: '300',
+                  marginBottom: '30px',
+                  color: '#6B4E71'
+                }}>Erweiterte Erdtöne</h3>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '30px'
+                }}>
+                  <ColorSwatch color="#C9A885" name="Warmer Sand" hex="#C9A885" />
+                  <ColorSwatch color="#E8D5C4" name="Heller Lehm" hex="#E8D5C4" />
+                  <ColorSwatch color="#A8927D" name="Weiches Taupe" hex="#A8927D" />
+                  <ColorSwatch color="#FAF6F0" name="Warmes Weiß" hex="#FAF6F0" />
+                </div>
+              </div>
+            </DCArtboard>
+
+            <DCArtboard id="palette-accents" label="Akzentfarben" width={900} height={700}>
+              <div style={{ padding: '50px', background: '#F9FBF2' }}>
+                <h2 style={{
+                  fontFamily: 'Cormorant',
+                  fontSize: '42px',
+                  fontWeight: '300',
+                  marginBottom: '40px',
+                  color: '#084A5E'
+                }}>Akzente & Stimmungen</h2>
+                
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '30px',
+                  marginBottom: '40px'
+                }}>
+                  <ColorSwatch color="#9DADCE" name="Sanftes Blau" hex="#9DADCE" />
+                  <ColorSwatch color="#8D7A8F" name="Helles Mauve" hex="#8D7A8F" />
+                  <ColorSwatch color="#D4C4B0" name="Naturstein" hex="#D4C4B0" />
+                </div>
+
+                <div style={{
+                  background: 'white',
+                  padding: '30px',
+                  borderRadius: '12px',
+                  marginTop: '40px'
+                }}>
+                  <h4 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    marginBottom: '20px',
+                    color: '#6B4E71',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1.5px'
+                  }}>Farbverwendung</h4>
+                  
+                  <div style={{
+                    fontFamily: 'Kalam',
+                    fontSize: '15px',
+                    lineHeight: '1.8',
+                    color: '#5A5A5A'
+                  }}>
+                    <p style={{ marginBottom: '12px' }}><strong style={{ color: '#084A5E' }}>Tiefer Ozean:</strong> Headlines, wichtige CTAs</p>
+                    <p style={{ marginBottom: '12px' }}><strong style={{ color: '#6B4E71' }}>Dunkles Mauve:</strong> Akzente, Hover-Zustände</p>
+                    <p style={{ marginBottom: '12px' }}><strong style={{ color: '#C9A885' }}>Warmer Sand:</strong> Hintergründe, sanfte Bereiche</p>
+                    <p><strong style={{ color: '#7796CB' }}>Himmelblau:</strong> Links, sekundäre Elemente</p>
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+
+          </DCSection>
+
+          <DCSection id="typography" title="✍️ Typografie">
+            
+            <DCArtboard id="type-system" label="Schriftsystem" width={900} height={800}>
+              <div style={{ padding: '50px', background: '#FDFCFA' }}>
+                <h2 style={{
+                  fontFamily: 'Cormorant',
+                  fontSize: '42px',
+                  fontWeight: '300',
+                  marginBottom: '50px',
+                  color: '#084A5E'
+                }}>Typografie</h2>
+
+                <div style={{ marginBottom: '60px' }}>
+                  <h3 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    color: '#8A8A8A',
+                    marginBottom: '25px'
+                  }}>Display & Überschriften</h3>
+                  
+                  <TypeSpecimen 
+                    family="Cormorant" 
+                    weight="300" 
+                    size="56px" 
+                    text="Atem & Bewegung" 
+                    label="Cormorant Light – 56px" 
+                  />
+                  
+                  <TypeSpecimen 
+                    family="Cormorant" 
+                    weight="400" 
+                    size="42px" 
+                    text="Finde deine innere Ruhe" 
+                    label="Cormorant Regular – 42px" 
+                  />
+                  
+                  <TypeSpecimen 
+                    family="Cormorant" 
+                    weight="500" 
+                    size="32px" 
+                    text="Yoga & Breathwork Sessions" 
+                    label="Cormorant Medium – 32px" 
+                  />
+                </div>
+
+                <div>
+                  <h3 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    color: '#8A8A8A',
+                    marginBottom: '25px'
+                  }}>Body & UI Text</h3>
+                  
+                  <TypeSpecimen 
+                    family="Karla" 
+                    weight="400" 
+                    size="18px" 
+                    text="Entspannung beginnt mit dem ersten bewussten Atemzug." 
+                    label="Karla Regular – 18px" 
+                  />
+                  
+                  <TypeSpecimen 
+                    family="Montserrat" 
+                    weight="500" 
+                    size="18px" 
+                    text="Finde deine Balance zwischen Körper und Geist." 
+                    label="Montserrat Medium – 18px (Alternative)" 
+                  />
+                  
+                  <TypeSpecimen 
+                    family="Montserrat" 
+                    weight="600" 
+                    size="14px" 
+                    text="JETZT BUCHEN" 
+                    label="Montserrat SemiBold – 14px (Buttons)" 
+                  />
+
+                  <div style={{ marginTop: '30px' }}>
+                    <TypeSpecimen 
+                      family="Kalam" 
+                      weight="400" 
+                      size="16px" 
+                      text="Handgeschriebene Akzente & persönliche Notizen" 
+                      label="Kalam Regular – 16px (Akzente)" 
+                    />
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+
+          </DCSection>
+
+          <DCSection id="wireframes" title="📐 Website Wireframes">
+            
+            <DCArtboard id="hero-minimal" label="Hero – Minimalistisch" width={1200} height={900}>
+              <div style={{ background: '#FAF6F0', padding: '40px' }}>
+                {/* Navigation */}
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '80px',
+                  padding: '0 20px'
+                }}>
+                  <div style={{
+                    fontFamily: 'Kalam',
+                    fontSize: '24px',
+                    color: '#084A5E'
+                  }}>Yoga Kathi</div>
+                  <div style={{ display: 'flex', gap: '30px' }}>
+                    {['Über mich', 'Kurse', 'Breathwork', 'Kontakt'].map(item => (
+                      <div key={item} style={{
+                        fontFamily: 'Karla',
+                        fontSize: '14px',
+                        color: '#5A5A5A'
+                      }}>{item}</div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Hero Content */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '60px',
+                  alignItems: 'center',
+                  padding: '40px'
+                }}>
+                  <div>
+                    <div style={{
+                      fontFamily: 'Cormorant',
+                      fontSize: '64px',
+                      fontWeight: '300',
+                      lineHeight: '1.2',
+                      color: '#084A5E',
+                      marginBottom: '30px'
+                    }}>
+                      Atem ist<br/>Leben
+                    </div>
+                    <div style={{
+                      fontFamily: 'Karla',
+                      fontSize: '18px',
+                      lineHeight: '1.8',
+                      color: '#5A5A5A',
+                      marginBottom: '40px',
+                      maxWidth: '480px'
+                    }}>
+                      Entdecke die transformative Kraft von Yoga und bewusstem Atmen. Für mehr Ruhe, Kraft und Lebensfreude.
+                    </div>
+                    <div style={{ display: 'flex', gap: '20px' }}>
+                      <WireBox width="160px" height="50px" bg="#6B4E71" style={{ color: 'white' }}>
+                        Kurse ansehen
+                      </WireBox>
+                      <WireBox width="160px" height="50px" bg="transparent" style={{ 
+                        border: '2px solid #6B4E71',
+                        color: '#6B4E71'
+                      }}>
+                        Kennenlernen
+                      </WireBox>
+                    </div>
+                  </div>
+
+                  <div>
+                    <WireBox height="500px" bg="#E8D5C4">
+                      [Bild: Meditation]
+                    </WireBox>
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+
+            <DCArtboard id="hero-warm" label="Hero – Warm & Einladend" width={1200} height={900}>
+              <div style={{ background: 'linear-gradient(135deg, #FAF6F0 0%, #E8D5C4 100%)', padding: '40px' }}>
+                {/* Navigation */}
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '60px',
+                  padding: '0 20px'
+                }}>
+                  <div style={{
+                    fontFamily: 'Cormorant',
+                    fontSize: '28px',
+                    fontWeight: '500',
+                    color: '#084A5E'
+                  }}>KATHI</div>
+                  <WireBox width="140px" height="45px" bg="#084A5E" style={{ color: 'white' }}>
+                    Buchen
+                  </WireBox>
+                </div>
+
+                {/* Hero */}
+                <div style={{ 
+                  textAlign: 'center',
+                  padding: '80px 60px'
+                }}>
+                  <div style={{
+                    fontFamily: 'Kalam',
+                    fontSize: '22px',
+                    color: '#6B4E71',
+                    marginBottom: '20px'
+                  }}>
+                    Yoga & Breathwork in München
+                  </div>
+                  <div style={{
+                    fontFamily: 'Cormorant',
+                    fontSize: '72px',
+                    fontWeight: '300',
+                    lineHeight: '1.1',
+                    color: '#084A5E',
+                    marginBottom: '30px',
+                    maxWidth: '900px',
+                    margin: '0 auto 30px'
+                  }}>
+                    Atme tief ein.<br/>Lass los.
+                  </div>
+                  
+                  <div style={{
+                    maxWidth: '600px',
+                    margin: '0 auto 50px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px'
+                  }}>
+                    <WireText lines={2} spacing="12px" />
+                  </div>
+
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gap: '30px',
+                    marginTop: '80px'
+                  }}>
+                    {['Yoga', 'Breathwork', 'Workshops'].map((item, i) => (
+                      <div key={item} style={{
+                        background: 'rgba(255,255,255,0.7)',
+                        padding: '50px 30px',
+                        borderRadius: '12px',
+                        backdropFilter: 'blur(10px)'
+                      }}>
+                        <WireBox width="60px" height="60px" bg="#C9A885" style={{
+                          margin: '0 auto 20px',
+                          borderRadius: '50%'
+                        }}>
+                          ☀︎
+                        </WireBox>
+                        <div style={{
+                          fontFamily: 'Cormorant',
+                          fontSize: '24px',
+                          color: '#084A5E',
+                          marginBottom: '15px'
+                        }}>{item}</div>
+                        <WireText lines={2} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+
+            <DCArtboard id="hero-split" label="Hero – Split Layout" width={1200} height={900}>
+              <div style={{ 
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                height: '900px'
+              }}>
+                {/* Left side - Dark */}
+                <div style={{
+                  background: '#084A5E',
+                  padding: '60px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  color: 'white'
+                }}>
+                  <div>
+                    <div style={{
+                      fontFamily: 'Kalam',
+                      fontSize: '26px',
+                      marginBottom: '100px'
+                    }}>Kathi</div>
+                    
+                    <div style={{
+                      fontFamily: 'Cormorant',
+                      fontSize: '56px',
+                      fontWeight: '300',
+                      lineHeight: '1.2',
+                      marginBottom: '40px'
+                    }}>
+                      Verbinde dich<br/>
+                      mit deinem<br/>
+                      Atem
+                    </div>
+
+                    <div style={{
+                      fontFamily: 'Karla',
+                      fontSize: '16px',
+                      lineHeight: '1.8',
+                      color: 'rgba(255,255,255,0.8)',
+                      marginBottom: '50px',
+                      maxWidth: '400px'
+                    }}>
+                      <WireText lines={3} spacing="14px" />
+                    </div>
+
+                    <WireBox width="180px" height="55px" bg="#C9A885" style={{ color: '#084A5E' }}>
+                      Mehr erfahren
+                    </WireBox>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '20px', fontFamily: 'Karla', fontSize: '13px' }}>
+                    {['Instagram', 'Email', 'Termine'].map(link => (
+                      <div key={link} style={{ opacity: 0.7 }}>{link}</div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right side - Image */}
+                <div style={{ position: 'relative' }}>
+                  <WireBox height="100%" bg="#E8D5C4">
+                    [Vollbild Yoga-Foto]
+                  </WireBox>
+                  
+                  {/* Floating card */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '60px',
+                    right: '60px',
+                    background: 'white',
+                    padding: '40px',
+                    borderRadius: '16px',
+                    boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+                    width: '320px'
+                  }}>
+                    <div style={{
+                      fontFamily: 'Karla',
+                      fontSize: '12px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '2px',
+                      color: '#8A8A8A',
+                      marginBottom: '15px'
+                    }}>Nächster Workshop</div>
+                    <div style={{
+                      fontFamily: 'Cormorant',
+                      fontSize: '28px',
+                      color: '#084A5E',
+                      marginBottom: '20px'
+                    }}>Breathwork Intro</div>
+                    <WireText lines={2} spacing="10px" />
+                    <div style={{ marginTop: '25px' }}>
+                      <WireBox height="45px" bg="#6B4E71" style={{ color: 'white' }}>
+                        Anmelden
+                      </WireBox>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+
+          </DCSection>
+
+          <DCSection id="sections" title="📄 Sektionen & Komponenten">
+            
+            <DCArtboard id="about-section" label="Über Mich Sektion" width={1200} height={800}>
+              <div style={{ background: '#F9FBF2', padding: '80px 60px' }}>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '400px 1fr',
+                  gap: '80px',
+                  alignItems: 'center'
+                }}>
+                  <div>
+                    <WireBox height="500px" bg="#C9A885" style={{ borderRadius: '200px 200px 8px 8px' }}>
+                      [Portrait]
+                    </WireBox>
+                  </div>
+
+                  <div>
+                    <div style={{
+                      fontFamily: 'Kalam',
+                      fontSize: '18px',
+                      color: '#6B4E71',
+                      marginBottom: '15px'
+                    }}>Über mich</div>
+                    
+                    <div style={{
+                      fontFamily: 'Cormorant',
+                      fontSize: '48px',
+                      fontWeight: '300',
+                      color: '#084A5E',
+                      marginBottom: '35px',
+                      lineHeight: '1.2'
+                    }}>
+                      Hallo, ich bin Kathi
+                    </div>
+
+                    <div style={{
+                      fontFamily: 'Karla',
+                      fontSize: '18px',
+                      lineHeight: '1.9',
+                      color: '#5A5A5A',
+                      marginBottom: '20px'
+                    }}>
+                      <WireText lines={4} spacing="16px" />
+                    </div>
+
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(2, 1fr)',
+                      gap: '30px',
+                      marginTop: '50px'
+                    }}>
+                      {['200h Yoga', 'Breathwork', 'seit 2018', 'München'].map(item => (
+                        <div key={item} style={{
+                          padding: '25px',
+                          background: 'white',
+                          borderRadius: '8px',
+                          textAlign: 'center'
+                        }}>
+                          <div style={{
+                            fontFamily: 'Cormorant',
+                            fontSize: '24px',
+                            color: '#084A5E'
+                          }}>{item}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+
+            <DCArtboard id="services-cards" label="Angebote – Cards" width={1200} height={900}>
+              <div style={{ background: '#FDFCFA', padding: '80px 60px' }}>
+                <div style={{ textAlign: 'center', marginBottom: '70px' }}>
+                  <div style={{
+                    fontFamily: 'Kalam',
+                    fontSize: '18px',
+                    color: '#6B4E71',
+                    marginBottom: '15px'
+                  }}>Meine Angebote</div>
+                  <div style={{
+                    fontFamily: 'Cormorant',
+                    fontSize: '52px',
+                    fontWeight: '300',
+                    color: '#084A5E'
+                  }}>Was ich anbiete</div>
+                </div>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '35px'
+                }}>
+                  {[
+                    { title: 'Yoga Kurse', color: '#E8D5C4' },
+                    { title: 'Breathwork Sessions', color: '#9DADCE' },
+                    { title: 'Workshops', color: '#C9A885' }
+                  ].map((service, i) => (
+                    <div key={i} style={{
+                      background: 'white',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      boxShadow: '0 4px 24px rgba(0,0,0,0.06)'
+                    }}>
+                      <WireBox height="280px" bg={service.color}>
+                        [Bild]
+                      </WireBox>
+                      <div style={{ padding: '35px' }}>
+                        <div style={{
+                          fontFamily: 'Cormorant',
+                          fontSize: '32px',
+                          color: '#084A5E',
+                          marginBottom: '20px'
+                        }}>{service.title}</div>
+                        <div style={{ marginBottom: '30px' }}>
+                          <WireText lines={3} spacing="12px" />
+                        </div>
+                        <WireBox height="48px" bg="transparent" style={{
+                          border: '2px solid #6B4E71',
+                          color: '#6B4E71'
+                        }}>
+                          Mehr erfahren →
+                        </WireBox>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </DCArtboard>
+
+            <DCArtboard id="testimonials" label="Testimonials" width={1200} height={700}>
+              <div style={{ 
+                background: 'linear-gradient(to bottom, #FAF6F0, #F9FBF2)',
+                padding: '80px 60px' 
+              }}>
+                <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+                  <div style={{
+                    fontFamily: 'Cormorant',
+                    fontSize: '48px',
+                    fontWeight: '300',
+                    color: '#084A5E'
+                  }}>Stimmen meiner Teilnehmer</div>
+                </div>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '30px'
+                }}>
+                  {[1, 2, 3].map(i => (
+                    <div key={i} style={{
+                      background: 'white',
+                      padding: '40px',
+                      borderRadius: '12px',
+                      border: '2px solid #E8E3DC'
+                    }}>
+                      <div style={{
+                        fontFamily: 'Kalam',
+                        fontSize: '32px',
+                        color: '#C9A885',
+                        marginBottom: '20px'
+                      }}>"</div>
+                      <div style={{ marginBottom: '25px' }}>
+                        <WireText lines={4} spacing="14px" />
+                      </div>
+                      <div style={{
+                        fontFamily: 'Karla',
+                        fontSize: '14px',
+                        color: '#8A8A8A',
+                        fontWeight: '500'
+                      }}>— Name, München</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </DCArtboard>
+
+            <DCArtboard id="contact-cta" label="Kontakt / CTA" width={1200} height={700}>
+              <div style={{ 
+                background: '#6B4E71',
+                padding: '100px 60px',
+                textAlign: 'center',
+                color: 'white'
+              }}>
+                <div style={{
+                  fontFamily: 'Cormorant',
+                  fontSize: '64px',
+                  fontWeight: '300',
+                  marginBottom: '30px',
+                  lineHeight: '1.2'
+                }}>
+                  Bereit für deine erste<br/>Session?
+                </div>
+
+                <div style={{
+                  fontFamily: 'Karla',
+                  fontSize: '20px',
+                  marginBottom: '50px',
+                  opacity: 0.9,
+                  maxWidth: '600px',
+                  margin: '0 auto 50px'
+                }}>
+                  <WireText lines={2} spacing="16px" />
+                </div>
+
+                <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
+                  <WireBox width="200px" height="60px" bg="#C9A885" style={{ color: '#084A5E' }}>
+                    Termin buchen
+                  </WireBox>
+                  <WireBox width="200px" height="60px" bg="transparent" style={{
+                    border: '2px solid white',
+                    color: 'white'
+                  }}>
+                    Fragen stellen
+                  </WireBox>
+                </div>
+
+                <div style={{
+                  marginTop: '80px',
+                  display: 'flex',
+                  gap: '40px',
+                  justifyContent: 'center',
+                  fontFamily: 'Karla',
+                  fontSize: '14px'
+                }}>
+                  {['hello@yogakathi.de', '+49 123 456789', '@yogakathi'].map(info => (
+                    <div key={info} style={{ opacity: 0.8 }}>{info}</div>
+                  ))}
+                </div>
+              </div>
+            </DCArtboard>
+
+          </DCSection>
+
+          <DCSection id="elements" title="🎨 Design-Elemente">
+            
+            <DCArtboard id="buttons" label="Buttons & Links" width={900} height={700}>
+              <div style={{ padding: '60px', background: '#FDFCFA' }}>
+                <h2 style={{
+                  fontFamily: 'Cormorant',
+                  fontSize: '36px',
+                  fontWeight: '300',
+                  marginBottom: '50px',
+                  color: '#084A5E'
+                }}>Buttons & Interaktion</h2>
+
+                {/* Primary Buttons */}
+                <div style={{ marginBottom: '50px' }}>
+                  <h4 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '12px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    marginBottom: '25px',
+                    color: '#8A8A8A'
+                  }}>Primary Buttons</h4>
+                  <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+                    <WireBox width="180px" height="55px" bg="#084A5E" style={{ color: 'white' }}>
+                      Ozean Dunkel
+                    </WireBox>
+                    <WireBox width="180px" height="55px" bg="#6B4E71" style={{ color: 'white' }}>
+                      Mauve
+                    </WireBox>
+                    <WireBox width="180px" height="55px" bg="#C9A885" style={{ color: 'white' }}>
+                      Warmer Sand
+                    </WireBox>
+                  </div>
+                </div>
+
+                {/* Secondary Buttons */}
+                <div style={{ marginBottom: '50px' }}>
+                  <h4 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '12px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    marginBottom: '25px',
+                    color: '#8A8A8A'
+                  }}>Secondary Buttons (Outlined)</h4>
+                  <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+                    <WireBox width="180px" height="55px" bg="transparent" style={{
+                      border: '2px solid #084A5E',
+                      color: '#084A5E'
+                    }}>
+                      Ozean
+                    </WireBox>
+                    <WireBox width="180px" height="55px" bg="transparent" style={{
+                      border: '2px solid #6B4E71',
+                      color: '#6B4E71'
+                    }}>
+                      Mauve
+                    </WireBox>
+                  </div>
+                </div>
+
+                {/* Text Links */}
+                <div>
+                  <h4 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '12px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    marginBottom: '25px',
+                    color: '#8A8A8A'
+                  }}>Text Links</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                    <div style={{
+                      fontFamily: 'Karla',
+                      fontSize: '16px',
+                      color: '#7796CB',
+                      textDecoration: 'underline'
+                    }}>Standard Link (Himmelblau)</div>
+                    <div style={{
+                      fontFamily: 'Karla',
+                      fontSize: '16px',
+                      color: '#084A5E',
+                      fontWeight: '500'
+                    }}>Mehr erfahren →</div>
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+
+            <DCArtboard id="spacing" label="Spacing & Layout" width={900} height={700}>
+              <div style={{ padding: '60px', background: '#F9FBF2' }}>
+                <h2 style={{
+                  fontFamily: 'Cormorant',
+                  fontSize: '36px',
+                  fontWeight: '300',
+                  marginBottom: '50px',
+                  color: '#084A5E'
+                }}>Abstände & Rhythmus</h2>
+
+                <div style={{ marginBottom: '40px' }}>
+                  <h4 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '12px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    marginBottom: '25px',
+                    color: '#8A8A8A'
+                  }}>Spacing Scale</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                    {[
+                      { size: '8px', label: 'XS' },
+                      { size: '16px', label: 'S' },
+                      { size: '24px', label: 'M' },
+                      { size: '40px', label: 'L' },
+                      { size: '64px', label: 'XL' },
+                      { size: '96px', label: 'XXL' }
+                    ].map(({ size, label }) => (
+                      <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                        <div style={{
+                          width: size,
+                          height: '40px',
+                          background: '#C9A885',
+                          borderRadius: '4px'
+                        }}></div>
+                        <div style={{
+                          fontFamily: 'Karla',
+                          fontSize: '14px',
+                          color: '#5A5A5A'
+                        }}>{label} – {size}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '60px' }}>
+                  <h4 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '12px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    marginBottom: '25px',
+                    color: '#8A8A8A'
+                  }}>Border Radius</h4>
+                  <div style={{ display: 'flex', gap: '20px' }}>
+                    {[
+                      { radius: '4px', label: 'Small' },
+                      { radius: '8px', label: 'Medium' },
+                      { radius: '16px', label: 'Large' },
+                      { radius: '50%', label: 'Circle' }
+                    ].map(({ radius, label }) => (
+                      <div key={label} style={{ textAlign: 'center' }}>
+                        <div style={{
+                          width: '80px',
+                          height: '80px',
+                          background: '#9DADCE',
+                          borderRadius: radius,
+                          marginBottom: '10px'
+                        }}></div>
+                        <div style={{
+                          fontFamily: 'Karla',
+                          fontSize: '12px',
+                          color: '#5A5A5A'
+                        }}>{label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+
+            <DCArtboard id="patterns" label="Muster & Texturen" width={900} height={700}>
+              <div style={{ padding: '60px', background: '#FDFCFA' }}>
+                <h2 style={{
+                  fontFamily: 'Cormorant',
+                  fontSize: '36px',
+                  fontWeight: '300',
+                  marginBottom: '50px',
+                  color: '#084A5E'
+                }}>Visuelle Elemente</h2>
+
+                {/* Organic shapes */}
+                <div style={{ marginBottom: '50px' }}>
+                  <h4 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '12px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    marginBottom: '25px',
+                    color: '#8A8A8A'
+                  }}>Organische Formen</h4>
+                  <div style={{ display: 'flex', gap: '30px' }}>
+                    <div style={{
+                      width: '150px',
+                      height: '180px',
+                      background: '#E8D5C4',
+                      borderRadius: '100px 100px 8px 8px'
+                    }}></div>
+                    <div style={{
+                      width: '150px',
+                      height: '180px',
+                      background: '#9DADCE',
+                      borderRadius: '50% 50% 50% 10%'
+                    }}></div>
+                    <div style={{
+                      width: '150px',
+                      height: '180px',
+                      background: '#C9A885',
+                      borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%'
+                    }}></div>
+                  </div>
+                </div>
+
+                {/* Gradients */}
+                <div>
+                  <h4 style={{
+                    fontFamily: 'Karla',
+                    fontSize: '12px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    marginBottom: '25px',
+                    color: '#8A8A8A'
+                  }}>Farbverläufe</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                    <div style={{
+                      height: '100px',
+                      background: 'linear-gradient(135deg, #FAF6F0 0%, #E8D5C4 100%)',
+                      borderRadius: '8px'
+                    }}></div>
+                    <div style={{
+                      height: '100px',
+                      background: 'linear-gradient(135deg, #9DADCE 0%, #6B4E71 100%)',
+                      borderRadius: '8px'
+                    }}></div>
+                    <div style={{
+                      height: '100px',
+                      background: 'linear-gradient(to right, #C9A885 0%, #E8D5C4 50%, #FAF6F0 100%)',
+                      borderRadius: '8px'
+                    }}></div>
+                  </div>
+                </div>
+              </div>
+            </DCArtboard>
+
+          </DCSection>
+
+        </DesignCanvas>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

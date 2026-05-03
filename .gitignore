@@ -1,0 +1,41 @@
+# macOS / editor noise
+.DS_Store
+**/.DS_Store
+
+# Handoff / archives
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Raw or oversized media sources
+*.heic
+*.HEIC
+*.mov
+*.MOV
+*.avi
+*.mkv
+*.psd
+*.ai
+
+# Legacy export folders and duplicate source material
+assets/Colors/
+assets/Fotos/Kathi_*.png
+assets/Icons/BRANDING KIT_profile image 2 copy*.png
+yoga-kathi/
+
+# Keep web-ready images, logos, icons, fonts, and future optimized videos trackable.
+!assets/photos/*.jpg
+!assets/photos/*.webp
+!assets/logos/*.png
+!assets/icons/icon-*.png
+!assets/fonts/*
+!assets/images/*
+!assets/videos/*.mp4
+!assets/videos/*.webm
+
+# Source-size photo PNGs stay local; optimized JPEG/WebP variants are tracked.
+assets/photos/*.png
+
+# Ignore verbose legacy logo exports while keeping normalized logo-*.png files.
+assets/logos/Logo_*

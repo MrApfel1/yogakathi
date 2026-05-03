@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoga Kathi – Yoga & Breathwork in München</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --ocean: #084A5E;
+      --cream: #F9FBF2;
+      --sky-blue: #7796CB;
+      --mauve: #6B4E71;
+      --sand: #C9A885;
+      --light-clay: #E8D5C4;
+      --taupe: #A8927D;
+      --warm-white: #FAF6F0;
+      --soft-blue: #9DADCE;
+      --light-mauve: #8D7A8F;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #2A2A2A;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Cormorant', serif;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+    
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--ocean);
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: 'Kalam', cursive;
+      font-size: 1.5rem;
+      color: var(--cream);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    
+    nav {
+      display: flex;
+      gap: 2.5rem;
+    }
+    
+    nav a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--sand);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: var(--sand);
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section with Video */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #000;
+    }
+    
+    .hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      opacity: 0.6;
+      object-fit: cover;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(8, 74, 94, 0.4), rgba(107, 78, 113, 0.3));
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+    
+    .hero h1 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      color: white;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-tagline {
+      font-family: 'Kalam', cursive;
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+      color: var(--light-clay);
+      letter-spacing: 2px;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--ocean);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-button:hover {
+      background: var(--mauve);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(107, 78, 113, 0.4);
+    }
+    
+    /* Section Styles */
+    section {
+      padding: 6rem 3rem;
+    }
+    
+    .section-title {
+      font-size: 3rem;
+      color: var(--ocean);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    .section-subtitle {
+      font-family: 'Kalam', cursive;
+      font-size: 1.2rem;
+      color: var(--mauve);
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* About Section */
+    #about {
+      background: var(--warm-white);
+    }
+    
+    .about-content {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    
+    .about-image {
+      width: 100%;
+      height: 500px;
+      background: var(--light-clay);
+      border-radius: 200px 200px 12px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--taupe);
+      font-size: 1rem;
+      overflow: hidden;
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .about-text h2 {
+      font-size: 3.5rem;
+      color: var(--ocean);
+      margin-bottom: 1.5rem;
+    }
+    
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #5A5A5A;
+      margin-bottom: 1.5rem;
+    }
+    
+    .credentials {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .credential-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .credential-item h4 {
+      font-family: 'Cormorant', serif;
+      font-size: 1.5rem;
+      color: var(--ocean);
+      font-weight: 400;
+    }
+    
+    /* Courses Section */
+    #courses {
+      background: var(--cream);
+    }
+    
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+    
+    .course-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+    
+    .course-image {
+      width: 100%;
+      height: 250px;
+      background: var(--light-clay);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--taupe);
+      font-size: 0.9rem;
+    }
+    
+    .course-content {
+      padding: 2rem;
+    }
+    
+    .course-content h3 {
+      font-size: 1.8rem;
+      color: var(--ocean);
+      margin-bottom: 1rem;
+    }
+    
+    .course-content p {
+      color: #5A5A5A;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .course-link {
+      display: inline-block;
+      color: var(--mauve);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid var(--mauve);
+      transition: color 0.3s ease;
+    }
+    
+    .course-link:hover {
+      color: var(--ocean);
+      border-color: var(--ocean);
+    }
+    
+    /* Eversports Widget */
+    .eversports-container {
+      background: white;
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      margin-top: 3rem;
+    }
+    
+    .eversports-container h3 {
+      font-size: 2rem;
+      color: var(--ocean);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    #eversports-widget {
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--warm-white);
+      border-radius: 8px;
+      color: var(--taupe);
+    }
+    
+    /* Contact Section */
+    #contact {
+      background: linear-gradient(135deg, var(--mauve), var(--ocean));
+      color: white;
+    }
+    
+    #contact .section-title {
+      color: white;
+    }
+    
+    #contact .section-subtitle {
+      color: var(--light-clay);
+    }
+    
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .contact-details h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .contact-details p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+    
+    .contact-details a {
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      transition: border-color 0.3s ease;
+    }
+    
+    .contact-details a:hover {
+      border-color: var(--sand);
+    }
+    
+    .contact-form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border-radius: 16px;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--sand);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .submit-button {
+      width: 100%;
+      padding: 1rem;
+      background: var(--sand);
+      color: var(--ocean);
+      border: none;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .submit-button:hover {
+      background: var(--light-clay);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--ocean);
+      color: var(--cream);
+      padding: 3rem;
+      text-align: center;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-section h4 {
+      font-family: 'Cormorant', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+      color: rgba(249, 251, 242, 0.8);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-section a:hover {
+      color: var(--sand);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: background 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--mauve);
+    }
+    
+    .copyright {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        padding: 0 1.5rem;
+      }
+      
+      nav {
+        gap: 1rem;
+      }
+      
+      nav a {
+        font-size: 0.75rem;
+      }
+      
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .hero-tagline {
+        font-size: 1.2rem;
+      }
+      
+      .about-content,
+      .contact-content,
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      section {
+        padding: 4rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <a href="#" class="logo">Yoga Kathi</a>
+      <nav>
+        <a href="#about">Über Kathi</a>
+        <a href="#courses">Kurse</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <!-- Video Background Placeholder -->
+    <video class="hero-video" autoplay muted loop playsinline>
+      <!-- Placeholder: Add your video source here -->
+      <!-- <source src="your-video.mp4" type="video/mp4"> -->
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Yoga Kathi</h1>
+      <div class="hero-tagline">Flow from the Heart</div>
+      <a href="#contact" class="cta-button">Kontaktiere mich</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-image">
+          [Dein Portrait Foto]
+        </div>
+        <div class="about-text">
+          <h2>Hallo, ich bin Kathi</h2>
+          <p>
+            Seit über 5 Jahren begleite ich Menschen auf ihrem Weg zu mehr Achtsamkeit, Kraft und innerer Balance. 
+            Yoga und Breathwork sind für mich weit mehr als Übungen – sie sind Werkzeuge, um uns mit unserem 
+            wahren Selbst zu verbinden.
+          </p>
+          <p>
+            Meine Stunden sind geprägt von Authentizität, Ruhe und der Freude an der Bewegung. 
+            Ich lade dich ein, gemeinsam mit mir die transformative Kraft des Atems zu entdecken.
+          </p>
+          
+          <div class="credentials">
+            <div class="credential-item">
+              <h4>200h Yoga</h4>
+            </div>
+            <div class="credential-item">
+              <h4>Breathwork</h4>
+            </div>
+            <div class="credential-item">
+              <h4>seit 2018</h4>
+            </div>
+            <div class="credential-item">
+              <h4>München</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section id="courses">
+    <div class="container">
+      <h2 class="section-title">Meine Angebote</h2>
+      <p class="section-subtitle">Finde deine perfekte Practice</p>
+      
+      <div class="courses-grid">
+        <div class="course-card">
+          <div class="course-image">[Yoga Foto]</div>
+          <div class="course-content">
+            <h3>Yoga Kurse</h3>
+            <p>
+              Vinyasa Flow und Hatha Yoga für alle Levels. 
+              Verbinde Atem und Bewegung in einer fließenden Praxis.
+            </p>
+            <a href="#stundenplan" class="course-link">Zum Stundenplan →</a>
+          </div>
+        </div>
+        
+        <div class="course-card">
+          <div class="course-image">[Breathwork Foto]</div>
+          <div class="course-content">
+            <h3>Breathwork Sessions</h3>
+            <p>
+              Intensive Atemsessions für emotionale Heilung und 
+              tiefe Transformation. Einzel- und Gruppensessions.
+            </p>
+            <a href="#stundenplan" class="course-link">Mehr erfahren →</a>
+          </div>
+        </div>
+        
+        <div class="course-card">
+          <div class="course-image">[Workshop Foto]</div>
+          <div class="course-content">
+            <h3>Workshops</h3>
+            <p>
+              Spezielle Themen-Workshops zu Yoga Philosophy, 
+              Meditation und ganzheitlichem Wohlbefinden.
+            </p>
+            <a href="#contact" class="course-link">Termine anfragen →</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Eversports Integration -->
+      <div class="eversports-container" id="stundenplan">
+        <h3>Stundenplan & Buchung</h3>
+        <div id="eversports-widget">
+          <!-- Eversports Widget Integration -->
+          <!-- Füge hier deinen Eversports Embed Code ein -->
+          <p style="color: #A8927D;">Eversports Widget kommt hier hin</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Lass uns verbinden</h2>
+      <p class="section-subtitle">Ich freue mich von dir zu hören</p>
+      
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-details">
+              <h4>Email</h4>
+              <p><a href="mailto:hello@yogakathi.de">hello@yogakathi.de</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div class="contact-details">
+              <h4>Telefon</h4>
+              <p><a href="tel:+491234567890">+49 123 456 7890</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-details">
+              <h4>Standort</h4>
+              <p>München, Deutschland</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">✨</div>
+            <div class="contact-details">
+              <h4>Social Media</h4>
+              <p><a href="https://instagram.com/yogakathi" target="_blank">@yogakathi</a></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Dein Name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="deine@email.de" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Nachricht</label>
+              <textarea id="message" name="message" placeholder="Was möchtest du mir mitteilen?" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-button">Nachricht senden</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Yoga Kathi</h4>
+        <p>Deine Reise zu mehr<br>Achtsamkeit beginnt hier.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Links</h4>
+        <a href="#about">Über mich</a>
+        <a href="#courses">Kurse</a>
+        <a href="#contact">Kontakt</a>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Folge mir</h4>
+        <div class="social-links">
+          <a href="https://instagram.com/yogakathi" target="_blank" aria-label="Instagram">📷</a>
+          <a href="https://facebook.com/yogakathi" target="_blank" aria-label="Facebook">👥</a>
+          <a href="mailto:hello@yogakathi.de" aria-label="Email">✉️</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      © 2026 Yoga Kathi. Alle Rechte vorbehalten.
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll with offset for fixed header
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80; // Height of fixed header
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Form submission handler (placeholder)
+    document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Vielen Dank für deine Nachricht! Ich melde mich bald bei dir.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
