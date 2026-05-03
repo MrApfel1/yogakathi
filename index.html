@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Kalam:wght@300;400&display=swap" rel="stylesheet">
 
+  <!-- Preload hero video for instant playback -->
+  <link rel="preload" href="assets/videos/hero-1-720p-optimized.mp4" as="video" type="video/mp4">
+
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -115,8 +118,8 @@
       background: currentColor; opacity: 0.35;
     }
 
-    /* ── Portrait organic shape ────────────────────── */
-    .organic { border-radius: 62% 38% 55% 45% / 52% 46% 54% 48%; }
+    /* ── Portrait arch shape ───────────────────────── */
+    .arch-portrait { border-radius: 10rem 10rem 1.5rem 1.5rem; }
 
     /* ── Grain texture overlay ─────────────────────── */
     .grain { position: relative; }
@@ -144,6 +147,13 @@
       transition: max-height 0.45s ease, opacity 0.35s ease;
     }
     #mobile-nav.open { max-height: 320px; opacity: 1; }
+
+    /* ── Hero video container ─────────────────────── */
+    .hero-video-wrap {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      -webkit-mask-image: -webkit-radial-gradient(white, white);
+    }
   </style>
 </head>
 
@@ -161,7 +171,7 @@
     <div id="header-inner" class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center transition-all duration-500">
 
       <a href="#hero" class="flex-shrink-0">
-        <img src="assets/logos/logo-1-white.png" alt="Yoga Kathi" class="h-9 md:h-11 w-auto">
+        <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-12 md:h-16 w-auto">
       </a>
 
       <nav class="hidden md:flex items-center gap-9">
@@ -194,71 +204,111 @@
   <!-- ══════════════════════════════════════════════════
        HERO
   ══════════════════════════════════════════════════ -->
-  <section id="hero" class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-black grain">
+  <section id="hero" class="relative bg-ocean grain overflow-hidden">
 
-    <video id="hero-video"
-      class="absolute inset-0 w-full h-full object-cover"
-      style="filter: saturate(0.8) brightness(0.65);"
-      autoplay muted loop playsinline
-      poster="assets/photos/kathi-1.jpg">
-      <source src="assets/videos/hero-1.mov" type="video/mp4">
-      <source src="assets/videos/hero-1.mov" type="video/quicktime">
-    </video>
+    <!-- ─── MOBILE HERO: fullscreen video bg + text overlay (< md) ─── -->
+    <div class="md:hidden relative min-h-[100svh] flex items-center justify-center">
+      <video class="absolute inset-0 w-full h-full object-cover"
+        autoplay muted loop playsinline
+        poster="assets/videos/hero-1-poster.jpg">
+        <source src="assets/videos/hero-1-720p-optimized.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-b from-ocean/85 via-ocean/65 to-ocean/90"></div>
 
-    <!-- Layered overlays -->
-    <div class="absolute inset-0 bg-gradient-to-br from-ocean/50 via-black/25 to-mauve/40"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
-
-    <!-- Radial glow -->
-    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full pointer-events-none"
-      style="background: radial-gradient(circle, rgba(201,168,133,0.12) 0%, transparent 70%);"></div>
-
-    <!-- Content -->
-    <div class="relative z-10 text-center text-white px-6 max-w-3xl mx-auto">
-
-      <div class="hero-enter mb-7 flex justify-center" id="h-logo" style="transition-delay:.25s">
-        <img src="assets/logos/logo-1-white.png" alt="Yoga Kathi"
-          class="h-20 md:h-28 w-auto" style="filter: drop-shadow(0 4px 32px rgba(0,0,0,0.5))">
+      <div class="relative z-10 text-center px-6 pt-24 pb-16">
+        <div class="hero-enter mb-5" id="h-logo-m" style="transition-delay:.1s">
+          <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-20 w-auto mx-auto">
+        </div>
+        <div class="hero-enter mb-5" id="h-pill-m" style="transition-delay:.2s">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sand/50 text-sand text-[10px] tracking-[0.2em] uppercase font-semibold bg-black/60">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            Elemental Yoga &amp; Breathwork · Wien
+          </span>
+        </div>
+        <h1 class="hero-enter font-display font-light text-[2.75rem] leading-[1.05] mb-5 text-white"
+          id="h-headline-m" style="transition-delay:.3s; text-shadow: 0 4px 24px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)">
+          Finde deine<br><em>innere Mitte</em>
+        </h1>
+        <p class="hero-enter font-script text-white/95 text-xl mb-9"
+          id="h-sub-m" style="transition-delay:.4s; text-shadow: 0 4px 20px rgba(0,0,0,0.8)">
+          Flow from the Heart
+        </p>
+        <div class="hero-enter flex flex-col gap-3" id="h-cta-m" style="transition-delay:.5s">
+          <a href="#courses"
+            class="px-8 py-3.5 bg-sand text-ocean text-xs font-semibold tracking-[0.18em] uppercase rounded-full
+                   hover:bg-clay transition-all duration-300">
+            Kurse entdecken
+          </a>
+          <a href="#about"
+            class="px-8 py-3.5 border border-white/40 text-white text-xs font-medium tracking-[0.18em] uppercase rounded-full
+                   hover:bg-white/10 transition-all duration-300">
+            Über Kathi
+          </a>
+        </div>
       </div>
 
-      <div class="hero-enter mb-7 flex justify-center" id="h-pill" style="transition-delay:.65s">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sand/40 text-sand/90 text-xs tracking-[0.2em] uppercase font-medium backdrop-blur-sm bg-black/10">
-          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-          Elemental Yoga &amp; Breathwork · Wien
-        </span>
-      </div>
-
-      <h1 class="hero-enter font-display font-light text-5xl md:text-7xl lg:text-[82px] leading-[1.1] mb-5 text-white"
-        id="h-headline" style="transition-delay:.95s; text-shadow: 0 2px 40px rgba(0,0,0,0.35)">
-        Finde deine<br><em>innere Mitte</em>
-      </h1>
-
-      <!-- Tagline with breathing animation (applied after entrance) -->
-      <p class="hero-enter font-script text-clay text-xl md:text-2xl mb-10"
-        id="h-sub" style="transition-delay:1.25s; text-shadow: 0 1px 20px rgba(0,0,0,0.4)">
-        Flow from the Heart
-      </p>
-
-      <div class="hero-enter flex flex-col sm:flex-row gap-4 justify-center" id="h-cta" style="transition-delay:1.55s">
-        <a href="#courses"
-          class="px-8 py-3.5 bg-sand text-ocean text-xs font-semibold tracking-[0.18em] uppercase rounded-full
-                 hover:bg-clay hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-          Kurse entdecken
-        </a>
-        <a href="#about"
-          class="px-8 py-3.5 border border-white/45 text-white text-xs font-medium tracking-[0.18em] uppercase rounded-full
-                 hover:border-white/80 hover:bg-white/10 transition-all duration-300">
-          Über Kathi
-        </a>
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-white/40 float-down">
+        <span class="font-script text-xs tracking-wide">scroll</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+        </svg>
       </div>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/40 float-down">
-      <span class="font-script text-sm tracking-wide" style="font-size:13px">scroll</span>
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
-      </svg>
+    <!-- ─── DESKTOP HERO: true 50/50 split (≥ md) ─── -->
+    <div class="hidden md:grid md:grid-cols-2 min-h-[92vh]">
+
+      <!-- Left: text, vertically centered -->
+      <div class="flex flex-col justify-center pl-[max(2.5rem,calc((100vw-72rem)/2+1.5rem))] pr-14 lg:pr-20">
+
+        <div class="hero-enter mb-6" id="h-logo" style="transition-delay:.25s">
+          <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-28 w-auto">
+        </div>
+
+        <div class="hero-enter mb-6" id="h-pill" style="transition-delay:.65s">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sand/40 text-sand/90 text-xs tracking-[0.2em] uppercase font-medium bg-white/5">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            Elemental Yoga &amp; Breathwork · Wien
+          </span>
+        </div>
+
+        <h1 class="hero-enter font-display font-light text-6xl lg:text-[76px] leading-[1.05] mb-6 text-white"
+          id="h-headline" style="transition-delay:.95s;">
+          Finde deine<br><em>innere Mitte</em>
+        </h1>
+
+        <p class="hero-enter font-script text-clay text-2xl mb-10"
+          id="h-sub" style="transition-delay:1.25s;">
+          Flow from the Heart
+        </p>
+
+        <div class="hero-enter flex gap-4" id="h-cta" style="transition-delay:1.55s">
+          <a href="#courses"
+            class="px-8 py-4 bg-sand text-ocean text-xs font-semibold tracking-[0.18em] uppercase rounded-full
+                   hover:bg-clay hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
+            Kurse entdecken
+          </a>
+          <a href="#about"
+            class="px-8 py-4 border border-white/30 text-white text-xs font-medium tracking-[0.18em] uppercase rounded-full
+                   hover:border-white/70 hover:bg-white/5 transition-all duration-300">
+            Über Kathi
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: video fills entire column, edge-to-edge -->
+      <div id="h-video" class="relative overflow-hidden">
+        <video id="hero-video"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="object-position: center 15%;"
+          autoplay muted loop playsinline preload="auto">
+          <source src="assets/videos/hero-1-720p-optimized.mp4" type="video/mp4">
+        </video>
+        <!-- Soft fade into ocean bg on the left edge -->
+        <div class="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-ocean to-transparent pointer-events-none z-10"></div>
+      </div>
+
     </div>
   </section>
 
@@ -266,7 +316,7 @@
   <!-- ══════════════════════════════════════════════════
        ABOUT
   ══════════════════════════════════════════════════ -->
-  <section id="about" class="py-28 md:py-36 bg-warm overflow-hidden">
+  <section id="about" class="py-16 md:py-24 bg-warm overflow-hidden">
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid md:grid-cols-[420px_1fr] gap-16 lg:gap-28 items-center">
 
@@ -275,7 +325,7 @@
           <div class="absolute -inset-8 rounded-full bg-clay/25 blur-3xl -z-10 pointer-events-none"></div>
           <img src="assets/photos/kathi-1.jpg"
             alt="Kathi – Yoga & Breathwork Lehrerin Wien"
-            class="relative w-full max-w-xs md:max-w-full mx-auto object-cover organic shadow-2xl"
+            class="relative w-full max-w-xs md:max-w-full mx-auto object-cover arch-portrait shadow-2xl"
             style="aspect-ratio:3/4; object-fit:cover;">
           <div class="absolute -bottom-5 -right-4 md:-right-8 bg-white rounded-2xl shadow-xl px-5 py-4 text-center border border-clay/20">
             <p class="font-display text-[2rem] leading-tight text-ocean">7+</p>
@@ -285,7 +335,7 @@
 
         <!-- Text -->
         <div data-anim="right">
-          <p class="font-script text-mauve text-xl mb-4 overline">Über mich</p>
+          <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-ocean/60 mb-4">Über mich</p>
 
           <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-ocean leading-tight mb-8">
             Hallo, ich bin<br><em>Kathi</em>
@@ -339,32 +389,17 @@
   </section>
 
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION DIVIDER
-  ══════════════════════════════════════════════════ -->
-  <div class="relative h-20 bg-warm overflow-hidden">
-    <svg class="absolute inset-x-0 bottom-0 w-full" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="none">
-      <path d="M0 80 C360 0, 1080 0, 1440 80 L1440 80 L0 80 Z" fill="#F9FBF2"/>
-    </svg>
-    <div class="absolute inset-x-0 bottom-6 flex justify-center z-10">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-sand/50">
-        <path d="M12 3C12 3 6 8 6 13a6 6 0 0012 0c0-5-6-10-6-10z" stroke="currentColor" stroke-width="1" fill="none"/>
-        <line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
-        <path d="M12 12 C9 10 6 10 6 10 S7 14 12 12z" stroke="currentColor" stroke-width="0.8" fill="none"/>
-        <path d="M12 12 C15 10 18 10 18 10 S17 14 12 12z" stroke="currentColor" stroke-width="0.8" fill="none"/>
-      </svg>
-    </div>
-  </div>
+
 
 
   <!-- ══════════════════════════════════════════════════
        COURSES
   ══════════════════════════════════════════════════ -->
-  <section id="courses" class="py-28 md:py-36 bg-cream">
+  <section id="courses" class="py-16 md:py-24 bg-cream">
     <div class="max-w-6xl mx-auto px-6">
 
       <div class="text-center mb-20" data-anim="up">
-        <p class="font-script text-mauve text-xl mb-3 overline">Meine Angebote</p>
+        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-ocean/60 mb-3">Meine Angebote</p>
         <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-ocean mb-5">Was ich anbiete</h2>
         <p class="text-taupe/80 max-w-lg mx-auto leading-relaxed text-sm md:text-base">
           Jede Stunde ist eine Einladung, tiefer in dich einzutauchen –
@@ -449,7 +484,7 @@
       <!-- Eversports -->
       <div id="stundenplan" class="bg-white rounded-2xl shadow-sm border border-clay/20 p-8 md:p-12" data-anim="up">
         <h3 class="font-display font-light text-3xl text-ocean text-center mb-1">Stundenplan & Buchung</h3>
-        <p class="font-script text-taupe text-center mb-10">Alle Kurse auf einen Blick</p>
+        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-ocean/60 text-center mb-10">Alle Kurse auf einen Blick</p>
         <div id="eversports-widget" class="min-h-96 flex items-center justify-center bg-warm rounded-xl border border-clay/20">
           <div class="text-center py-16 px-6">
             <div class="w-14 h-14 rounded-full bg-clay/40 flex items-center justify-center mx-auto mb-4">
@@ -471,7 +506,7 @@
   <!-- ══════════════════════════════════════════════════
        QUOTE STRIPE
   ══════════════════════════════════════════════════ -->
-  <section class="relative py-24 md:py-28 bg-ocean overflow-hidden grain">
+  <section class="relative py-16 md:py-20 bg-ocean overflow-hidden grain">
     <div class="absolute -top-16 -left-16 w-72 h-72 rounded-full bg-mauve/25 blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
 
@@ -489,16 +524,19 @@
   <!-- ══════════════════════════════════════════════════
        CONTACT
   ══════════════════════════════════════════════════ -->
-  <section id="contact" class="relative py-28 md:py-36 overflow-hidden grain"
-    style="background: linear-gradient(140deg, #6B4E71 0%, #084A5E 100%);">
+  <section id="contact" class="relative py-16 md:py-24 overflow-hidden grain"
+    style="background:
+      radial-gradient(ellipse 78% 62% at 18% 22%, rgba(201,168,133,0.22) 0%, rgba(201,168,133,0.08) 38%, transparent 72%),
+      radial-gradient(ellipse 70% 58% at 88% 18%, rgba(157,173,206,0.16) 0%, transparent 66%),
+      linear-gradient(145deg, #073F50 0%, #084A5E 48%, #0B3847 100%);">
 
     <div class="absolute inset-0 pointer-events-none"
-      style="background: radial-gradient(ellipse 70% 60% at 30% 50%, rgba(201,168,133,0.1) 0%, transparent 70%)"></div>
+      style="background: linear-gradient(180deg, rgba(250,246,240,0.08) 0%, transparent 28%, rgba(0,0,0,0.12) 100%)"></div>
 
     <div class="relative z-10 max-w-5xl mx-auto px-6">
 
       <div class="text-center mb-16" data-anim="up">
-        <p class="font-script text-clay text-xl mb-3 overline">Lass uns verbinden</p>
+        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-sand/80 mb-3">Lass uns verbinden</p>
         <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-white leading-tight">
           Ich freue mich<br><em>von dir zu hören</em>
         </h2>
@@ -609,7 +647,7 @@
       <div class="grid md:grid-cols-3 gap-10 mb-12">
 
         <div>
-          <img src="assets/logos/logo-1-white.png" alt="Yoga Kathi" class="h-9 w-auto mb-4 opacity-80">
+          <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-14 w-auto mb-4 opacity-80">
           <p class="text-cream/50 text-sm leading-relaxed">
             Elemental Yoga & Breathwork<br>Wien, Österreich
           </p>
@@ -683,24 +721,35 @@
     document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
     document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
 
-    /* ── Hero video: slow playback ──────────────────── */
+    /* ── Hero video: slow playback + force autoplay ── */
     const vid = document.getElementById('hero-video');
-    const setRate = () => { vid.playbackRate = 0.75; };
-    vid.addEventListener('loadedmetadata', setRate);
-    vid.addEventListener('canplay', setRate);
-    setRate();
+    const allVideos = document.querySelectorAll('#hero video');
+    allVideos.forEach(v => {
+      const setRate = () => { v.playbackRate = 0.75; };
+      v.addEventListener('loadedmetadata', setRate);
+      v.addEventListener('canplay', setRate);
+      setRate();
+      // Force autoplay (Chrome sometimes blocks even muted autoplay)
+      const tryPlay = () => { v.play().catch(() => {}); };
+      v.addEventListener('canplay', tryPlay);
+      tryPlay();
+    });
 
     /* ── Hero entrance + tagline breath ────────────── */
-    window.addEventListener('load', () => {
-      const ids = ['h-logo','h-pill','h-headline','h-sub','h-cta'];
+    document.addEventListener('DOMContentLoaded', () => {
+      // Desktop + mobile element IDs
+      const ids = ['h-logo','h-pill','h-headline','h-sub','h-cta',
+                   'h-logo-m','h-pill-m','h-headline-m','h-sub-m','h-cta-m'];
       ids.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.add('show');
       });
       // Add breathing animation to tagline after entrance completes
       setTimeout(() => {
-        const sub = document.getElementById('h-sub');
-        if (sub) sub.classList.add('breath');
+        ['h-sub','h-sub-m'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('breath');
+        });
       }, 2800);
     });
 

@@ -7,6 +7,7 @@ One-Page-Website für Kathi K., Yoga-Lehrerin und Breathwork-Teacherin in Wien.
 - **HTML + Tailwind CSS CDN + Vanilla JavaScript** – kein Build-Tool, kein Framework
 - Fonts: Google Fonts (Cormorant, Montserrat, Kalam) + lokale Fallbacks in `assets/fonts/`
 - Einstiegspunkt: `index.html` im Projektstamm
+- Git-Repo ist initialisiert, Branch: `main`
 
 ## Projektstruktur
 
@@ -30,8 +31,45 @@ specs/
 
 ## Wie man startet
 
-Einfach `index.html` im Browser öffnen – kein Build-Schritt nötig.
-Alle Assets sind relativ verlinkt, funktioniert direkt vom Dateisystem.
+Empfohlen ist ein lokaler HTTP-Server im Projektstamm:
+
+```bash
+python3 -m http.server 8000
+```
+
+Dann öffnen:
+
+```text
+http://127.0.0.1:8000/index.html
+```
+
+Kein Build-Schritt nötig. Die Assets sind relativ verlinkt. Direktes Öffnen per Doppelklick (`file://`) kann in Chrome durch Cache/Dateikontext verwirrend sein; für Entwicklung und QA immer den lokalen Server nutzen.
+
+## Git & Assets
+
+- Versioniert werden Website-Code, Specs, Design-Referenzen und optimierte Web-Assets.
+- Ignoriert werden Rohmedien, HEICs, MOV-Videos, Handoff-Zips, `.DS_Store`, Playwright-Diagnoseartefakte und alte Exportduplikate.
+- Die großen Foto-PNGs bleiben lokal als Quellen erhalten, werden aber nicht versioniert.
+- Die produktiv verwendeten Fotos liegen als optimierte JPEGs unter `assets/photos/kathi-1.jpg` bis `kathi-4.jpg`.
+- Optimierte Videos können später als `assets/videos/*.mp4` oder `assets/videos/*.webm` versioniert werden.
+
+## Übergabe-Status Hero-Video
+
+Stand 03.05.2026 ist der Hero-Video-Bereich **nicht final abgenommen**.
+
+Aktuell referenziert `index.html`:
+
+```text
+assets/videos/hero-1-wide.mp4
+```
+
+Das ist ein aus Hochformatmaterial generiertes 1920×1080-Video mit geblurrten Seiten. Der Nutzer ist damit unzufrieden, weil es weiterhin nach Hochformatvideo wirkt und die Blur-Ränder stören. Für die nächste Runde sollte entweder echtes Querformatmaterial verwendet oder der Hero neu konzipiert werden. Details stehen in:
+
+```text
+design/reference/antigravity-handoff.md
+CLAUDE.md
+specs/features/001-landing-page.md
+```
 
 ## Seitenaufbau
 
@@ -60,10 +98,12 @@ Alle Assets sind relativ verlinkt, funktioniert direkt vom Dateisystem.
 
 ## Offene Punkte
 
-- [ ] `hero-1.mov` → `.mp4` (H.264) konvertieren für Cross-Browser-Kompatibilität
+- [x] `hero-1.mov` und `hero-2.mov` testweise zu `.mp4` konvertiert
+- [ ] Hero-Video-Strategie neu entscheiden; aktueller Blur-Seiten-Composite ist nicht final
 - [ ] Eversports-Embed-Code in `<div id="eversports-widget">` einfügen
 - [ ] Impressum & Datenschutz als eigene Seiten anlegen (Feature 002)
 - [ ] Icons (`assets/icons/`) in Sektionen einbauen
+- [ ] Optional: `favicon.ico` oder SVG-Favicon ergänzen
 
 ## Für AI-Assistenten
 

@@ -1,7 +1,15 @@
 # 001 – Landing Page (One-Pager)
 
 ## Status
-**IMPLEMENTIERT** – `index.html` im Projektstamm fertig (Stand: Mai 2025).
+**IMPLEMENTIERT** – `index.html` im Projektstamm fertig (Stand: Mai 2026).
+
+**Achtung Übergabe 03.05.2026:** Die Landing Page ist funktional, aber der aktuelle Hero-Video-Ansatz ist vom Nutzer **nicht abgenommen**.
+Der Nutzer ist unzufrieden mit dem aus Hochformatmaterial gebauten Querformat-Composite mit geblurrten Seiten. Nächster Schritt ist wahrscheinlich entweder ein Rücksprung/Reset auf einen früheren Git-Stand oder eine neue Hero-Video-Strategie mit echtem Querformatmaterial.
+
+Git-Baseline:
+- Branch: `main`
+- `bdfb8ae` – `Initial website baseline`
+- `11e14c4` – `Ignore local browser diagnostics`
 
 ---
 
@@ -11,6 +19,20 @@ alle Assets relativ verlinkt, kein Build-Tool, kein Framework.
 
 **Tech-Stack:** HTML + Tailwind CSS CDN + Vanilla JavaScript.
 Tailwind-Config (Farben, Fonts) direkt im `<script>`-Block im `<head>`.
+
+Lokale Entwicklung/QA:
+
+```bash
+python3 -m http.server 8000
+```
+
+Browser-URL:
+
+```text
+http://127.0.0.1:8000/index.html
+```
+
+Direktes Öffnen über `file://` ist nicht die bevorzugte Prüfmethode.
 
 ---
 
@@ -25,16 +47,19 @@ Tailwind-Config (Farben, Fonts) direkt im `<script>`-Block im `<head>`.
 - Mobile (≤ 768 px): Hamburger-Menü (3 Bars, `b1/b2/b3`), animiert zu ×; `#mobile-nav` klappt auf (`max-height: 320px`)
 
 ### `<section id="hero">` – Hero mit Video-Hintergrund
-- Fullscreen (`h-screen`), `bg-black`, Klasse `.grain` (Rauschtextur)
-- `<video id="hero-video" autoplay muted loop playsinline poster="assets/photos/kathi-1.jpg">`
-  - Quelle: `assets/videos/hero-1.mov` (MOV + MP4 dual-source vorbereitet)
+- Aktueller Worktree: kompakter Hero (`.hero-frame`, nicht mehr `h-screen`), `bg-black`, Klasse `.grain`
+- Aktuell in `index.html`: ein einziges `<video id="hero-video">`
+  - Quelle: `assets/videos/hero-1-wide.mp4`
+  - Poster: `assets/videos/hero-1-wide-poster.jpg`
+  - `hero-1-wide.mp4` ist ein experimenteller 1920×1080-Composite aus `hero-1.mp4`, nicht final
+  - Der Composite enthält mittig das Hochformatvideo und an den Seiten geblurrte, dunklere Video-Flächen
+  - Nutzerfeedback: Blur-Ränder und Hochformat-Anmutung gefallen nicht
   - Slow-Playback: `playbackRate = 0.75` via JS (`loadedmetadata` + `canplay`)
 - Overlays:
-  - `bg-gradient-to-br from-ocean/50 via-black/25 to-mauve/40`
-  - `bg-gradient-to-t from-black/55 via-transparent to-transparent`
-  - Radialer Sand-Glow im oberen Drittel
+  - aktuell dezenter als Baseline: `from-ocean/24 via-black/8 to-ocean/18`
+  - `from-black/34 via-transparent to-black/10`
 - Inhalt (zentriert, weiß), Einfahrt via `.hero-enter` → `.show` (gestaffelt via `transition-delay`):
-  - `h-logo`: Logo `assets/logos/logo-1-white.png` (h-20 → h-28)
+  - `h-logo`: aktuell `assets/logos/logo-1-white-cropped.png` (h-24 → h-32)
   - `h-pill`: Standort-Pill „Elemental Yoga & Breathwork · Wien"
   - `h-headline`: H1 Cormorant 300, „Finde deine *innere Mitte*"
   - `h-sub`: Tagline (Kalam) „Flow from the Heart" – bekommt nach 2,8 s Klasse `.breath` (CSS @keyframes)
@@ -117,7 +142,9 @@ Dekoratives Leaf-Icon zentriert.
 | Hero-Einfahrt | `.hero-enter` + Staggered `transition-delay` via Inline-Style |
 | Smooth Scroll | JS-Handler `a[href^="#"]` mit 80 px Offset für fixed Header |
 | Responsive | Breakpoint `md:` (768 px), Hamburger-Nav, einspaltige Layouts |
-| Video | `playbackRate = 0.75`; MOV-Format, MP4-Slot vorbereitet |
+| Video | Aktuell `assets/videos/hero-1-wide.mp4`; experimentell, nicht final abgenommen |
+| Fotos | Optimierte JPEGs (`assets/photos/kathi-1.jpg` bis `kathi-4.jpg`); große PNG-Quellen lokal ignoriert |
+| Versionierung | Git-Repo auf `main`; `.gitignore` hält Rohmedien und Diagnoseartefakte aus dem Repo |
 | Custom Cursor | Dot + elastischer Ring (rAF, Lerp 0.12); `* { cursor: none }` |
 | Eversports | Platzhalter-DIV `id="eversports-widget"` – echter Embed-Code folgt |
 | Impressum/Datenschutz | Leere `#`-Links im Footer, keine eigenen Seiten |
@@ -127,23 +154,36 @@ Dekoratives Leaf-Icon zentriert.
 ## Asset-Mapping
 
 ```
-assets/logos/logo-1-white.png   → Header + Hero
+assets/logos/logo-1-white-cropped.png → Header + Hero (neuer Crop gegen transparente Ränder)
 assets/photos/kathi-1.jpg       → About-Portrait + Hero-Video-Poster-Fallback
 assets/photos/kathi-2.jpg       → Yoga-Card
 assets/photos/kathi-3.jpg       → Breathwork-Card
 assets/photos/kathi-4.jpg       → Workshops-Card
-assets/videos/hero-1.mov        → Hero-Video (+ MP4-Slot vorbereitet)
+assets/videos/hero-1.mov        → Rohvideo, Hochformat, QuickTime/HEVC
+assets/videos/hero-1.mp4        → originalnahe H.264-Konvertierung, Hochformat
+assets/videos/hero-2.mp4        → originalnahe H.264-Konvertierung, Hochformat
+assets/videos/hero-1-wide.mp4   → aktuell eingebunden, 1920×1080 Composite mit Blur-Seiten, nicht final
 ```
+
+Nicht versionierte lokale Quellen/Artefakte:
+- `assets/photos/kathi-*.png` – große Fotoquellen
+- `assets/photos/originals-heic/` und `assets/Heic/` – HEIC-Originale
+- `assets/videos/*.mov`, `assets/videos/*.MOV` – Rohvideos
+- `Yoga Kathi-handoff.zip`, `.DS_Store`, `.playwright-cli/`
 
 ---
 
 ## Bekannte offene Punkte
 
-- [ ] Hero-Video `hero-1.mov` → `.mp4` konvertieren (H.264) für Chrome/Windows
+- [x] Hero-Rohvideos testweise zu MP4 konvertiert (`hero-1.mp4`, `hero-2.mp4`)
+- [ ] Hero-Video-Design neu entscheiden: aktueller `hero-1-wide.mp4`-Composite ist nicht zufriedenstellend
+- [ ] Falls möglich: echtes Querformat-Hero-Video beschaffen oder aufnehmen
+- [ ] Falls kein Querformatvideo verfügbar: Hero-Layout ohne Blur-Rand-Kaschierung neu entwerfen
 - [ ] Eversports-Embed-Code einfügen (`#eversports-widget`)
 - [ ] Impressum & Datenschutz als eigene Seiten (→ Feature 002)
 - [ ] Lokale Fonts (`HarlowDuoSerif.otf`) via `@font-face` registrieren, falls gewünscht
 - [ ] Icons (`icon-01.png … icon-22.png`) in Sektion einbauen, z. B. als Credentials-Symbole
+- [ ] Optional: Favicon ergänzen (`favicon.ico` oder SVG)
 
 ---
 
