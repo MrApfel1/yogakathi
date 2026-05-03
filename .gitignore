@@ -1,6 +1,7 @@
 # macOS / editor noise
 .DS_Store
 **/.DS_Store
+.playwright-cli/
 
 # Handoff / archives
 *.zip
