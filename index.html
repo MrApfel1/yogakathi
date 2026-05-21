@@ -91,13 +91,6 @@
     }
     .hero-enter.show { opacity: 1; transform: translateY(0); }
 
-    /* ── Hero tagline breath pulse ─────────────────── */
-    @keyframes breath {
-      0%, 100% { opacity: 0.85; letter-spacing: 0.06em; }
-      50%       { opacity: 1;    letter-spacing: 0.09em; }
-    }
-    .breath { animation: breath 5s ease-in-out infinite; }
-
     /* ── Nav underline ─────────────────────────────── */
     .nav-link { position: relative; }
     .nav-link::after {
@@ -157,7 +150,7 @@
   </style>
 </head>
 
-<body class="font-body text-gray-800 bg-white overflow-x-hidden antialiased">
+<body class="font-body text-cream bg-ocean overflow-x-hidden antialiased">
 
   <!-- Custom cursor -->
   <div id="cursor-dot"></div>
@@ -171,7 +164,7 @@
     <div id="header-inner" class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center transition-all duration-500">
 
       <a href="#hero" class="flex-shrink-0">
-        <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-12 md:h-16 w-auto">
+        <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-24 md:h-32 w-auto">
       </a>
 
       <nav class="hidden md:flex items-center gap-9">
@@ -229,7 +222,7 @@
           id="h-headline-m" style="transition-delay:.3s; text-shadow: 0 4px 24px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)">
           Finde deine<br><em>innere Mitte</em>
         </h1>
-        <p class="hero-enter font-script text-white/95 text-xl mb-9"
+        <p class="hero-enter font-body font-normal text-white/95 text-xl mb-9"
           id="h-sub-m" style="transition-delay:.4s; text-shadow: 0 4px 20px rgba(0,0,0,0.8)">
           Flow from the Heart
         </p>
@@ -278,7 +271,7 @@
           Finde deine<br><em>innere Mitte</em>
         </h1>
 
-        <p class="hero-enter font-script text-clay text-2xl mb-10"
+        <p class="hero-enter font-body font-normal text-clay text-2xl mb-10"
           id="h-sub" style="transition-delay:1.25s;">
           Flow from the Heart
         </p>
@@ -395,13 +388,13 @@
   <!-- ══════════════════════════════════════════════════
        COURSES
   ══════════════════════════════════════════════════ -->
-  <section id="courses" class="py-16 md:py-24 bg-cream">
+  <section id="courses" class="py-16 md:py-24 bg-ocean">
     <div class="max-w-6xl mx-auto px-6">
 
       <div class="text-center mb-20" data-anim="up">
-        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-ocean/60 mb-3">Meine Angebote</p>
-        <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-ocean mb-5">Was ich anbiete</h2>
-        <p class="text-taupe/80 max-w-lg mx-auto leading-relaxed text-sm md:text-base">
+        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-cream/50 mb-3">Meine Angebote</p>
+        <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-cream mb-5">Was ich anbiete</h2>
+        <p class="text-cream/65 max-w-lg mx-auto leading-relaxed text-sm md:text-base">
           Jede Stunde ist eine Einladung, tiefer in dich einzutauchen –
           mit Bewegung, Atem und Bewusstsein.
         </p>
@@ -411,21 +404,21 @@
       <div class="grid md:grid-cols-3 gap-7 mb-14">
 
         <article data-anim="up" data-delay="0"
-          class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-clay/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+          class="group bg-white/8 rounded-2xl overflow-hidden border border-white/12 hover:bg-white/12 hover:-translate-y-2 transition-all duration-500">
           <div class="overflow-hidden h-60">
             <img src="assets/photos/kathi-2.jpg" alt="Elemental Yoga Flows"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
           </div>
           <div class="p-7">
             <span class="text-[10px] font-semibold tracking-[0.2em] uppercase text-sand">Yoga</span>
-            <h3 class="font-display font-light text-[1.6rem] text-ocean mt-2 mb-4">Elemental Yoga Flows</h3>
-            <p class="text-taupe/80 text-sm leading-relaxed mb-6">
+            <h3 class="font-display font-light text-[1.6rem] text-cream mt-2 mb-4">Elemental Yoga Flows</h3>
+            <p class="text-cream/65 text-sm leading-relaxed mb-6">
               Fließende Sequenzen, inspiriert von Erde, Wasser, Feuer und Luft –
               ganzheitlich, meditativ, kraftvoll. Für alle Levels.
             </p>
             <a href="#stundenplan"
-              class="inline-flex items-center gap-1.5 text-mauve text-sm font-medium hover:text-ocean transition-colors duration-300 group/l">
-              <span class="border-b border-mauve/30 group-hover/l:border-ocean pb-0.5">Zum Stundenplan</span>
+              class="inline-flex items-center gap-1.5 text-sand text-sm font-medium hover:text-cream transition-colors duration-300 group/l">
+              <span class="border-b border-sand/40 group-hover/l:border-cream pb-0.5">Zum Stundenplan</span>
               <svg class="w-3.5 h-3.5 group-hover/l:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
@@ -434,21 +427,21 @@
         </article>
 
         <article data-anim="up" data-delay="150"
-          class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-clay/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+          class="group bg-white/8 rounded-2xl overflow-hidden border border-white/12 hover:bg-white/12 hover:-translate-y-2 transition-all duration-500">
           <div class="overflow-hidden h-60">
             <img src="assets/photos/kathi-3.jpg" alt="Elemental Breathing"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
           </div>
           <div class="p-7">
             <span class="text-[10px] font-semibold tracking-[0.2em] uppercase text-sand">Breathwork</span>
-            <h3 class="font-display font-light text-[1.6rem] text-ocean mt-2 mb-4">Elemental Breathing</h3>
-            <p class="text-taupe/80 text-sm leading-relaxed mb-6">
+            <h3 class="font-display font-light text-[1.6rem] text-cream mt-2 mb-4">Elemental Breathing</h3>
+            <p class="text-cream/65 text-sm leading-relaxed mb-6">
               Bewusstes Atmen als Weg zur tiefen Transformation – für emotionale Heilung,
               innere Klarheit und neue Lebensenergie.
             </p>
             <a href="#stundenplan"
-              class="inline-flex items-center gap-1.5 text-mauve text-sm font-medium hover:text-ocean transition-colors duration-300 group/l">
-              <span class="border-b border-mauve/30 group-hover/l:border-ocean pb-0.5">Mehr erfahren</span>
+              class="inline-flex items-center gap-1.5 text-sand text-sm font-medium hover:text-cream transition-colors duration-300 group/l">
+              <span class="border-b border-sand/40 group-hover/l:border-cream pb-0.5">Mehr erfahren</span>
               <svg class="w-3.5 h-3.5 group-hover/l:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
@@ -457,21 +450,21 @@
         </article>
 
         <article data-anim="up" data-delay="300"
-          class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-clay/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+          class="group bg-white/8 rounded-2xl overflow-hidden border border-white/12 hover:bg-white/12 hover:-translate-y-2 transition-all duration-500">
           <div class="overflow-hidden h-60">
             <img src="assets/photos/kathi-4.jpg" alt="Workshops & Retreats"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
           </div>
           <div class="p-7">
             <span class="text-[10px] font-semibold tracking-[0.2em] uppercase text-sand">Workshops</span>
-            <h3 class="font-display font-light text-[1.6rem] text-ocean mt-2 mb-4">Workshops & Retreats</h3>
-            <p class="text-taupe/80 text-sm leading-relaxed mb-6">
+            <h3 class="font-display font-light text-[1.6rem] text-cream mt-2 mb-4">Workshops & Retreats</h3>
+            <p class="text-cream/65 text-sm leading-relaxed mb-6">
               Vertiefende Themen-Workshops zu Yoga Philosophy, Meditation und
               ganzheitlichem Wohlbefinden – einmal im Monat in Wien.
             </p>
             <a href="#contact"
-              class="inline-flex items-center gap-1.5 text-mauve text-sm font-medium hover:text-ocean transition-colors duration-300 group/l">
-              <span class="border-b border-mauve/30 group-hover/l:border-ocean pb-0.5">Termine anfragen</span>
+              class="inline-flex items-center gap-1.5 text-sand text-sm font-medium hover:text-cream transition-colors duration-300 group/l">
+              <span class="border-b border-sand/40 group-hover/l:border-cream pb-0.5">Termine anfragen</span>
               <svg class="w-3.5 h-3.5 group-hover/l:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
@@ -482,14 +475,14 @@
       </div>
 
       <!-- Eversports -->
-      <div id="stundenplan" class="bg-white rounded-2xl shadow-sm border border-clay/20 p-8 md:p-12" data-anim="up">
-        <h3 class="font-display font-light text-3xl text-ocean text-center mb-1">Stundenplan & Buchung</h3>
-        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-ocean/60 text-center mb-10">Alle Kurse auf einen Blick</p>
-        <div id="eversports-widget" class="bg-warm rounded-2xl border border-clay/20 p-5 md:p-8">
+      <div id="stundenplan" class="bg-white/8 rounded-2xl border border-white/12 p-8 md:p-12" data-anim="up">
+        <h3 class="font-display font-light text-3xl text-cream text-center mb-1">Stundenplan & Buchung</h3>
+        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-cream/50 text-center mb-10">Alle Kurse auf einen Blick</p>
+        <div id="eversports-widget" class="bg-white/5 rounded-2xl border border-white/10 p-5 md:p-8">
           <div id="eversports-content" class="w-full flex flex-col items-center justify-center min-h-[300px] transition-opacity duration-500">
-            <div class="w-10 h-10 border-[3px] border-clay/40 border-t-ocean rounded-full animate-spin mb-5"></div>
-            <p class="font-display text-[1.3rem] text-ocean mb-1">Lade Stundenplan</p>
-            <p class="text-xs text-taupe/70 tracking-wide uppercase">Bitte warten...</p>
+            <div class="w-10 h-10 border-[3px] border-white/20 border-t-cream rounded-full animate-spin mb-5"></div>
+            <p class="font-display text-[1.3rem] text-cream mb-1">Lade Stundenplan</p>
+            <p class="text-xs text-cream/55 tracking-wide uppercase">Bitte warten...</p>
           </div>
         </div>
       </div>
@@ -730,7 +723,7 @@
       tryPlay();
     });
 
-    /* ── Hero entrance + tagline breath ────────────── */
+    /* ── Hero entrance ─────────────────────────────── */
     document.addEventListener('DOMContentLoaded', () => {
       // Desktop + mobile element IDs
       const ids = ['h-logo','h-pill','h-headline','h-sub','h-cta',
@@ -739,13 +732,6 @@
         const el = document.getElementById(id);
         if (el) el.classList.add('show');
       });
-      // Add breathing animation to tagline after entrance completes
-      setTimeout(() => {
-        ['h-sub','h-sub-m'].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.classList.add('breath');
-        });
-      }, 2800);
     });
 
     /* ── Scroll-triggered animations ───────────────── */
@@ -887,7 +873,7 @@
       if (!content) return;
 
       if (!nodes.length) {
-        content.innerHTML = '<div class="text-center py-12 text-taupe/80 text-sm">Zurzeit sind leider keine Termine geplant.</div>';
+        content.innerHTML = '<div class="text-center py-12 text-cream/70 text-sm">Zurzeit sind leider keine Termine geplant.</div>';
         content.classList.remove('items-center', 'justify-center', 'min-h-[300px]');
         return;
       }
@@ -903,10 +889,10 @@
       for (const dayStr of Object.keys(byDay).sort()) {
         const d = new Date(dayStr + 'T12:00:00');
         const label = `${DAYS_DE[d.getDay()]}, ${d.getDate()}. ${MONTHS_DE[d.getMonth()]} ${d.getFullYear()}`;
-        const todayBadge = isToday(dayStr) ? '<span class="bg-ocean text-white text-[9px] px-2.5 py-0.5 rounded-full ml-2 lowercase tracking-wider align-middle inline-flex font-semibold">Heute</span>' : '';
+        const todayBadge = isToday(dayStr) ? '<span class="bg-sand text-ocean text-[9px] px-2.5 py-0.5 rounded-full ml-2 lowercase tracking-wider align-middle inline-flex font-semibold">Heute</span>' : '';
 
         html += `<div>
-          <div class="text-[11px] font-bold uppercase tracking-[0.2em] text-ocean/70 px-1 pb-4 flex items-center">${label}${todayBadge}</div>
+          <div class="text-[11px] font-bold uppercase tracking-[0.2em] text-cream/60 px-1 pb-4 flex items-center">${label}${todayBadge}</div>
           <div class="flex flex-col gap-3">`;
 
         for (const act of byDay[dayStr].sort((a, b) => a.start.localeCompare(b.start))) {
@@ -914,20 +900,20 @@
           const venue = act.activityGroup?.venue?.name?.trim() || '';
           const room  = act.room?.name?.trim() || '';
           const metaParts = [venue, room].filter(Boolean);
-          const meta = metaParts.map(esc).join('<span class="text-clay px-1.5">•</span>');
+          const meta = metaParts.map(esc).join('<span class="text-cream/30 px-1.5">•</span>');
 
           html += `
-            <div class="group bg-white border border-clay/20 rounded-2xl p-5 md:p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] grid grid-cols-[70px_1fr] md:grid-cols-[90px_1fr] gap-4 md:gap-6 items-start hover:shadow-lg hover:border-clay/40 hover:-translate-y-0.5 transition-all duration-300">
-              <div class="text-sm md:text-base font-semibold text-ocean leading-tight mt-0.5">
+            <div class="group bg-white/8 border border-white/12 rounded-2xl p-5 md:p-6 grid grid-cols-[70px_1fr] md:grid-cols-[90px_1fr] gap-4 md:gap-6 items-start hover:bg-white/12 hover:-translate-y-0.5 transition-all duration-300">
+              <div class="text-sm md:text-base font-semibold text-cream leading-tight mt-0.5">
                 ${fmtTime(act.start)}
-                <span class="block text-[11px] font-normal text-taupe/70 mt-1">${fmtTime(act.end)}</span>
+                <span class="block text-[11px] font-normal text-cream/55 mt-1">${fmtTime(act.end)}</span>
               </div>
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <div class="text-[1.05rem] font-medium leading-snug text-ocean font-display">${esc(name)}</div>
-                  ${meta ? `<div class="text-[11px] text-taupe flex items-center flex-wrap mt-1.5 uppercase tracking-wide">${meta}</div>` : ''}
+                  <div class="text-[1.05rem] font-medium leading-snug text-cream font-display">${esc(name)}</div>
+                  ${meta ? `<div class="text-[11px] text-cream/55 flex items-center flex-wrap mt-1.5 uppercase tracking-wide">${meta}</div>` : ''}
                 </div>
-                ${act.detailsPageURL ? `<a class="self-start sm:self-center inline-flex px-6 py-2.5 bg-sand text-ocean text-[10px] font-bold rounded-full tracking-[0.18em] uppercase hover:bg-ocean hover:text-white transition-colors duration-300 shrink-0" href="${esc(act.detailsPageURL)}" target="_blank" rel="noopener">Buchen</a>` : ''}
+                ${act.detailsPageURL ? `<a class="self-start sm:self-center inline-flex px-6 py-2.5 bg-sand text-ocean text-[10px] font-bold rounded-full tracking-[0.18em] uppercase hover:bg-cream hover:text-ocean transition-colors duration-300 shrink-0" href="${esc(act.detailsPageURL)}" target="_blank" rel="noopener">Buchen</a>` : ''}
               </div>
             </div>`;
         }
@@ -950,7 +936,7 @@
       } catch (err) {
         const content = document.getElementById('eversports-content');
         if(content) {
-          content.innerHTML = `<div class="text-center py-12 text-taupe/80 text-sm">Fehler beim Laden des Stundenplans:<br><small class="opacity-70 mt-2 block">${esc(err.message)}</small></div>`;
+          content.innerHTML = `<div class="text-center py-12 text-cream/70 text-sm">Fehler beim Laden des Stundenplans:<br><small class="opacity-70 mt-2 block">${esc(err.message)}</small></div>`;
           content.classList.remove('items-center', 'justify-center', 'min-h-[300px]');
         }
       }
