@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kathi K. – Stundenplan</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f7f5f2;
+      --surface:   #ffffff;
+      --border:    #e8e4df;
+      --accent:    #7c6a5a;
+      --accent-lt: #f0ebe5;
+      --text:      #2d2520;
+      --muted:     #8a7d74;
+      --radius:    12px;
+      --shadow:    0 1px 4px rgba(0,0,0,.07);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--accent);
+    }
+    header p {
+      margin-top: 6px;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      margin: 12px auto 0;
+      display: block;
+    }
+
+    .container { max-width: 680px; margin: 0 auto; }
+
+    /* Loading / error */
+    .state-msg {
+      text-align: center;
+      padding: 48px 16px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .spinner {
+      display: inline-block;
+      width: 28px; height: 28px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Day group */
+    .day-group { margin-bottom: 20px; }
+
+    .day-header {
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      padding: 0 4px 8px;
+    }
+    .day-header span.today-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: .7rem;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-left: 8px;
+      text-transform: none;
+      letter-spacing: 0;
+      vertical-align: middle;
+    }
+
+    /* Activity card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 8px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 14px;
+      align-items: start;
+    }
+    .card-time {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.4;
+    }
+    .card-time .end-time {
+      display: block;
+      font-size: .78rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+    .card-body { min-width: 0; }
+    .card-name {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+    .card-meta {
+      margin-top: 4px;
+      font-size: .83rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .card-meta .dot { color: var(--border); }
+
+    .btn-book {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 7px 14px;
+      background: var(--accent);
+      color: #fff;
+      font-size: .82rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .btn-book:hover { opacity: .82; }
+
+    .empty-msg {
+      text-align: center;
+      padding: 36px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Kathi K.</h1>
+    <img class="avatar" src="https://files.eversports.com/5c7ac719-33e6-4f12-a16d-031d90e40941/img_2375jpeg-x-small.webp" alt="Kathi K.">
+    <p>Stundenplan – ALKEMY Ritual</p>
+  </header>
+
+  <div id="content">
+    <div class="state-msg">
+      <div class="spinner"></div><br>Lade Stundenplan …
+    </div>
+  </div>
+</div>
+
+<script>
+const WIDGET_ID  = 'a67d41ee-5f05-40b4-b30d-e27e6858151f';
+const TEACHER_ID = 'ca56fb01-8e89-46a9-a6d1-6daa847c66ce';
+const API_URL    = 'https://graphql-widget-master.production.eversports.cloud/api/graphql';
+const WEEKS_AHEAD = 8;
+
+const QUERY = `
+  query GetActivities($teacherIds: [ID!], $timeRange: TimeRangeInput, $first: Int) {
+    widget(id: "${WIDGET_ID}") {
+      ... on WidgetActivitySchedule {
+        activities(
+          teacherIds: $teacherIds
+          isCancelled: false
+          isArchived: false
+          timeRange: $timeRange
+          first: $first
+        ) {
+          nodes {
+            id
+            start
+            end
+            detailsPageURL
+            activityGroup { name venue { name } }
+            room { name }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const DAYS_DE   = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+const MONTHS_DE = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+
+function fmt(date) {
+  return date.toISOString().slice(0, 10);
+}
+function addDays(date, n) {
+  const d = new Date(date); d.setDate(d.getDate() + n); return d;
+}
+function fmtTime(isoStr) {
+  return new Date(isoStr).toLocaleTimeString('de-AT', { hour: '2-digit', minute: '2-digit', hour12: false });
+}
+function isToday(dateStr) {
+  return dateStr === fmt(new Date());
+}
+function esc(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+async function fetchActivities(start, end) {
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: QUERY,
+      variables: {
+        teacherIds: [TEACHER_ID],
+        timeRange: { start: fmt(start), end: fmt(end) },
+        first: 500
+      }
+    })
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const json = await res.json();
+  if (json.errors) throw new Error(json.errors.map(e => e.message).join('; '));
+  return json.data.widget.activities.nodes;
+}
+
+function render(nodes) {
+  const content = document.getElementById('content');
+
+  if (!nodes.length) {
+    content.innerHTML = '<div class="empty-msg">Keine bevorstehenden Termine gefunden.</div>';
+    return;
+  }
+
+  // Group by date
+  const byDay = {};
+  for (const act of nodes) {
+    const day = act.start.slice(0, 10);
+    if (!byDay[day]) byDay[day] = [];
+    byDay[day].push(act);
+  }
+
+  let html = '';
+  for (const dayStr of Object.keys(byDay).sort()) {
+    const d = new Date(dayStr + 'T12:00:00');
+    const label = `${DAYS_DE[d.getDay()]}, ${d.getDate()}. ${MONTHS_DE[d.getMonth()]} ${d.getFullYear()}`;
+    const todayBadge = isToday(dayStr) ? '<span class="today-badge">Heute</span>' : '';
+
+    html += `<div class="day-group"><div class="day-header">${label}${todayBadge}</div>`;
+
+    for (const act of byDay[dayStr].sort((a, b) => a.start.localeCompare(b.start))) {
+      const name  = act.activityGroup?.name?.trim() || '–';
+      const venue = act.activityGroup?.venue?.name?.trim() || '';
+      const room  = act.room?.name?.trim() || '';
+      const metaParts = [venue, room].filter(Boolean);
+      const meta = metaParts.map(esc).join('<span class="dot"> · </span>');
+
+      html += `<div class="card">
+        <div class="card-time">${fmtTime(act.start)}<span class="end-time">${fmtTime(act.end)}</span></div>
+        <div class="card-body">
+          <div class="card-name">${esc(name)}</div>
+          ${meta ? `<div class="card-meta">${meta}</div>` : ''}
+          ${act.detailsPageURL ? `<a class="btn-book" href="${esc(act.detailsPageURL)}" target="_blank" rel="noopener">Jetzt buchen</a>` : ''}
+        </div>
+      </div>`;
+    }
+    html += '</div>';
+  }
+
+  content.innerHTML = html;
+}
+
+async function load() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const end = addDays(today, WEEKS_AHEAD * 7);
+
+  try {
+    const nodes = await fetchActivities(today, end);
+    render(nodes);
+  } catch (err) {
+    document.getElementById('content').innerHTML =
+      `<div class="state-msg">Fehler beim Laden:<br><small>${esc(err.message)}</small></div>`;
+  }
+}
+
+load();
+</script>
+</body>
+</html>

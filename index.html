@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yoga Kathi – Elemental Yoga & Breathwork in Wien</title>
-  <meta name="description" content="Yoga Kathi – Elemental Yoga Flows & Elemental Breathing in Wien. Finde deine innere Mitte mit zertifizierter Yoga-Lehrerin und Breathwork-Teacherin Kathi.">
+  <title>Yoga Kathi – Yoga & Breathwork in Wien</title>
+  <meta name="description" content="Yoga Kathi – Yoga Flows & Breathing in Wien. Finde deine innere Mitte mit zertifizierter Yoga-Lehrerin und Breathwork-Teacherin Kathi.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,6 +45,7 @@
     :root {
       --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+      --header-height: 9rem;
     }
 
     /* ── Custom cursor ─────────────────────────────── */
@@ -71,6 +72,32 @@
     body:has(button:hover) #cursor-dot { width: 10px; height: 10px; }
     body:has(a:hover) #cursor-ring,
     body:has(button:hover) #cursor-ring { width: 48px; height: 48px; border-color: rgba(201,168,133,0.8); }
+
+    /* ── Section scroll snap ───────────────────────── */
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-padding-top: 0;
+    }
+    .snap-section {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      min-height: 100svh;
+    }
+    .footer-section {
+      scroll-snap-align: end;
+      scroll-snap-stop: always;
+    }
+    .section-content {
+      padding-top: calc(var(--header-height) + 2.5rem);
+      padding-bottom: 5rem;
+    }
+    .section-content-compact {
+      padding-top: calc(var(--header-height) + 1.75rem);
+      padding-bottom: 4rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-snap-type: none; }
+    }
 
     /* ── Scroll animations ─────────────────────────── */
     [data-anim] {
@@ -111,9 +138,6 @@
       background: currentColor; opacity: 0.35;
     }
 
-    /* ── Portrait arch shape ───────────────────────── */
-    .arch-portrait { border-radius: 10rem 10rem 1.5rem 1.5rem; }
-
     /* ── Grain texture overlay ─────────────────────── */
     .grain { position: relative; }
     .grain::after {
@@ -140,6 +164,26 @@
       transition: max-height 0.45s ease, opacity 0.35s ease;
     }
     #mobile-nav.open { max-height: 320px; opacity: 1; }
+
+    /* ── Schedule panel ────────────────────────────── */
+    .schedule-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(201,168,133,0.65) rgba(255,255,255,0.08);
+    }
+    .schedule-scroll::-webkit-scrollbar { width: 8px; }
+    .schedule-scroll::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+    }
+    .schedule-scroll::-webkit-scrollbar-thumb {
+      background: rgba(201,168,133,0.65);
+      border-radius: 999px;
+    }
+    .schedule-filter-btn[aria-pressed="true"] {
+      background: #C9A885;
+      color: #084A5E;
+      border-color: #C9A885;
+    }
 
     /* ── Hero video container ─────────────────────── */
     .hero-video-wrap {
@@ -170,8 +214,9 @@
       <nav class="hidden md:flex items-center gap-9">
         <a href="#about"   class="nav-link text-cream/70 hover:text-sand text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-300">Über Kathi</a>
         <a href="#courses" class="nav-link text-cream/70 hover:text-sand text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-300">Kurse</a>
+        <a href="#stundenplan" class="nav-link text-cream/70 hover:text-sand text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-300">Stunde buchen</a>
         <a href="#contact" class="nav-link text-cream/70 hover:text-sand text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-300">Kontakt</a>
-        <a href="#contact" class="ml-2 px-5 py-2 rounded-full border border-sand/50 text-sand text-xs font-medium tracking-[0.15em] uppercase hover:bg-sand hover:text-ocean hover:border-sand transition-all duration-300">
+        <a href="#stundenplan" class="ml-2 px-5 py-2 rounded-full border border-sand/50 text-sand text-xs font-medium tracking-[0.15em] uppercase hover:bg-sand hover:text-ocean hover:border-sand transition-all duration-300">
           Buchen
         </a>
       </nav>
@@ -187,8 +232,9 @@
       <div class="flex flex-col px-6 py-5 gap-5">
         <a href="#about"   class="text-cream/70 hover:text-sand text-xs tracking-[0.2em] uppercase transition-colors duration-300 py-1">Über Kathi</a>
         <a href="#courses" class="text-cream/70 hover:text-sand text-xs tracking-[0.2em] uppercase transition-colors duration-300 py-1">Kurse</a>
+        <a href="#stundenplan" class="text-cream/70 hover:text-sand text-xs tracking-[0.2em] uppercase transition-colors duration-300 py-1">Stunde buchen</a>
         <a href="#contact" class="text-cream/70 hover:text-sand text-xs tracking-[0.2em] uppercase transition-colors duration-300 py-1">Kontakt</a>
-        <a href="#contact" class="text-sand text-xs tracking-[0.2em] uppercase py-1">Buchen →</a>
+        <a href="#stundenplan" class="text-sand text-xs tracking-[0.2em] uppercase py-1">Buchen →</a>
       </div>
     </div>
   </header>
@@ -197,7 +243,7 @@
   <!-- ══════════════════════════════════════════════════
        HERO
   ══════════════════════════════════════════════════ -->
-  <section id="hero" class="relative bg-ocean grain overflow-hidden">
+  <section id="hero" class="snap-section relative bg-ocean grain overflow-hidden">
 
     <!-- ─── MOBILE HERO: fullscreen video bg + text overlay (< md) ─── -->
     <div class="md:hidden relative min-h-[100svh] flex items-center justify-center">
@@ -209,13 +255,10 @@
       <div class="absolute inset-0 bg-gradient-to-b from-ocean/85 via-ocean/65 to-ocean/90"></div>
 
       <div class="relative z-10 text-center px-6 pt-24 pb-16">
-        <div class="hero-enter mb-5" id="h-logo-m" style="transition-delay:.1s">
-          <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-20 w-auto mx-auto">
-        </div>
         <div class="hero-enter mb-5" id="h-pill-m" style="transition-delay:.2s">
           <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sand/50 text-sand text-[10px] tracking-[0.2em] uppercase font-semibold bg-black/60">
             <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-            Elemental Yoga &amp; Breathwork · Wien
+            Yoga &amp; Breathwork · Wien
           </span>
         </div>
         <h1 class="hero-enter font-display font-light text-[2.75rem] leading-[1.05] mb-5 text-white"
@@ -250,19 +293,15 @@
     </div>
 
     <!-- ─── DESKTOP HERO: true 50/50 split (≥ md) ─── -->
-    <div class="hidden md:grid md:grid-cols-2 min-h-[92vh]">
+    <div class="hidden md:grid md:grid-cols-2 min-h-[100svh]">
 
       <!-- Left: text, vertically centered -->
       <div class="flex flex-col justify-center pl-[max(2.5rem,calc((100vw-72rem)/2+1.5rem))] pr-14 lg:pr-20">
 
-        <div class="hero-enter mb-6" id="h-logo" style="transition-delay:.25s">
-          <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-28 w-auto">
-        </div>
-
         <div class="hero-enter mb-6" id="h-pill" style="transition-delay:.65s">
           <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sand/40 text-sand/90 text-xs tracking-[0.2em] uppercase font-medium bg-white/5">
             <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-            Elemental Yoga &amp; Breathwork · Wien
+            Yoga &amp; Breathwork · Wien
           </span>
         </div>
 
@@ -309,16 +348,16 @@
   <!-- ══════════════════════════════════════════════════
        ABOUT
   ══════════════════════════════════════════════════ -->
-  <section id="about" class="py-16 md:py-24 bg-ocean overflow-hidden">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid md:grid-cols-[420px_1fr] gap-16 lg:gap-28 items-center">
+  <section id="about" class="snap-section bg-ocean overflow-hidden">
+    <div class="section-content max-w-7xl mx-auto px-8 lg:px-14">
+      <div class="grid md:grid-cols-[500px_1fr] gap-16 lg:gap-28 items-center">
 
         <!-- Portrait -->
         <div class="relative" data-anim="left">
           <div class="absolute -inset-8 rounded-full bg-sky/20 blur-3xl -z-10 pointer-events-none"></div>
-          <img src="assets/photos/kathi-1.jpg"
+          <img src="assets/photos/uebermich.jpg"
             alt="Kathi – Yoga & Breathwork Lehrerin Wien"
-            class="relative w-full max-w-xs md:max-w-full mx-auto object-cover arch-portrait shadow-2xl"
+            class="relative w-full max-w-sm md:max-w-full mx-auto object-cover rounded-2xl shadow-2xl"
             style="aspect-ratio:3/4; object-fit:cover;">
           <div class="absolute -bottom-5 -right-4 md:-right-8 bg-ocean/80 backdrop-blur-sm rounded-2xl shadow-xl px-5 py-4 text-center border border-white/15">
             <p class="font-display text-[2rem] leading-tight text-sand">7+</p>
@@ -339,9 +378,9 @@
             zu mehr Achtsamkeit, Kraft und innerer Balance – mitten in Wien.
           </p>
           <p class="text-cream/75 leading-[1.9] mb-10 text-[1.05rem]">
-            In meinen <span class="text-sand font-medium">Elemental Yoga Flows</span> verbinden wir Bewegung
+            In meinen <span class="text-sand font-medium">Yoga Flows</span> verbinden wir Bewegung
             mit den natürlichen Elementen – geerdet, fließend, lebendig. Im
-            <span class="text-sand font-medium">Elemental Breathing</span> nutzen wir den Atem als
+            <span class="text-sand font-medium">Breathing</span> nutzen wir den Atem als
             kraftvolles Werkzeug zur tiefen Transformation.
           </p>
 
@@ -388,10 +427,10 @@
   <!-- ══════════════════════════════════════════════════
        COURSES
   ══════════════════════════════════════════════════ -->
-  <section id="courses" class="py-16 md:py-24 bg-ocean">
-    <div class="max-w-6xl mx-auto px-6">
+  <section id="courses" class="snap-section bg-ocean">
+    <div class="section-content max-w-7xl mx-auto px-8 lg:px-14">
 
-      <div class="text-center mb-20" data-anim="up">
+      <div class="text-center mb-10 md:mb-12" data-anim="up">
         <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-cream/50 mb-3">Meine Angebote</p>
         <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-cream mb-5">Was ich anbiete</h2>
         <p class="text-cream/65 max-w-lg mx-auto leading-relaxed text-sm md:text-base">
@@ -401,18 +440,18 @@
       </div>
 
       <!-- Cards -->
-      <div class="grid md:grid-cols-3 gap-7 mb-14">
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-7 mb-10 max-w-4xl mx-auto">
 
         <article data-anim="up" data-delay="0"
           class="group bg-white/8 rounded-2xl overflow-hidden border border-white/12 hover:bg-white/12 hover:-translate-y-2 transition-all duration-500">
-          <div class="overflow-hidden h-60">
-            <img src="assets/photos/kathi-2.jpg" alt="Elemental Yoga Flows"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+          <div class="overflow-hidden h-56 sm:h-64 md:h-60 lg:h-64">
+            <img src="assets/photos/Flow_Option1.JPG" alt="Yoga Flows"
+              class="w-full h-full object-cover object-[center_78%] group-hover:scale-105 transition-transform duration-700 ease-out">
           </div>
-          <div class="p-7">
+          <div class="p-6 md:p-7">
             <span class="text-[10px] font-semibold tracking-[0.2em] uppercase text-sand">Yoga</span>
-            <h3 class="font-display font-light text-[1.6rem] text-cream mt-2 mb-4">Elemental Yoga Flows</h3>
-            <p class="text-cream/65 text-sm leading-relaxed mb-6">
+            <h3 class="font-display font-light text-[1.5rem] text-cream mt-2 mb-3">Yoga Flows</h3>
+            <p class="text-cream/65 text-sm leading-relaxed mb-4">
               Fließende Sequenzen, inspiriert von Erde, Wasser, Feuer und Luft –
               ganzheitlich, meditativ, kraftvoll. Für alle Levels.
             </p>
@@ -428,14 +467,14 @@
 
         <article data-anim="up" data-delay="150"
           class="group bg-white/8 rounded-2xl overflow-hidden border border-white/12 hover:bg-white/12 hover:-translate-y-2 transition-all duration-500">
-          <div class="overflow-hidden h-60">
-            <img src="assets/photos/kathi-3.jpg" alt="Elemental Breathing"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+          <div class="overflow-hidden h-56 sm:h-64 md:h-60 lg:h-64">
+            <img src="assets/photos/kathi-2.jpg" alt="Breathing"
+              class="w-full h-full object-cover object-[center_38%] group-hover:scale-105 transition-transform duration-700 ease-out">
           </div>
-          <div class="p-7">
+          <div class="p-6 md:p-7">
             <span class="text-[10px] font-semibold tracking-[0.2em] uppercase text-sand">Breathwork</span>
-            <h3 class="font-display font-light text-[1.6rem] text-cream mt-2 mb-4">Elemental Breathing</h3>
-            <p class="text-cream/65 text-sm leading-relaxed mb-6">
+            <h3 class="font-display font-light text-[1.5rem] text-cream mt-2 mb-3">Breathing</h3>
+            <p class="text-cream/65 text-sm leading-relaxed mb-4">
               Bewusstes Atmen als Weg zur tiefen Transformation – für emotionale Heilung,
               innere Klarheit und neue Lebensenergie.
             </p>
@@ -449,40 +488,59 @@
           </div>
         </article>
 
-        <article data-anim="up" data-delay="300"
-          class="group bg-white/8 rounded-2xl overflow-hidden border border-white/12 hover:bg-white/12 hover:-translate-y-2 transition-all duration-500">
-          <div class="overflow-hidden h-60">
-            <img src="assets/photos/kathi-4.jpg" alt="Workshops & Retreats"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
-          </div>
-          <div class="p-7">
-            <span class="text-[10px] font-semibold tracking-[0.2em] uppercase text-sand">Workshops</span>
-            <h3 class="font-display font-light text-[1.6rem] text-cream mt-2 mb-4">Workshops & Retreats</h3>
-            <p class="text-cream/65 text-sm leading-relaxed mb-6">
-              Vertiefende Themen-Workshops zu Yoga Philosophy, Meditation und
-              ganzheitlichem Wohlbefinden – einmal im Monat in Wien.
-            </p>
-            <a href="#contact"
-              class="inline-flex items-center gap-1.5 text-sand text-sm font-medium hover:text-cream transition-colors duration-300 group/l">
-              <span class="border-b border-sand/40 group-hover/l:border-cream pb-0.5">Termine anfragen</span>
-              <svg class="w-3.5 h-3.5 group-hover/l:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-            </a>
-          </div>
-        </article>
-
       </div>
 
-      <!-- Eversports -->
-      <div id="stundenplan" class="bg-white/8 rounded-2xl border border-white/12 p-8 md:p-12" data-anim="up">
-        <h3 class="font-display font-light text-3xl text-cream text-center mb-1">Stundenplan & Buchung</h3>
-        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-cream/50 text-center mb-10">Alle Kurse auf einen Blick</p>
-        <div id="eversports-widget" class="bg-white/5 rounded-2xl border border-white/10 p-5 md:p-8">
-          <div id="eversports-content" class="w-full flex flex-col items-center justify-center min-h-[300px] transition-opacity duration-500">
-            <div class="w-10 h-10 border-[3px] border-white/20 border-t-cream rounded-full animate-spin mb-5"></div>
-            <p class="font-display text-[1.3rem] text-cream mb-1">Lade Stundenplan</p>
-            <p class="text-xs text-cream/55 tracking-wide uppercase">Bitte warten...</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SCHEDULE
+  ══════════════════════════════════════════════════ -->
+  <section id="stundenplan" class="snap-section bg-ocean overflow-hidden">
+    <div class="section-content-compact max-w-7xl mx-auto px-8 lg:px-14">
+
+      <div class="text-center mb-10 md:mb-12" data-anim="up">
+        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-cream/50 mb-3">Stunde buchen</p>
+        <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-cream mb-5">Stundenplan & Buchung</h2>
+        <p class="text-cream/65 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
+          Finde die passende Stunde und buche direkt deinen Platz.
+        </p>
+      </div>
+
+      <div class="bg-white/8 rounded-2xl border border-white/12 p-5 md:p-8" data-anim="up">
+        <div id="eversports-widget" class="bg-white/5 rounded-2xl border border-white/10 p-4 md:p-6 overflow-hidden">
+          <div id="eversports-controls" class="hidden mb-5 md:mb-6 rounded-2xl border border-white/10 bg-white/5 p-3 md:p-4 gap-4 md:gap-5 md:items-end md:justify-between flex-col lg:flex-row">
+            <div class="min-w-0 w-full lg:w-auto">
+              <p class="text-[10px] tracking-[0.2em] uppercase font-semibold text-cream/50 mb-2">Filter</p>
+              <div class="inline-flex w-full sm:w-auto rounded-full bg-white/8 border border-white/12 p-1 overflow-x-auto" aria-label="Stundenplan Kategorie">
+                <button type="button" class="schedule-filter-btn shrink-0 px-4 py-2 rounded-full border border-transparent text-[10px] font-semibold tracking-[0.16em] uppercase text-cream/70 transition-colors duration-300" data-schedule-category="all" aria-pressed="true">Alle</button>
+                <button type="button" class="schedule-filter-btn shrink-0 px-4 py-2 rounded-full border border-transparent text-[10px] font-semibold tracking-[0.16em] uppercase text-cream/70 transition-colors duration-300" data-schedule-category="yoga" aria-pressed="false">Yoga</button>
+                <button type="button" class="schedule-filter-btn shrink-0 px-4 py-2 rounded-full border border-transparent text-[10px] font-semibold tracking-[0.16em] uppercase text-cream/70 transition-colors duration-300" data-schedule-category="breathwork" aria-pressed="false">Breathwork</button>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-[minmax(210px,260px)_auto] gap-3 md:gap-4 items-end w-full lg:w-auto">
+              <label class="block">
+                <span class="block text-[10px] tracking-[0.2em] uppercase font-semibold text-cream/50 mb-2">Monat</span>
+                <span class="relative block">
+                  <select id="eversports-month-filter" class="appearance-none w-full h-11 rounded-full bg-ocean/80 border border-sand/70 pl-5 pr-12 text-sm text-cream focus:outline-none focus:border-sand">
+                    <option value="all">Alle kommenden Termine</option>
+                  </select>
+                  <svg class="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-cream/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 9l6 6 6-6"/>
+                  </svg>
+                </span>
+              </label>
+              <p id="eversports-summary" class="h-11 inline-flex items-center text-xs text-cream/55 sm:text-right">Termine werden geladen...</p>
+            </div>
+          </div>
+
+          <div id="eversports-scroll" class="schedule-scroll max-h-[58svh] md:max-h-[520px] overflow-y-auto pr-1 md:pr-2">
+            <div id="eversports-content" class="w-full flex flex-col items-center justify-center min-h-[300px] transition-opacity duration-500">
+              <div class="w-10 h-10 border-[3px] border-white/20 border-t-cream rounded-full animate-spin mb-5"></div>
+              <p class="font-display text-[1.3rem] text-cream mb-1">Lade Stundenplan</p>
+              <p class="text-xs text-cream/55 tracking-wide uppercase">Bitte warten...</p>
+            </div>
           </div>
         </div>
       </div>
@@ -494,13 +552,13 @@
   <!-- ══════════════════════════════════════════════════
        QUOTE STRIPE
   ══════════════════════════════════════════════════ -->
-  <section class="relative py-16 md:py-20 bg-ocean overflow-hidden grain">
+  <section class="snap-section relative flex items-center bg-ocean overflow-hidden grain">
     <div class="absolute -top-16 -left-16 w-72 h-72 rounded-full bg-mauve/25 blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
 
-    <div class="relative z-10 max-w-2xl mx-auto px-6 text-center" data-anim="up">
+    <div class="relative z-10 max-w-5xl mx-auto px-8 lg:px-14 text-center" data-anim="up">
       <p class="font-script text-sand text-6xl leading-none mb-6 select-none">&ldquo;</p>
-      <blockquote class="font-display font-light italic text-2xl md:text-[2.1rem] text-white leading-relaxed mb-8">
+      <blockquote class="font-display font-light italic text-3xl md:text-[3rem] text-white leading-relaxed mb-8">
         Atem ist Leben. Wenn wir lernen, bewusst zu atmen,<br class="hidden md:block">
         lernen wir, bewusst zu leben.
       </blockquote>
@@ -512,7 +570,7 @@
   <!-- ══════════════════════════════════════════════════
        CONTACT
   ══════════════════════════════════════════════════ -->
-  <section id="contact" class="relative py-16 md:py-24 overflow-hidden grain"
+  <section id="contact" class="snap-section relative overflow-hidden grain"
     style="background:
       radial-gradient(ellipse 78% 62% at 18% 22%, rgba(201,168,133,0.22) 0%, rgba(201,168,133,0.08) 38%, transparent 72%),
       radial-gradient(ellipse 70% 58% at 88% 18%, rgba(157,173,206,0.16) 0%, transparent 66%),
@@ -521,7 +579,7 @@
     <div class="absolute inset-0 pointer-events-none"
       style="background: linear-gradient(180deg, rgba(250,246,240,0.08) 0%, transparent 28%, rgba(0,0,0,0.12) 100%)"></div>
 
-    <div class="relative z-10 max-w-5xl mx-auto px-6">
+    <div class="section-content-compact relative z-10 max-w-6xl mx-auto px-8 lg:px-14">
 
       <div class="text-center mb-16" data-anim="up">
         <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-sand/80 mb-3">Lass uns verbinden</p>
@@ -580,7 +638,7 @@
           </div>
 
           <div class="pt-8 mt-4 border-t border-white/15">
-            <p class="font-script text-clay/75 text-lg leading-relaxed">
+            <p class="font-body font-normal text-clay/75 text-sm leading-relaxed tracking-wide">
               "Jede Reise beginnt mit einem einzigen,<br>tiefen Atemzug."
             </p>
           </div>
@@ -629,15 +687,15 @@
   <!-- ══════════════════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════════════ -->
-  <footer class="bg-ocean text-cream pt-16 pb-10">
-    <div class="max-w-6xl mx-auto px-6">
+  <footer class="footer-section bg-ocean text-cream pt-20 pb-12">
+    <div class="max-w-7xl mx-auto px-8 lg:px-14">
 
       <div class="grid md:grid-cols-3 gap-10 mb-12">
 
         <div>
-          <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-14 w-auto mb-4 opacity-80">
+          <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-[5.25rem] w-auto mb-4 opacity-80">
           <p class="text-cream/50 text-sm leading-relaxed">
-            Elemental Yoga & Breathwork<br>Wien, Österreich
+            Yoga & Breathwork<br>Wien, Österreich
           </p>
         </div>
 
@@ -646,6 +704,7 @@
           <nav class="flex flex-col gap-2.5">
             <a href="#about"   class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Über Kathi</a>
             <a href="#courses" class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Kurse</a>
+            <a href="#stundenplan" class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Stunde buchen</a>
             <a href="#contact" class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Kontakt</a>
             <a href="#"        class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Impressum</a>
             <a href="#"        class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Datenschutz</a>
@@ -726,8 +785,8 @@
     /* ── Hero entrance ─────────────────────────────── */
     document.addEventListener('DOMContentLoaded', () => {
       // Desktop + mobile element IDs
-      const ids = ['h-logo','h-pill','h-headline','h-sub','h-cta',
-                   'h-logo-m','h-pill-m','h-headline-m','h-sub-m','h-cta-m'];
+      const ids = ['h-pill','h-headline','h-sub','h-cta',
+                   'h-pill-m','h-headline-m','h-sub-m','h-cta-m'];
       ids.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.add('show');
@@ -749,7 +808,12 @@
     /* ── Header shrink on scroll ────────────────────── */
     const hdr   = document.getElementById('site-header');
     const inner = document.getElementById('header-inner');
-    window.addEventListener('scroll', () => {
+
+    function updateHeaderHeight() {
+      document.documentElement.style.setProperty('--header-height', `${hdr.offsetHeight}px`);
+    }
+
+    function updateHeaderState() {
       if (window.scrollY > 72) {
         inner.classList.replace('py-4','py-2');
         hdr.classList.add('shadow-lg');
@@ -757,7 +821,12 @@
         inner.classList.replace('py-2','py-4');
         hdr.classList.remove('shadow-lg');
       }
-    }, { passive: true });
+      updateHeaderHeight();
+    }
+
+    updateHeaderState();
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+    window.addEventListener('resize', updateHeaderHeight, { passive: true });
 
     /* ── Mobile hamburger ───────────────────────────── */
     const burger   = document.getElementById('hamburger');
@@ -791,7 +860,7 @@
         const tgt = document.querySelector(sel);
         if (!tgt) return;
         e.preventDefault();
-        window.scrollTo({ top: tgt.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+        window.scrollTo({ top: tgt.offsetTop, behavior: 'smooth' });
       });
     });
 
@@ -846,12 +915,72 @@
 
     const DAYS_DE   = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
     const MONTHS_DE = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+    const MONTHS_LONG_DE = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+    const state = {
+      activities: [],
+      category: 'all',
+      month: 'all'
+    };
 
     function fmt(date) { return date.toISOString().slice(0, 10); }
     function addDays(date, n) { const d = new Date(date); d.setDate(d.getDate() + n); return d; }
     function fmtTime(isoStr) { return new Date(isoStr).toLocaleTimeString('de-AT', { hour: '2-digit', minute: '2-digit', hour12: false }); }
     function isToday(dateStr) { return dateStr === fmt(new Date()); }
-    function esc(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function esc(str) { return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    function classifyActivity(act) {
+      const name = (act.activityGroup?.name || '').toLowerCase();
+      if (/(yoga|flow|vinyasa)/i.test(name)) return 'yoga';
+      if (/(breathwork|breathing|meditation|atem)/i.test(name)) return 'breathwork';
+      return 'yoga';
+    }
+
+    function normalizeActivity(act) {
+      const date = new Date(act.start);
+      const day = act.start.slice(0, 10);
+      const month = day.slice(0, 7);
+      return {
+        ...act,
+        name: act.activityGroup?.name?.trim() || 'Yoga Klasse',
+        venue: act.activityGroup?.venue?.name?.trim() || '',
+        room: act.room?.name?.trim() || '',
+        day,
+        month,
+        category: classifyActivity(act),
+        sortTime: date.getTime()
+      };
+    }
+
+    function getMonthOptions(activities) {
+      const seen = new Set();
+      return activities
+        .slice()
+        .sort((a, b) => a.month.localeCompare(b.month))
+        .filter((act) => {
+          if (seen.has(act.month)) return false;
+          seen.add(act.month);
+          return true;
+        })
+        .map((act) => {
+          const [year, month] = act.month.split('-').map(Number);
+          return { value: act.month, label: `${MONTHS_LONG_DE[month - 1]} ${year}` };
+        });
+    }
+
+    function applyFilters(activities, filters) {
+      return activities.filter((act) => {
+        const categoryMatch = filters.category === 'all' || act.category === filters.category;
+        const monthMatch = filters.month === 'all' || act.month === filters.month;
+        return categoryMatch && monthMatch;
+      });
+    }
+
+    window.YogaKathiSchedule = {
+      classifyActivity,
+      normalizeActivity,
+      getMonthOptions,
+      applyFilters
+    };
 
     async function fetchActivities(start, end) {
       const res = await fetch(API_URL, {
@@ -868,12 +997,70 @@
       return json.data.widget.activities.nodes;
     }
 
+    function setControlsVisible(visible) {
+      const controls = document.getElementById('eversports-controls');
+      if (!controls) return;
+      controls.classList.toggle('hidden', !visible);
+      controls.classList.toggle('flex', visible);
+    }
+
+    function updateSummary(count) {
+      const summary = document.getElementById('eversports-summary');
+      if (!summary) return;
+      if (count === 1) {
+        summary.textContent = '1 Termin gefunden';
+      } else {
+        summary.textContent = `${count} Termine gefunden`;
+      }
+    }
+
+    function populateMonthFilter(activities) {
+      const select = document.getElementById('eversports-month-filter');
+      if (!select) return;
+      const options = getMonthOptions(activities);
+      select.innerHTML = '<option value="all">Alle kommenden Termine</option>' +
+        options.map((option) => `<option value="${esc(option.value)}">${esc(option.label)}</option>`).join('');
+      select.value = state.month;
+    }
+
+    function syncCategoryButtons() {
+      document.querySelectorAll('[data-schedule-category]').forEach((button) => {
+        button.setAttribute('aria-pressed', button.dataset.scheduleCategory === state.category ? 'true' : 'false');
+      });
+    }
+
+    function setupControls() {
+      document.querySelectorAll('[data-schedule-category]').forEach((button) => {
+        button.addEventListener('click', () => {
+          state.category = button.dataset.scheduleCategory || 'all';
+          syncCategoryButtons();
+          renderSchedule();
+        });
+      });
+
+      const select = document.getElementById('eversports-month-filter');
+      if (select) {
+        select.addEventListener('change', () => {
+          state.month = select.value || 'all';
+          renderSchedule();
+        });
+      }
+    }
+
+    function renderSchedule() {
+      render(applyFilters(state.activities, state));
+      const scroller = document.getElementById('eversports-scroll');
+      if (scroller) scroller.scrollTop = 0;
+    }
+
     function render(nodes) {
       const content = document.getElementById('eversports-content');
       if (!content) return;
 
+      updateSummary(nodes.length);
+
       if (!nodes.length) {
-        content.innerHTML = '<div class="text-center py-12 text-cream/70 text-sm">Zurzeit sind leider keine Termine geplant.</div>';
+        content.innerHTML = '<div class="text-center py-12 px-4 text-cream/70 text-sm">Für diesen Filter sind aktuell keine Termine geplant.</div>';
         content.classList.remove('items-center', 'justify-center', 'min-h-[300px]');
         return;
       }
@@ -885,7 +1072,7 @@
         byDay[day].push(act);
       }
 
-      let html = '<div class="w-full flex flex-col gap-8 fade-in-fast">';
+      let html = '<div class="w-full flex flex-col gap-7">';
       for (const dayStr of Object.keys(byDay).sort()) {
         const d = new Date(dayStr + 'T12:00:00');
         const label = `${DAYS_DE[d.getDay()]}, ${d.getDate()}. ${MONTHS_DE[d.getMonth()]} ${d.getFullYear()}`;
@@ -895,25 +1082,24 @@
           <div class="text-[11px] font-bold uppercase tracking-[0.2em] text-cream/60 px-1 pb-4 flex items-center">${label}${todayBadge}</div>
           <div class="flex flex-col gap-3">`;
 
-        for (const act of byDay[dayStr].sort((a, b) => a.start.localeCompare(b.start))) {
-          const name  = act.activityGroup?.name?.trim() || 'Yoga Klasse';
-          const venue = act.activityGroup?.venue?.name?.trim() || '';
-          const room  = act.room?.name?.trim() || '';
-          const metaParts = [venue, room].filter(Boolean);
+        for (const act of byDay[dayStr].sort((a, b) => a.sortTime - b.sortTime)) {
+          const metaParts = [act.venue, act.room].filter(Boolean);
           const meta = metaParts.map(esc).join('<span class="text-cream/30 px-1.5">•</span>');
+          const categoryLabel = act.category === 'breathwork' ? 'Breathwork' : 'Yoga';
 
           html += `
-            <div class="group bg-white/8 border border-white/12 rounded-2xl p-5 md:p-6 grid grid-cols-[70px_1fr] md:grid-cols-[90px_1fr] gap-4 md:gap-6 items-start hover:bg-white/12 hover:-translate-y-0.5 transition-all duration-300">
+            <div class="group bg-white/8 border border-white/12 rounded-2xl p-4 md:p-5 grid grid-cols-[64px_1fr] md:grid-cols-[82px_1fr] gap-4 md:gap-5 items-start hover:bg-white/12 hover:-translate-y-0.5 transition-all duration-300">
               <div class="text-sm md:text-base font-semibold text-cream leading-tight mt-0.5">
                 ${fmtTime(act.start)}
                 <span class="block text-[11px] font-normal text-cream/55 mt-1">${fmtTime(act.end)}</span>
               </div>
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <div class="text-[1.05rem] font-medium leading-snug text-cream font-display">${esc(name)}</div>
+                <div class="min-w-0">
+                  <span class="inline-flex mb-2 rounded-full bg-white/10 px-2.5 py-1 text-[9px] font-semibold tracking-[0.16em] uppercase text-sand">${categoryLabel}</span>
+                  <div class="text-[1.05rem] font-medium leading-snug text-cream font-display">${esc(act.name)}</div>
                   ${meta ? `<div class="text-[11px] text-cream/55 flex items-center flex-wrap mt-1.5 uppercase tracking-wide">${meta}</div>` : ''}
                 </div>
-                ${act.detailsPageURL ? `<a class="self-start sm:self-center inline-flex px-6 py-2.5 bg-sand text-ocean text-[10px] font-bold rounded-full tracking-[0.18em] uppercase hover:bg-cream hover:text-ocean transition-colors duration-300 shrink-0" href="${esc(act.detailsPageURL)}" target="_blank" rel="noopener">Buchen</a>` : ''}
+                ${act.detailsPageURL ? `<a class="self-start sm:self-center inline-flex justify-center px-6 py-2.5 bg-sand text-ocean text-[10px] font-bold rounded-full tracking-[0.18em] uppercase hover:bg-cream hover:text-ocean transition-colors duration-300 shrink-0 w-full sm:w-auto" href="${esc(act.detailsPageURL)}" target="_blank" rel="noopener">Buchen</a>` : ''}
               </div>
             </div>`;
         }
@@ -932,8 +1118,14 @@
 
       try {
         const nodes = await fetchActivities(today, end);
-        render(nodes);
+        state.activities = nodes.map(normalizeActivity).sort((a, b) => a.sortTime - b.sortTime);
+        populateMonthFilter(state.activities);
+        setupControls();
+        syncCategoryButtons();
+        setControlsVisible(true);
+        renderSchedule();
       } catch (err) {
+        setControlsVisible(false);
         const content = document.getElementById('eversports-content');
         if(content) {
           content.innerHTML = `<div class="text-center py-12 text-cream/70 text-sm">Fehler beim Laden des Stundenplans:<br><small class="opacity-70 mt-2 block">${esc(err.message)}</small></div>`;

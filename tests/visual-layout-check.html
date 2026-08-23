@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoga Kathi Visual Layout Check</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #082f3d;
+      --panel: #0b4658;
+      --line: rgba(249,251,242,0.18);
+      --text: #f9fbf2;
+      --muted: rgba(249,251,242,0.65);
+      --ok: #9ed9b7;
+      --fail: #f29b9b;
+      --warn: #e3c08d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      cursor: default;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 18px 24px;
+      background: rgba(8, 47, 61, 0.96);
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+    }
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    main {
+      display: grid;
+      gap: 24px;
+      padding: 24px;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: #c9a885;
+      color: #084a5e;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    #summary {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+    .case {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      overflow: hidden;
+    }
+    .case-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+    .case-title {
+      font-weight: 650;
+    }
+    .case-size {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    iframe {
+      display: block;
+      width: 100%;
+      height: min(760px, 82vh);
+      border: 0;
+      background: #084a5e;
+    }
+    .results {
+      display: grid;
+      gap: 8px;
+      padding: 14px 16px 16px;
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+    }
+    .result {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px;
+      color: var(--muted);
+    }
+    .pass { color: var(--ok); }
+    .fail { color: var(--fail); }
+    .warn { color: var(--warn); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Yoga Kathi Visual Layout Check</h1>
+    <p>Oeffne diese Seite ueber den lokalen Server: <code>/tests/visual-layout-check.html</code>. Der Check laedt die Website in mehreren Viewports und prueft echte Browser-Geometrie gegen Ueberdeckung, Section-Spruenge und horizontales Ueberlaufen.</p>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <button type="button" id="rerun">Checks erneut ausfuehren</button>
+      <span id="summary">Checks laufen...</span>
+    </div>
+    <div class="grid" id="cases"></div>
+  </main>
+
+  <script>
+    const VIEWPORTS = [
+      { name: 'Desktop', width: 1440, height: 860 },
+      { name: 'Laptop', width: 1280, height: 760 },
+      { name: 'Tablet', width: 820, height: 1080 },
+      { name: 'Mobile', width: 390, height: 844 },
+    ];
+
+    const TARGETS = [
+      { id: 'about', label: 'Ueber mich' },
+      { id: 'courses', label: 'Kurse' },
+      { id: 'stundenplan', label: 'Stunde buchen' },
+      { id: 'contact', label: 'Kontakt' },
+    ];
+
+    const casesEl = document.getElementById('cases');
+    const summaryEl = document.getElementById('summary');
+
+    function makeCase(viewport) {
+      const box = document.createElement('section');
+      box.className = 'case';
+      box.innerHTML = `
+        <div class="case-header">
+          <div class="case-title">${viewport.name}</div>
+          <div class="case-size">${viewport.width} x ${viewport.height}</div>
+        </div>
+        <iframe title="${viewport.name}" src="../index.html" style="max-width:${viewport.width}px;height:${viewport.height}px"></iframe>
+        <div class="results" aria-live="polite"></div>
+      `;
+      return box;
+    }
+
+    function ownsPoint(doc, section, x, y) {
+      const el = doc.elementFromPoint(x, y);
+      return Boolean(el && section.contains(el));
+    }
+
+    async function wait(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    async function waitForFrame(frame) {
+      await new Promise((resolve) => {
+        if (frame.contentDocument?.readyState === 'complete') resolve();
+        else frame.addEventListener('load', resolve, { once: true });
+      });
+      await wait(700);
+    }
+
+    function addResult(results, ok, label, detail = '') {
+      const row = document.createElement('div');
+      row.className = 'result';
+      row.innerHTML = `<span class="${ok ? 'pass' : 'fail'}">${ok ? 'PASS' : 'FAIL'}</span><span>${label}${detail ? ` - ${detail}` : ''}</span>`;
+      results.appendChild(row);
+      return ok;
+    }
+
+    function auditStaticLayout(win, doc, results) {
+      let pass = true;
+      const overflow = doc.documentElement.scrollWidth - win.innerWidth;
+      pass = addResult(results, overflow <= 2, 'horizontal overflow', `${Math.max(0, Math.round(overflow))} px`) && pass;
+
+      const scheduleScroll = doc.getElementById('eversports-scroll');
+      pass = addResult(results, Boolean(scheduleScroll), 'schedule scroll panel') && pass;
+      if (scheduleScroll) {
+        const style = win.getComputedStyle(scheduleScroll);
+        pass = addResult(results, style.overflowY === 'auto' || style.overflowY === 'scroll', 'schedule scroll panel is internally scrollable', `overflow-y: ${style.overflowY}`) && pass;
+      }
+
+      const quote = [...doc.querySelectorAll('.snap-section')].find((section) => section.querySelector('blockquote'));
+      if (quote) {
+        const rect = quote.getBoundingClientRect();
+        pass = addResult(results, rect.height >= win.innerHeight * 0.82, 'quote section coverage', `${Math.round(rect.height)} px`) && pass;
+      } else {
+        pass = addResult(results, false, 'quote section coverage', 'quote section not found') && pass;
+      }
+      return pass;
+    }
+
+    async function auditAnchorTargets(frame, viewport, results) {
+      const win = frame.contentWindow;
+      const doc = frame.contentDocument;
+      const header = doc.getElementById('site-header');
+      let pass = true;
+
+      for (const target of TARGETS) {
+        const section = doc.getElementById(target.id);
+        if (!section) {
+          pass = addResult(results, false, `${target.label}: target section exists`) && pass;
+          continue;
+        }
+
+        section.scrollIntoView();
+        await wait(350);
+
+        const headerBottom = Math.ceil(header.getBoundingClientRect().bottom);
+        const probeY = Math.min(win.innerHeight - 24, headerBottom + 18);
+        const probeX = Math.round(win.innerWidth / 2);
+        const owns = ownsPoint(doc, section, probeX, probeY);
+        pass = addResult(results, owns, `${target.label}: target section owns viewport`, `probe ${probeX},${probeY}`) && pass;
+
+        const firstContent = section.querySelector('h1,h2,[data-anim],#eversports-widget,blockquote,form');
+        if (firstContent) {
+          const contentTop = Math.round(firstContent.getBoundingClientRect().top);
+          const clear = contentTop >= headerBottom + 8;
+          pass = addResult(results, clear, `${target.label}: content below fixed header`, `${contentTop}px >= ${headerBottom + 8}px`) && pass;
+        }
+      }
+      return pass;
+    }
+
+    async function run() {
+      casesEl.innerHTML = '';
+      summaryEl.textContent = 'Checks laufen...';
+
+      let total = 0;
+      let passed = 0;
+
+      for (const viewport of VIEWPORTS) {
+        const box = makeCase(viewport);
+        casesEl.appendChild(box);
+        const frame = box.querySelector('iframe');
+        const results = box.querySelector('.results');
+        await waitForFrame(frame);
+
+        const staticPass = auditStaticLayout(frame.contentWindow, frame.contentDocument, results);
+        const anchorPass = await auditAnchorTargets(frame, viewport, results);
+        total += 1;
+        if (staticPass && anchorPass) passed += 1;
+      }
+
+      summaryEl.textContent = `${passed}/${total} Viewports bestanden`;
+      summaryEl.className = passed === total ? 'pass' : 'fail';
+    }
+
+    document.getElementById('rerun').addEventListener('click', run);
+    run();
+  </script>
+</body>
+</html>
