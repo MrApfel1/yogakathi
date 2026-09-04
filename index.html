@@ -4,1143 +4,244 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yoga Kathi – Yoga & Breathwork in Wien</title>
-  <meta name="description" content="Yoga Kathi – Yoga Flows & Breathing in Wien. Finde deine innere Mitte mit zertifizierter Yoga-Lehrerin und Breathwork-Teacherin Kathi.">
+  <meta name="description" content="Yoga Kathi – Yoga Flows & Breathing in Wien. Finde deine innere Mitte mit Yoga-Lehrerin und Breathwork-Teacherin Kathi.">
+  <meta name="theme-color" content="#084A5E">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Kalam:wght@300;400&display=swap" rel="stylesheet">
-
-  <!-- Preload hero video for instant playback -->
-  <link rel="preload" href="assets/videos/hero-1-720p-optimized.mp4" as="video" type="video/mp4">
-
-  <!-- Tailwind CDN -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Kalam:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/photos/Flow_Option1.JPG" as="image" type="image/jpeg" fetchpriority="high">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ocean:  '#084A5E',
-            cream:  '#F9FBF2',
-            sky:    '#7796CB',
-            mauve:  '#6B4E71',
-            sand:   '#C9A885',
-            clay:   '#E8D5C4',
-            taupe:  '#A8927D',
-            warm:   '#FAF6F0',
-          },
-          fontFamily: {
-            display: ['Cormorant', 'serif'],
-            body:    ['Montserrat', 'sans-serif'],
-            script:  ['Kalam', 'cursive'],
-          },
-        }
-      }
-    }
+    tailwind.config = { theme: { extend: {
+      colors: { ocean:'#084A5E', cream:'#F9FBF2', warm:'#FAF6F0', sky:'#7796CB', mauve:'#6B4E71', sand:'#C9A885', clay:'#E8D5C4' },
+      fontFamily: { display:['Cormorant','serif'], body:['Montserrat','sans-serif'], script:['Kalam','cursive'] }
+    }}};
   </script>
 
   <style>
-    /* ── CSS Custom Properties ─────────��───────────── */
-    :root {
-      --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
-      --header-height: 9rem;
-    }
+    @font-face{font-family:Montserrat;src:url('assets/fonts/Montserrat-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:Montserrat;src:url('assets/fonts/Montserrat-Bold.ttf') format('truetype');font-weight:600 800;font-display:swap}
+    :root{--cream:#F9FBF2;--paper:#F9F7F3;--warm:#FAF6F0;--ocean:#084A5E;--ocean-muted:#416C78;--ink-soft:#416C78;--rule:rgba(8,74,94,.22);--header-h:96px;--ease:cubic-bezier(.16,1,.3,1);color-scheme:light}
+    *{box-sizing:border-box} html{scroll-padding-top:var(--header-h);overflow-x:clip} body{margin:0;overflow-x:hidden;background-color:var(--cream);background-image:url('assets/textures/cream-paper-grain.png');background-size:720px auto;color:var(--ocean);font:400 16px/1.7 Montserrat,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+    body::before{content:'';position:fixed;inset:0;z-index:-1;background:rgba(249,251,242,.84);pointer-events:none}
+    img{display:block;max-width:100%} a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.28em} button,input,select,textarea{font:inherit}
+    ::selection{color:var(--cream);background:var(--ocean)} :focus-visible{outline:2px solid var(--ocean);outline-offset:4px}
+    .skip-link{position:fixed;top:.75rem;left:.75rem;z-index:100;transform:translateY(-150%);padding:.75rem 1rem;background:var(--ocean);color:var(--cream);font-size:.78rem;font-weight:600;letter-spacing:.08em;transition:transform 180ms ease}.skip-link:focus{transform:none}
+    .shell{width:min(1180px,calc(100% - 48px));margin-inline:auto}.section{position:relative;padding-block:clamp(5.5rem,9vw,9rem)}
+    .section-title{margin:0;font-family:Cormorant,serif;font-size:clamp(3rem,5vw,5.25rem);font-weight:300;letter-spacing:-.025em;line-height:.98;text-wrap:balance}.section-title em{font-weight:300}.body-copy{color:var(--ink-soft);max-width:68ch}.rule{height:1px;background:var(--rule)}
 
-    /* ── Custom cursor ─────────────────────────────── */
-    * { cursor: none; }
-    #cursor-dot {
-      position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: #C9A885;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s var(--ease-soft), height 0.2s var(--ease-soft),
-                  background 0.2s ease, opacity 0.3s ease;
-      will-change: transform;
-    }
-    #cursor-ring {
-      position: fixed; top: 0; left: 0; z-index: 9998; pointer-events: none;
-      width: 32px; height: 32px; border-radius: 50%;
-      border: 1px solid rgba(201,168,133,0.5);
-      transform: translate(-50%, -50%);
-      transition: width 0.45s var(--ease-expo), height 0.45s var(--ease-expo),
-                  border-color 0.3s ease, opacity 0.3s ease;
-      will-change: transform;
-    }
-    body:has(a:hover) #cursor-dot,
-    body:has(button:hover) #cursor-dot { width: 10px; height: 10px; }
-    body:has(a:hover) #cursor-ring,
-    body:has(button:hover) #cursor-ring { width: 48px; height: 48px; border-color: rgba(201,168,133,0.8); }
+    .site-header{position:fixed;inset:0 0 auto;z-index:50;min-height:var(--header-h);background:rgba(249,251,242,.96);border-bottom:1px solid var(--rule);transition:min-height 350ms var(--ease),box-shadow 350ms ease}.site-header.is-compact{min-height:78px;box-shadow:0 12px 32px rgba(8,74,94,.06)}
+    .nav-shell{min-height:inherit;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(1.5rem,4vw,4rem)}.nav-group{display:flex;align-items:center;gap:clamp(1.3rem,2.5vw,2.7rem)}.nav-left{justify-content:flex-end}.nav-right{justify-content:flex-start}
+    .brand{display:inline-flex;align-items:center;justify-content:center}.brand img{width:132px;height:auto}.nav-link{position:relative;min-height:44px;display:inline-flex;align-items:center;font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}.nav-link::after{content:'';position:absolute;left:0;right:100%;bottom:7px;height:1px;background:var(--ocean);transition:right 300ms var(--ease)}.nav-link:hover::after{right:0}.nav-cta{padding-inline:1.2rem;color:var(--cream);background:var(--ocean)}.nav-cta::after{display:none}.nav-cta:hover{background:#0B5A70}
+    .mobile-balance,.menu-button,.mobile-menu{display:none}.menu-button{width:44px;height:44px;border:0;background:transparent;color:var(--ocean);align-items:center;justify-content:center}.menu-lines{width:22px;display:grid;gap:5px}.menu-lines span{height:1px;background:currentColor;transition:250ms ease}.menu-button[aria-expanded=true] .menu-lines span:first-child{transform:translateY(3px) rotate(45deg)}.menu-button[aria-expanded=true] .menu-lines span:last-child{transform:translateY(-3px) rotate(-45deg)}
 
-    /* ── Section scroll snap ───────────────────────── */
-    html {
-      scroll-snap-type: y mandatory;
-      scroll-padding-top: 0;
-    }
-    .snap-section {
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      min-height: 100svh;
-    }
-    .footer-section {
-      scroll-snap-align: end;
-      scroll-snap-stop: always;
-    }
-    .section-content {
-      padding-top: calc(var(--header-height) + 2.5rem);
-      padding-bottom: 5rem;
-    }
-    .section-content-compact {
-      padding-top: calc(var(--header-height) + 1.75rem);
-      padding-bottom: 4rem;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-snap-type: none; }
-    }
+    .hero{position:relative;min-height:min(900px,100svh);padding-top:calc(var(--header-h) + clamp(2rem,5vw,4.5rem));padding-bottom:clamp(4rem,7vw,6rem);overflow:hidden}.hero-grid{min-height:calc(min(900px,100svh) - var(--header-h) - 6rem);display:grid;grid-template-columns:minmax(320px,.86fr) minmax(520px,1.14fr);align-items:center;gap:clamp(2rem,5vw,6rem)}
+    .hero-copy{position:relative;z-index:6;padding-left:clamp(1rem,4vw,4rem)}.hero h1{margin:0;max-width:9ch;font-family:Cormorant,serif;font-size:clamp(4.4rem,7vw,6rem);font-weight:300;letter-spacing:-.035em;line-height:.94;text-wrap:balance}.hero-script{margin:1.25rem 0 2.1rem;font:300 clamp(1.25rem,2vw,1.65rem)/1.3 Kalam,cursive;color:var(--ocean-muted)}
+    .button-row{display:flex;flex-wrap:wrap;gap:.75rem}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding:.85rem 1.5rem;border:1px solid var(--ocean);font-size:.7rem;font-weight:600;letter-spacing:.16em;line-height:1;text-transform:uppercase;text-decoration:none;transition:color 220ms ease,background 220ms ease,transform 350ms var(--ease)}.button-primary{color:var(--cream);background:var(--ocean)}.button-secondary{color:var(--ocean);background:transparent}.button:hover{transform:translateY(-2px)}.button-primary:hover{background:#0B5A70}.button-secondary:hover{color:var(--cream);background:var(--ocean)}.button:disabled{opacity:.58;cursor:not-allowed}
+    .hero-photo-wrap{position:relative;z-index:3;padding:1.2rem 1.2rem 1.45rem;background:var(--paper);clip-path:polygon(.7% 1.2%,8% .4%,16% 1.1%,25% .3%,34% 1%,43% .45%,52% 1.15%,61% .35%,70% 1%,79% .25%,88% 1.1%,99.2% .5%,98.7% 9%,99.4% 18%,98.8% 28%,99.5% 38%,98.9% 49%,99.4% 60%,98.8% 71%,99.5% 82%,98.9% 91%,99.3% 99%,90% 98.5%,80% 99.4%,70% 98.7%,60% 99.5%,50% 98.8%,40% 99.4%,30% 98.7%,20% 99.5%,10% 98.8%,.6% 99.2%,1.2% 90%,.5% 80%,1.1% 70%,.4% 60%,1.2% 50%,.5% 40%,1.1% 30%,.4% 20%,1% 10%);filter:drop-shadow(0 28px 34px rgba(8,74,94,.13))}.hero-photo{width:100%;height:min(67svh,650px);object-fit:cover;object-position:center 50%;clip-path:polygon(.35% .6%,15% .2%,28% .7%,42% .15%,57% .65%,72% .2%,86% .75%,99.6% .3%,99.2% 22%,99.7% 44%,99.1% 66%,99.6% 82%,99.2% 99.5%,80% 99%,61% 99.6%,42% 99.1%,23% 99.7%,.4% 99.2%,.8% 78%,.25% 58%,.75% 38%,.2% 18%)}
+    .botanical,.paper-fragment,.plant-accent,.element-echo{position:absolute;pointer-events:none;user-select:none}.paper-fragment{z-index:1;max-width:none;opacity:.46}.plant-accent{z-index:2;max-width:none;opacity:.76;filter:saturate(.72) contrast(.94)}.hero-paper-bottom{width:clamp(390px,46vw,680px);left:-10%;bottom:-13%;opacity:.62}.hero-paper-top{width:clamp(420px,48vw,720px);right:-10%;top:-17%;transform:rotate(180deg);opacity:.48}.hero-peony{width:clamp(124px,12vw,178px);left:-12rem;top:34%;transform:rotate(78deg);transform-origin:50% 88%;opacity:.76}.hero-lotus{z-index:4;width:clamp(118px,11vw,166px);right:-6rem;top:24%;transform:rotate(-88deg);transform-origin:50% 88%;opacity:.74}.element-echo{z-index:1;max-width:none;opacity:.045;mix-blend-mode:multiply;filter:saturate(.68);clip-path:polygon(2% 5%,91% 0,100% 18%,96% 87%,78% 100%,5% 95%,0 76%)}
+    .hero-enter{opacity:0;transform:translateY(24px);filter:blur(5px)}body.is-ready .hero-enter{opacity:1;transform:none;filter:none;transition:opacity 900ms var(--ease),transform 900ms var(--ease),filter 900ms var(--ease)}body.is-ready .hero-photo-wrap{transition-delay:120ms}body.is-ready .hero-copy{transition-delay:220ms}
 
-    /* ── Scroll animations ─────────────────────────── */
-    [data-anim] {
-      opacity: 0;
-      transition: opacity 0.9s var(--ease-expo), transform 0.9s var(--ease-expo);
-    }
-    [data-anim="up"]    { transform: translateY(44px); }
-    [data-anim="left"]  { transform: translateX(-52px); }
-    [data-anim="right"] { transform: translateX(52px); }
-    [data-anim="scale"] { transform: scale(0.93); }
-    [data-anim="fade"]  { }
-    [data-anim].visible { opacity: 1; transform: translate(0) scale(1); }
+    .about{overflow:hidden;isolation:isolate;background:rgba(250,246,240,.72)}.about>.shell{position:relative;z-index:3}.about-paper{width:clamp(390px,46vw,680px);right:-14%;bottom:-18%;transform:rotate(-13deg) scaleX(-1);opacity:.4}.about-peony{z-index:4;width:clamp(132px,13vw,190px);right:-8rem;top:48%;transform:rotate(-78deg);transform-origin:50% 88%;opacity:.72}.about-element-echo{width:clamp(260px,30vw,430px);left:-8rem;bottom:-7rem;transform:rotate(-8deg)}.notebook{position:relative;display:grid;grid-template-columns:.92fr 1.08fr;min-height:650px;color:var(--ocean);background-color:rgba(249,247,243,.98);background-image:url('assets/textures/cream-paper-grain.png');background-size:650px auto;box-shadow:0 30px 80px rgba(1,24,31,.22)}.notebook::after{content:'';position:absolute;top:5%;bottom:5%;left:46%;width:1px;background:rgba(8,74,94,.12);box-shadow:12px 0 28px rgba(8,74,94,.05)}
+    .notebook-photo-page{padding:clamp(2rem,5vw,4.5rem);display:flex;align-items:center}.portrait-print{padding:.75rem .75rem 1rem;background:var(--cream);box-shadow:0 16px 42px rgba(8,74,94,.12);transform:rotate(-1.2deg)}.portrait-print img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:55% center}.notebook-copy{padding:clamp(3rem,6vw,6rem) clamp(2.5rem,6vw,5.5rem);display:flex;flex-direction:column;justify-content:center}.notebook-copy .section-title{margin-bottom:2rem}
+    .credentials{margin:2rem 0 0;padding:0;list-style:none;border-top:1px solid var(--rule)}.credentials li{display:grid;grid-template-columns:6rem 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--rule);font-size:.78rem;color:var(--ink-soft)}.credentials strong{color:var(--ocean);font-weight:600}.seal{width:124px;aspect-ratio:1;margin:2.4rem 0 0 auto;display:grid;place-items:center;border:1px solid var(--ocean);border-radius:50%;font-size:.62rem;font-weight:600;letter-spacing:.15em;line-height:1.5;text-align:center;text-transform:uppercase;transform:rotate(-7deg);text-decoration:none}
 
-    /* ── Hero entrance ─────────────────────────────── */
-    .hero-enter {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 1.1s var(--ease-expo), transform 1.1s var(--ease-expo);
-    }
-    .hero-enter.show { opacity: 1; transform: translateY(0); }
+    .offer-title{margin:0 0 clamp(3.5rem,6vw,5.5rem);text-align:center;font:300 clamp(2.4rem,4vw,3.6rem)/1 Cormorant,serif}.offers-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(2.5rem,7vw,7rem);align-items:start}.offer{position:relative}.offer:nth-child(2){margin-top:5rem}.offer-photo{padding:.85rem .85rem 1.1rem;background:var(--paper);clip-path:polygon(.8% 1.4%,9% .45%,18% 1.2%,27% .35%,36% 1.15%,45% .5%,54% 1.25%,63% .3%,72% 1.1%,81% .45%,90% 1.3%,99.1% .55%,98.6% 13%,99.4% 26%,98.7% 39%,99.5% 52%,98.8% 65%,99.4% 78%,98.7% 90%,99.2% 98.8%,88% 98.2%,76% 99.3%,64% 98.5%,52% 99.4%,40% 98.6%,28% 99.2%,16% 98.4%,.7% 99%,1.3% 86%,.55% 73%,1.2% 60%,.5% 47%,1.25% 34%,.45% 21%);filter:drop-shadow(0 22px 28px rgba(8,74,94,.12))}.offer-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;clip-path:polygon(.5% .7%,14% .25%,29% .8%,44% .2%,59% .7%,74% .25%,89% .8%,99.5% .35%,99.1% 25%,99.7% 50%,99% 75%,99.5% 99.4%,75% 99%,50% 99.6%,25% 99.1%,.45% 99.5%,.9% 74%,.25% 50%,.8% 24%)}.offer:first-child .offer-photo{transform:rotate(-1.2deg)}.offer:last-child .offer-photo{transform:rotate(1.1deg)}.offer:first-child .offer-photo img{object-position:center 58%}.offer:last-child .offer-photo img{object-position:center 40%}
+    .offer h3{margin:1.8rem 0 .8rem;font:400 clamp(2rem,3vw,3rem)/1 Cormorant,serif;letter-spacing:-.015em;text-transform:uppercase}.offer p{max-width:44ch;margin:0;color:var(--ink-soft);font-size:.94rem}.offer-link{min-height:44px;margin-top:1rem;display:inline-flex;align-items:center;gap:.6rem;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}.offer-link span{transition:transform 260ms var(--ease)}.offer-link:hover span{transform:translateX(5px)}.courses-paper-left{width:clamp(360px,40vw,600px);left:-15%;top:11%;transform:rotate(13deg);opacity:.38}.courses-paper-middle{width:clamp(330px,36vw,520px);left:50%;top:34%;transform:translateX(-50%) rotate(-7deg) scaleX(-1);opacity:.3}.courses-paper-right{width:clamp(350px,39vw,580px);right:-15%;bottom:8%;transform:rotate(-14deg) scaleX(-1);opacity:.36}.courses-element-echo{width:clamp(240px,26vw,380px);right:-8rem;top:18%;transform:rotate(7deg)}
 
-    /* ── Nav underline ─────────────────────────────── */
-    .nav-link { position: relative; }
-    .nav-link::after {
-      content: '';
-      position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 1px; background: #C9A885;
-      transition: width 0.4s var(--ease-expo);
-    }
-    .nav-link:hover::after { width: 100%; }
+    #courses{overflow:hidden;isolation:isolate;padding-bottom:5rem}#courses>.shell{position:relative;z-index:3}.elements{overflow:hidden;padding-top:5rem;padding-bottom:5rem;background:rgba(250,246,240,.42)}.elements>.shell{position:relative;z-index:2}.elements-heading{margin-bottom:3.5rem;text-align:center}.elements-heading .section-title{font-size:clamp(2.8rem,5vw,4.8rem)}.elements-heading p{margin:1rem auto 0;max-width:60ch;color:var(--ink-soft)}.element-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(.8rem,1.6vw,1.4rem);align-items:stretch}.element{min-width:0;display:grid;grid-template-rows:auto auto 1fr;align-content:start}.element-art{overflow:hidden;background:var(--paper);box-shadow:0 18px 44px rgba(8,74,94,.10)}.element-art img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform 700ms var(--ease)}.element:hover .element-art img{transform:scale(1.025)}.element h3{margin:1.25rem 0 .4rem;font:400 clamp(1.6rem,2.2vw,2.2rem)/1 Cormorant,serif;text-align:center;text-transform:uppercase}.element p{margin:0;color:var(--ink-soft);font-size:.76rem;line-height:1.65;text-align:center}
 
-    /* ── Section overline decoration ──────────────── */
-    .overline {
-      display: inline-flex; align-items: center; gap: 0.6em;
-    }
-    .overline::before, .overline::after {
-      content: '';
-      display: block; width: 28px; height: 1px;
-      background: currentColor; opacity: 0.35;
-    }
+    .schedule-section{overflow:hidden;isolation:isolate;padding-top:5rem;background:rgba(250,246,240,.32)}.schedule-section>.shell{position:relative;z-index:3}.schedule-heading{text-align:center;margin-bottom:3rem}.schedule-heading p{margin:1rem auto 0;color:var(--ink-soft)}.schedule-ledger{position:relative;padding:clamp(1.4rem,4vw,3.5rem);color:var(--ocean);background:rgba(249,247,243,.96);border-block:1px solid var(--rule);box-shadow:0 20px 58px rgba(8,74,94,.08)}.schedule-controls{padding-bottom:1.5rem;margin-bottom:1.5rem;border-bottom:1px solid var(--rule)}.schedule-control-label{display:block;margin-bottom:.6rem;font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+    .schedule-filter-btn{min-height:44px;padding:.6rem 1rem;border:1px solid var(--rule);background:transparent;color:var(--ocean);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.schedule-filter-btn[aria-pressed=true]{color:var(--cream);background:var(--ocean);border-color:var(--ocean)}.schedule-select{width:100%;min-height:48px;padding:.65rem 2.5rem .65rem .85rem;border:0;border-bottom:1px solid var(--ocean);border-radius:0;background:transparent;color:var(--ocean)}
+    .schedule-scroll{max-height:540px;overflow-y:auto;padding-right:.6rem;scrollbar-width:thin;scrollbar-color:var(--ocean) transparent}.schedule-scroll::-webkit-scrollbar{width:7px}.schedule-scroll::-webkit-scrollbar-thumb{background:var(--ocean)}.schedule-scroll::-webkit-scrollbar-track{background:transparent}.schedule-paper-left{width:clamp(480px,58vw,820px);left:-18%;bottom:-21%;transform:rotate(4deg);opacity:.46}.schedule-paper-right{width:clamp(330px,38vw,560px);right:-13%;top:4%;transform:rotate(178deg);opacity:.28}.schedule-lotus-open{z-index:4;width:clamp(142px,14vw,202px);right:-6rem;top:4%;transform:rotate(-89deg);transform-origin:50% 88%;opacity:.76}
 
-    /* ── Grain texture overlay ─────────────────────── */
-    .grain { position: relative; }
-    .grain::after {
-      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 220px 220px;
-    }
+    .quote-section{position:relative;overflow:hidden;isolation:isolate;padding-block:clamp(4.5rem,8vw,7rem);background:var(--cream)}.quote-paper-band{width:clamp(620px,82vw,1180px);left:50%;top:50%;transform:translate(-50%,-50%) rotate(1deg);opacity:.3}.quote-paper{position:relative;z-index:3;padding:clamp(2.5rem,6vw,5rem);color:var(--ocean);background-color:rgba(249,247,243,.98);background-image:url('assets/textures/cream-paper-grain.png');background-size:620px auto;clip-path:polygon(.5% 3%,7% 1.2%,14% 2.8%,21% .8%,28% 2.4%,35% 1%,42% 2.6%,49% .7%,56% 2.5%,63% 1%,70% 2.8%,77% .9%,84% 2.5%,91% 1.1%,99.4% 3%,98.8% 20%,99.5% 38%,98.9% 57%,99.4% 76%,98.8% 97%,91% 98.4%,83% 97%,75% 99.1%,67% 97.4%,59% 98.8%,51% 97.1%,43% 99%,35% 97.5%,27% 98.8%,19% 97.2%,11% 98.6%,.7% 97%,1.2% 79%,.45% 61%,1.1% 43%,.5% 25%);filter:drop-shadow(0 18px 24px rgba(1,24,31,.18));text-align:center}blockquote{margin:0 auto;max-width:22ch;font:italic 300 clamp(2rem,4vw,4.2rem)/1.08 Cormorant,serif;letter-spacing:-.02em;text-wrap:balance}.quote-author{margin:1.2rem 0 0;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
 
-    /* ── Scroll indicator ──────────────────────────── */
-    @keyframes float-down {
-      0%, 100% { transform: translateY(0); }
-      55%       { transform: translateY(9px); }
-    }
-    .float-down { animation: float-down 2.8s ease-in-out infinite; }
+    #contact{overflow:hidden;isolation:isolate;background:var(--cream)}.contact-grid{position:relative;z-index:3;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(3.5rem,9vw,8rem);align-items:start}.contact-form{margin-top:2.5rem}.form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}.field{margin-bottom:1.45rem}.field label{display:block;margin-bottom:.4rem;font-size:.64rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}.field input,.field textarea{width:100%;min-height:48px;padding:.75rem 0;border:0;border-bottom:1px solid var(--rule);border-radius:0;background:transparent;color:var(--ocean);caret-color:var(--ocean)}.field textarea{min-height:120px;resize:vertical}.field input::placeholder,.field textarea::placeholder{color:#496F79;opacity:1}.field input:focus,.field textarea:focus{outline:0;border-bottom-color:var(--ocean)}
+    .contact-note{position:relative;margin-top:3rem;padding:clamp(2rem,5vw,3.5rem);color:var(--ocean);background-color:rgba(249,247,243,.98);background-image:url('assets/textures/cream-paper-grain.png');background-size:520px auto;box-shadow:0 22px 55px rgba(1,24,31,.2);transform:rotate(1deg)}.contact-note::before{content:'';position:absolute;top:-1px;left:14%;width:78px;height:22px;background:rgba(201,168,133,.42);transform:translateY(-45%) rotate(-4deg)}.contact-list{display:grid;gap:1.3rem}.contact-item{display:grid;grid-template-columns:22px 1fr;gap:.9rem;align-items:start;color:var(--ink-soft);font-size:.88rem}.contact-item svg{width:19px;height:19px;margin-top:.2rem;stroke:var(--ocean)}.contact-paper-main{width:clamp(860px,105vw,1460px);left:50%;bottom:-52%;transform:translateX(-50%) rotate(2deg) scaleX(-1);opacity:.38}.contact-paper-side{width:clamp(320px,35vw,520px);right:-16%;top:10%;transform:rotate(178deg);opacity:.2}.contact-peony{width:clamp(142px,14vw,204px);right:-6rem;bottom:24%;transform:rotate(-78deg);transform-origin:50% 88%;opacity:.74}
+    .site-footer{padding:3rem 0 2rem;border-top:1px solid var(--rule)}.footer-main{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}.footer-links{display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}.footer-links:last-child{justify-content:flex-end}.footer-logo img{width:120px}.footer-meta{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--rule);text-align:center;color:var(--ink-soft);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase}
 
-    /* ── Hamburger bars ────────────────────────────── */
-    .bar { display: block; width: 24px; height: 1.5px; background: #F9FBF2; transition: all 0.3s ease; }
-    .bar-short { width: 16px; }
+    body.theme-ocean{background-color:#084A5E;background-blend-mode:soft-light;color:#F9FBF2;color-scheme:dark}
+    body.theme-ocean::before{background:rgba(8,74,94,.9)}
+    .theme-ocean .site-header{background:rgba(8,74,94,.97);border-bottom-color:rgba(249,251,242,.22)}.theme-ocean .site-header.is-compact{box-shadow:0 12px 32px rgba(1,24,31,.3)}
+    .theme-ocean .nav-link,.theme-ocean .menu-button,.theme-ocean .mobile-menu{color:#F9FBF2}.theme-ocean .nav-link::after,.theme-ocean .menu-lines span{background:#F9FBF2}.theme-ocean .mobile-menu,.theme-ocean .mobile-menu a{border-color:rgba(249,251,242,.2)}
+    .theme-ocean .nav-cta{color:#084A5E;background:#F9FBF2}.theme-ocean .nav-cta:hover{background:#E4ECE7}
+    .theme-ocean .skip-link{color:#084A5E;background:#F9FBF2}.theme-ocean :focus-visible{outline-color:#F9FBF2}.theme-ocean .notebook :focus-visible,.theme-ocean .schedule-ledger :focus-visible,.theme-ocean .contact-note :focus-visible{outline-color:#084A5E}
+    .theme-ocean .hero h1,.theme-ocean .offer-title,.theme-ocean #courses,.theme-ocean .elements-heading,.theme-ocean .element h3,.theme-ocean .schedule-heading,.theme-ocean .contact-grid>div,.theme-ocean .site-footer{color:#F9FBF2}
+    .theme-ocean .hero-script,.theme-ocean .offer p,.theme-ocean .elements-heading p,.theme-ocean .element p,.theme-ocean .schedule-heading p,.theme-ocean .footer-meta{color:#D6E3E1}
+    .theme-ocean .hero .button-primary,.theme-ocean .contact-grid>div .button-primary{color:#084A5E;background:#F9FBF2;border-color:#F9FBF2}.theme-ocean .hero .button-primary:hover,.theme-ocean .contact-grid>div .button-primary:hover{background:#E4ECE7}
+    .theme-ocean .hero .button-secondary{color:#F9FBF2;border-color:#F9FBF2}.theme-ocean .hero .button-secondary:hover{color:#084A5E;background:#F9FBF2}
+    .theme-ocean .about{background:rgba(5,57,72,.7)}.theme-ocean .elements{background:rgba(10,81,101,.46)}.theme-ocean .schedule-section{background:rgba(5,57,72,.36)}.theme-ocean .quote-section,.theme-ocean #contact{background:#084A5E}
+    .theme-ocean .paper-fragment{filter:brightness(1.48) saturate(.6)}.theme-ocean .element-echo{mix-blend-mode:screen;opacity:.035;filter:saturate(.52)}.theme-ocean .plant-accent{filter:saturate(.78) brightness(1.02) contrast(.96)}
+    .theme-ocean #contact .field input,.theme-ocean #contact .field textarea{color:#F9FBF2;caret-color:#F9FBF2;border-bottom-color:rgba(249,251,242,.42)}.theme-ocean #contact .field input::placeholder,.theme-ocean #contact .field textarea::placeholder{color:#D6E3E1}.theme-ocean #contact .field input:focus,.theme-ocean #contact .field textarea:focus{border-bottom-color:#F9FBF2}
+    .theme-ocean .site-footer{border-top-color:rgba(249,251,242,.22)}.theme-ocean .footer-meta{border-top-color:rgba(249,251,242,.22)}
 
-    /* ── Mobile nav ────────────────────────────────── */
-    #mobile-nav {
-      max-height: 0; opacity: 0; overflow: hidden;
-      transition: max-height 0.45s ease, opacity 0.35s ease;
+    @media(max-width:1060px){.nav-shell{gap:1.4rem}.nav-group{gap:1rem}.nav-link{font-size:.61rem;letter-spacing:.11em}.hero-grid{grid-template-columns:.85fr 1.15fr;gap:2rem}.element-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:767px){
+      :root{--header-h:76px}.shell{width:min(calc(100% - 32px),680px)}.section{padding-block:5.2rem}.nav-shell{grid-template-columns:44px 1fr 44px;gap:0}.nav-group{display:none}.mobile-balance,.menu-button{display:flex}.brand img{width:112px}
+      .mobile-menu{display:grid;grid-template-rows:0fr;overflow:hidden;border-top:1px solid transparent;transition:grid-template-rows 350ms var(--ease),border-color 350ms ease}.mobile-menu.open{grid-template-rows:1fr;border-top-color:var(--rule)}.mobile-menu-inner{min-height:0;overflow:hidden;display:grid;padding-inline:1rem}.mobile-menu.open .mobile-menu-inner{padding-block:.8rem 1.2rem}.mobile-menu a{min-height:48px;display:flex;align-items:center;border-bottom:1px solid var(--rule);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+      .hero{min-height:auto;padding-top:calc(var(--header-h) + 2rem);padding-bottom:7rem}.hero-grid{min-height:0;grid-template-columns:1fr;gap:2.5rem}.hero-copy{padding-left:0;text-align:center}.hero h1{max-width:9ch;margin-inline:auto;font-size:clamp(3.5rem,17vw,5rem)}.button-row{justify-content:center}.button-row .button{width:min(100%,320px)}.hero-photo-wrap{padding:.8rem .8rem 1rem}.hero-photo{height:58svh;max-height:620px;object-position:center 52%}.hero-paper-bottom{width:420px;left:-13rem;bottom:-4rem;opacity:.56}.hero-paper-top{width:410px;right:-15rem;top:-7rem;opacity:.4}.hero-peony{width:108px;left:-5.8rem;top:37%;transform:rotate(78deg);opacity:.68}.hero-lotus{width:98px;right:-4rem;top:62%;transform:rotate(-88deg);opacity:.64}
+      .notebook{grid-template-columns:1fr}.notebook::after{display:none}.notebook-photo-page{padding:1.3rem}.notebook-copy{padding:2.5rem 1.5rem 3rem}.credentials li{grid-template-columns:5.5rem 1fr}.seal{margin-inline:auto}.about-paper{width:360px;right:-14rem;bottom:-5rem}.about-peony{width:118px;right:-5rem;top:52%;transform:rotate(-78deg);opacity:.64}.about-element-echo{display:none}.offers-grid{grid-template-columns:1fr;gap:4.5rem}.offer:nth-child(2){margin-top:0}.courses-paper-left{width:320px;left:-13rem;top:9%}.courses-paper-middle{width:300px;left:68%;top:46%;opacity:.24}.courses-paper-right{width:320px;right:-14rem;bottom:7%}.courses-element-echo{display:none}
+      .element-grid{grid-template-columns:1fr;gap:3.2rem}.element:nth-child(n){margin-top:0}.element{width:min(100%,390px);margin-inline:auto}.element p{font-size:.86rem}.schedule-ledger{padding-inline:1rem}.schedule-paper-left{width:430px;left:-17rem;bottom:-7rem}.schedule-paper-right{width:300px;right:-12rem;top:2%}.schedule-lotus-open{width:106px;right:-7.2rem;top:1%;transform:rotate(-89deg);opacity:.66}.quote-paper-band{width:620px;top:50%}.contact-grid{grid-template-columns:1fr;gap:2.5rem}.form-row{grid-template-columns:1fr;gap:0}.contact-note{margin-top:0}.contact-paper-main{width:760px;left:50%;bottom:-13rem}.contact-paper-side{width:300px;right:-13rem;top:8%}.contact-peony{width:122px;right:-4rem;bottom:20%;transform:rotate(-78deg);opacity:.66}.footer-main{grid-template-columns:1fr;text-align:center}.footer-links,.footer-links:last-child{justify-content:center}.footer-logo{grid-row:1;display:flex;justify-content:center}
     }
-    #mobile-nav.open { max-height: 320px; opacity: 1; }
-
-    /* ── Schedule panel ────────────────────────────── */
-    .schedule-scroll {
-      scrollbar-width: thin;
-      scrollbar-color: rgba(201,168,133,0.65) rgba(255,255,255,0.08);
-    }
-    .schedule-scroll::-webkit-scrollbar { width: 8px; }
-    .schedule-scroll::-webkit-scrollbar-track {
-      background: rgba(255,255,255,0.08);
-      border-radius: 999px;
-    }
-    .schedule-scroll::-webkit-scrollbar-thumb {
-      background: rgba(201,168,133,0.65);
-      border-radius: 999px;
-    }
-    .schedule-filter-btn[aria-pressed="true"] {
-      background: #C9A885;
-      color: #084A5E;
-      border-color: #C9A885;
-    }
-
-    /* ── Hero video container ─────────────────────── */
-    .hero-video-wrap {
-      border-radius: 1.25rem;
-      overflow: hidden;
-      -webkit-mask-image: -webkit-radial-gradient(white, white);
-    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition-duration:.01ms!important}.hero-enter{opacity:1!important;transform:none!important;filter:none!important}}
   </style>
 </head>
-
-<body class="font-body text-cream bg-ocean overflow-x-hidden antialiased">
-
-  <!-- Custom cursor -->
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
-
-
-  <!-- ══════════════════════════════════════════════════
-       HEADER
-  ══════════════════════════════════════════════════ -->
-  <header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-ocean transition-all duration-500">
-    <div id="header-inner" class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center transition-all duration-500">
-
-      <a href="#hero" class="flex-shrink-0">
-        <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-24 md:h-32 w-auto">
-      </a>
-
-      <nav class="hidden md:flex items-center gap-9">
-        <a href="#about"   class="nav-link text-cream/70 hover:text-sand text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-300">Über Kathi</a>
-        <a href="#courses" class="nav-link text-cream/70 hover:text-sand text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-300">Kurse</a>
-        <a href="#stundenplan" class="nav-link text-cream/70 hover:text-sand text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-300">Stunde buchen</a>
-        <a href="#contact" class="nav-link text-cream/70 hover:text-sand text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-300">Kontakt</a>
-        <a href="#stundenplan" class="ml-2 px-5 py-2 rounded-full border border-sand/50 text-sand text-xs font-medium tracking-[0.15em] uppercase hover:bg-sand hover:text-ocean hover:border-sand transition-all duration-300">
-          Buchen
-        </a>
-      </nav>
-
-      <button id="hamburger" class="md:hidden flex flex-col gap-[6px] p-1.5 focus:outline-none" aria-label="Menü öffnen">
-        <span class="bar" id="b1"></span>
-        <span class="bar" id="b2"></span>
-        <span class="bar bar-short" id="b3"></span>
-      </button>
+<body class="theme-ocean">
+  <!--
+    THESIS: Yoga Kathi is an elemental practice presented as a living herbarium, not a generic wellness card stack.
+    OWN-WORLD: warm cream paper, ocean-blue archival ink, deckled photo prints, pressed plants and five tactile material plates.
+    STORY: meet Kathi, understand Yoga and Breathing through the elements, then find a class or make contact.
+    FIRST VIEWPORT: centered-logo menu; editorial copy left; authentic vertical Kathi photograph right; botanical specimens frame one primary booking action.
+    FORM: user-pinned Botanical Element Atlas, approved comp .impeccable/mocks/fullpage-02-element-atlas.png; key user-pinned-botanical-atlas-20260828.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+  -->
+  <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+  <header id="site-header" class="site-header">
+    <div class="shell nav-shell">
+      <nav class="nav-group nav-left" aria-label="Hauptnavigation links"><a class="nav-link" href="#about">Über Kathi</a><a class="nav-link" href="#courses">Kurse</a></nav>
+      <span class="mobile-balance" aria-hidden="true"></span>
+      <a class="brand" href="#hero" aria-label="Yoga Kathi – Startseite"><img src="assets/logos/logo-1-white-cropped.png" width="4072" height="2332" alt="Yoga Kathi – Flow from the Heart"></a>
+      <nav class="nav-group nav-right" aria-label="Hauptnavigation rechts"><a class="nav-link" href="#stundenplan">Stundenplan</a><a class="nav-link" href="#contact">Kontakt</a><a class="nav-link nav-cta" href="#stundenplan">Buchen</a></nav>
+      <button id="menu-button" class="menu-button" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu"><span class="menu-lines" aria-hidden="true"><span></span><span></span></span></button>
     </div>
-
-    <div id="mobile-nav" class="md:hidden bg-ocean border-t border-white/10">
-      <div class="flex flex-col px-6 py-5 gap-5">
-        <a href="#about"   class="text-cream/70 hover:text-sand text-xs tracking-[0.2em] uppercase transition-colors duration-300 py-1">Über Kathi</a>
-        <a href="#courses" class="text-cream/70 hover:text-sand text-xs tracking-[0.2em] uppercase transition-colors duration-300 py-1">Kurse</a>
-        <a href="#stundenplan" class="text-cream/70 hover:text-sand text-xs tracking-[0.2em] uppercase transition-colors duration-300 py-1">Stunde buchen</a>
-        <a href="#contact" class="text-cream/70 hover:text-sand text-xs tracking-[0.2em] uppercase transition-colors duration-300 py-1">Kontakt</a>
-        <a href="#stundenplan" class="text-sand text-xs tracking-[0.2em] uppercase py-1">Buchen →</a>
-      </div>
-    </div>
+    <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile Navigation" aria-hidden="true" inert><div class="mobile-menu-inner"><a href="#about">Über Kathi</a><a href="#courses">Kurse</a><a href="#elements">Fünf Elemente</a><a href="#stundenplan">Stundenplan & Buchen</a><a href="#contact">Kontakt</a></div></nav>
   </header>
 
-
-  <!-- ══════════════════════════════════════════════════
-       HERO
-  ══════════════════════════════════════════════════ -->
-  <section id="hero" class="snap-section relative bg-ocean grain overflow-hidden">
-
-    <!-- ─── MOBILE HERO: fullscreen video bg + text overlay (< md) ─── -->
-    <div class="md:hidden relative min-h-[100svh] flex items-center justify-center">
-      <video class="absolute inset-0 w-full h-full object-cover"
-        autoplay muted loop playsinline
-        poster="assets/videos/hero-1-poster.jpg">
-        <source src="assets/videos/hero-1-720p-optimized.mp4" type="video/mp4">
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-b from-ocean/85 via-ocean/65 to-ocean/90"></div>
-
-      <div class="relative z-10 text-center px-6 pt-24 pb-16">
-        <div class="hero-enter mb-5" id="h-pill-m" style="transition-delay:.2s">
-          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sand/50 text-sand text-[10px] tracking-[0.2em] uppercase font-semibold bg-black/60">
-            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-            Yoga &amp; Breathwork · Wien
-          </span>
-        </div>
-        <h1 class="hero-enter font-display font-light text-[2.75rem] leading-[1.05] mb-5 text-white"
-          id="h-headline-m" style="transition-delay:.3s; text-shadow: 0 4px 24px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)">
-          Finde deine<br><em>innere Mitte</em>
-        </h1>
-        <p class="hero-enter font-body font-normal text-white/95 text-xl mb-9"
-          id="h-sub-m" style="transition-delay:.4s; text-shadow: 0 4px 20px rgba(0,0,0,0.8)">
-          Flow from the Heart
-        </p>
-        <div class="hero-enter flex flex-col gap-3" id="h-cta-m" style="transition-delay:.5s">
-          <a href="#courses"
-            class="px-8 py-3.5 bg-sand text-ocean text-xs font-semibold tracking-[0.18em] uppercase rounded-full
-                   hover:bg-clay transition-all duration-300">
-            Kurse entdecken
-          </a>
-          <a href="#about"
-            class="px-8 py-3.5 border border-white/40 text-white text-xs font-medium tracking-[0.18em] uppercase rounded-full
-                   hover:bg-white/10 transition-all duration-300">
-            Über Kathi
-          </a>
-        </div>
+  <main id="main-content">
+    <section id="hero" class="hero">
+      <img class="paper-fragment hero-paper-bottom" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" alt="" aria-hidden="true"><img class="paper-fragment hero-paper-top" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" alt="" aria-hidden="true"><img class="plant-accent hero-peony" src="assets/textures/botanical-peony-white-living-v2.png" width="1024" height="1536" alt="" aria-hidden="true"><img class="plant-accent hero-lotus" src="assets/textures/botanical-lotus-open-living-v2.png" width="1024" height="1536" alt="" aria-hidden="true">
+      <div class="shell hero-grid">
+        <div class="hero-copy hero-enter"><h1>Finde deine<br>innere Mitte</h1><p class="hero-script">Flow from the Heart</p><div class="button-row"><a class="button button-primary" href="#stundenplan">Stunde buchen</a><a class="button button-secondary" href="#courses">Kurse entdecken</a></div></div>
+        <figure class="hero-photo-wrap hero-enter"><img class="hero-photo" src="assets/photos/Flow_Option1.JPG" width="1536" height="2048" fetchpriority="high" alt="Kathi praktiziert Yoga vor farbenfrohen Kunstwerken"></figure>
       </div>
+    </section>
 
-      <!-- Scroll indicator -->
-      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-white/40 float-down">
-        <span class="font-script text-xs tracking-wide">scroll</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
-        </svg>
+    <section id="about" class="section about"><img class="paper-fragment about-paper" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true"><img class="plant-accent about-peony" src="assets/textures/botanical-peony-white-living-v2.png" width="1024" height="1536" loading="lazy" alt="" aria-hidden="true"><img class="element-echo about-element-echo" src="assets/textures/element-earth.png" width="1120" height="1400" loading="lazy" alt="" aria-hidden="true"><div class="shell notebook">
+      <div class="notebook-photo-page"><figure class="portrait-print"><img src="assets/photos/uebermich.jpg" width="2200" height="1650" loading="lazy" alt="Kathi, Yoga- und Breathwork-Lehrerin in Wien"></figure></div>
+      <div class="notebook-copy"><h2 class="section-title">Hallo, ich bin Kathi</h2><p class="body-copy">Als zertifizierte Yoga-Lehrerin und Breathwork-Teacherin begleite ich Frauen auf ihrem Weg zu mehr Achtsamkeit, Kraft und innerer Balance – mitten in Wien.</p><p class="body-copy">In meinen <strong>Yoga Flows</strong> verbinden wir Bewegung mit den natürlichen Elementen – geerdet, fließend, lebendig. Im <strong>Breathing</strong> nutzen wir den Atem als kraftvolles Werkzeug zur tiefen Transformation.</p>
+        <ul class="credentials" aria-label="Qualifikationen und Standort"><li><strong>200h</strong><span>Yoga Ausbildung</span></li><li><strong>Breathwork</strong><span>Zertifizierte Begleitung</span></li><li><strong>Yoga Flows</strong><span>Elementare Bewegungspraxis</span></li><li><strong>Wien</strong><span>Österreich</span></li></ul>
+        <a class="seal" href="#contact">Flow from<br>the Heart<br>Yoga Kathi</a>
       </div>
-    </div>
+    </div></section>
 
-    <!-- ─── DESKTOP HERO: true 50/50 split (≥ md) ─── -->
-    <div class="hidden md:grid md:grid-cols-2 min-h-[100svh]">
+    <section id="courses" class="section">
+      <img class="paper-fragment courses-paper-left" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true"><img class="paper-fragment courses-paper-middle" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true"><img class="paper-fragment courses-paper-right" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true"><img class="element-echo courses-element-echo" src="assets/textures/element-air.png" width="1120" height="1400" loading="lazy" alt="" aria-hidden="true">
+      <div class="shell"><h2 class="offer-title">Meine Angebote</h2><div class="offers-grid">
+        <article class="offer"><figure class="offer-photo"><img src="assets/photos/Flow_Option3.JPG" width="1536" height="2048" loading="lazy" alt="Kathi in einem fließenden Yoga Flow vor abstrakter Kunst"></figure><h3>Elemental Yoga Flows</h3><p>Fließende Sequenzen, inspiriert von Erde, Wasser, Feuer und Luft – ganzheitlich, meditativ, kraftvoll. Für alle Levels.</p><a class="offer-link" href="#stundenplan">Zum Stundenplan <span aria-hidden="true">→</span></a></article>
+        <article class="offer"><figure class="offer-photo"><img src="assets/photos/kathi-2.jpg" width="2200" height="1650" loading="lazy" alt="Kathi während einer ruhigen Breathing-Praxis im Grünen"></figure><h3>Elemental Breathing</h3><p>Bewusstes Atmen als Weg zur tiefen Transformation – für emotionale Heilung, innere Klarheit und neue Lebensenergie.</p><a class="offer-link" href="#stundenplan">Stunden entdecken <span aria-hidden="true">→</span></a></article>
+      </div></div>
+    </section>
 
-      <!-- Left: text, vertically centered -->
-      <div class="flex flex-col justify-center pl-[max(2.5rem,calc((100vw-72rem)/2+1.5rem))] pr-14 lg:pr-20">
+    <section id="elements" class="section elements"><div class="shell">
+      <div class="elements-heading"><h2 class="section-title">Atlas der fünf Elemente</h2><p>Jedes Element bringt eine eigene Qualität in Bewegung und Atem – gemeinsam bilden sie eine lebendige, verbundene Praxis.</p></div>
+      <div class="element-grid">
+        <article class="element"><figure class="element-art"><img src="assets/textures/element-earth.png" loading="lazy" alt="Collage aus Erde, Wurzeln, Steinen, Moos und gepressten Blättern"></figure><h3>Erde</h3><p>Stabilität, Halt und Verwurzelung.</p></article>
+        <article class="element"><figure class="element-art"><img src="assets/textures/element-water.png" loading="lazy" alt="Collage aus fließender Ocean-Tusche, Wasserlinien und transparentem Papier"></figure><h3>Wasser</h3><p>Fluss, Wandel und Weichheit.</p></article>
+        <article class="element"><figure class="element-art"><img src="assets/textures/element-fire.png" loading="lazy" alt="Collage aus warmer Glut, Pigment, Rinde und kraftvollen Pinselspuren"></figure><h3>Feuer</h3><p>Kraft, Wärme und Transformation.</p></article>
+        <article class="element"><figure class="element-art"><img src="assets/textures/element-air.png" loading="lazy" alt="Collage aus feinen Gräsern, leichtem Papier und offenem Raum"></figure><h3>Luft</h3><p>Leichtigkeit, Weite und Bewegung.</p></article>
+        <article class="element"><figure class="element-art"><img src="assets/textures/element-ether.png" loading="lazy" alt="Abstrakte Collage aus Licht, transparenten Schichten und stillem Raum"></figure><h3>Äther</h3><p>Raum, Stille und Verbindung.</p></article>
+      </div>
+    </div></section>
 
-        <div class="hero-enter mb-6" id="h-pill" style="transition-delay:.65s">
-          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sand/40 text-sand/90 text-xs tracking-[0.2em] uppercase font-medium bg-white/5">
-            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-            Yoga &amp; Breathwork · Wien
-          </span>
-        </div>
-
-        <h1 class="hero-enter font-display font-light text-6xl lg:text-[76px] leading-[1.05] mb-6 text-white"
-          id="h-headline" style="transition-delay:.95s;">
-          Finde deine<br><em>innere Mitte</em>
-        </h1>
-
-        <p class="hero-enter font-body font-normal text-clay text-2xl mb-10"
-          id="h-sub" style="transition-delay:1.25s;">
-          Flow from the Heart
-        </p>
-
-        <div class="hero-enter flex gap-4" id="h-cta" style="transition-delay:1.55s">
-          <a href="#courses"
-            class="px-8 py-4 bg-sand text-ocean text-xs font-semibold tracking-[0.18em] uppercase rounded-full
-                   hover:bg-clay hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-            Kurse entdecken
-          </a>
-          <a href="#about"
-            class="px-8 py-4 border border-white/30 text-white text-xs font-medium tracking-[0.18em] uppercase rounded-full
-                   hover:border-white/70 hover:bg-white/5 transition-all duration-300">
-            Über Kathi
-          </a>
+    <section id="stundenplan" class="section schedule-section">
+      <img class="paper-fragment schedule-paper-left" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true"><img class="paper-fragment schedule-paper-right" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true"><img class="plant-accent schedule-lotus-open" src="assets/textures/botanical-lotus-open-living-v2.png" width="1024" height="1536" loading="lazy" alt="" aria-hidden="true">
+      <div class="shell"><div class="schedule-heading"><h2 class="section-title">Stundenplan & Buchung</h2><p>Finde die passende Stunde und buche direkt deinen Platz.</p></div>
+        <div id="eversports-widget" class="schedule-ledger">
+          <div id="eversports-controls" class="schedule-controls hidden gap-6 lg:items-end lg:justify-between flex-col lg:flex-row">
+            <div><span class="schedule-control-label">Kategorie</span><div class="flex flex-wrap gap-2" role="group" aria-label="Stundenplan Kategorie"><button type="button" class="schedule-filter-btn" data-schedule-category="all" aria-pressed="true">Alle</button><button type="button" class="schedule-filter-btn" data-schedule-category="yoga" aria-pressed="false">Yoga</button><button type="button" class="schedule-filter-btn" data-schedule-category="breathwork" aria-pressed="false">Breathwork</button></div></div>
+            <div class="grid grid-cols-1 sm:grid-cols-[minmax(230px,280px)_auto] gap-4 items-end w-full lg:w-auto"><label><span class="schedule-control-label">Monat</span><select id="eversports-month-filter" class="schedule-select"><option value="all">Alle kommenden Termine</option></select></label><p id="eversports-summary" class="min-h-11 inline-flex items-center text-xs text-ocean/70 sm:justify-end">Termine werden geladen…</p></div>
+          </div>
+          <div id="eversports-scroll" class="schedule-scroll"><div id="eversports-content" class="w-full flex flex-col items-center justify-center min-h-[300px] transition-opacity duration-500" aria-live="polite"><div class="w-9 h-9 border-2 border-ocean/20 border-t-ocean rounded-full animate-spin mb-5" aria-hidden="true"></div><p class="font-display text-2xl text-ocean mb-1">Lade Stundenplan</p><p class="text-xs text-ocean/70">Bitte warten…</p></div></div>
         </div>
       </div>
+    </section>
 
-      <!-- Right: video fills entire column, edge-to-edge -->
-      <div id="h-video" class="relative overflow-hidden">
-        <video id="hero-video"
-          class="absolute inset-0 w-full h-full object-cover"
-          style="object-position: center 15%;"
-          autoplay muted loop playsinline preload="auto">
-          <source src="assets/videos/hero-1-720p-optimized.mp4" type="video/mp4">
-        </video>
-        <!-- Soft fade into ocean bg on the left edge -->
-        <div class="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-ocean to-transparent pointer-events-none z-10"></div>
+    <section class="quote-section" aria-label="Zitat von Kathi"><img class="paper-fragment quote-paper-band" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true"><div class="shell quote-paper"><blockquote>Atem ist Leben. Wenn wir lernen, bewusst zu atmen, lernen wir, bewusst zu leben.</blockquote><p class="quote-author">Kathi K.</p></div></section>
+
+    <section id="contact" class="section">
+      <img class="paper-fragment contact-paper-main" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true"><img class="paper-fragment contact-paper-side" src="assets/textures/ocean-paper-wash.png" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true"><img class="plant-accent contact-peony" src="assets/textures/botanical-peony-white-living-v2.png" width="1024" height="1536" loading="lazy" alt="" aria-hidden="true">
+      <div class="shell contact-grid"><div><h2 class="section-title">Ich freue mich,<br><em>von dir zu hören</em></h2>
+        <form id="contact-form" class="contact-form"><div class="form-row"><div class="field"><label for="name">Dein Name</label><input id="name" name="name" type="text" autocomplete="name" placeholder="Kathi" required></div><div class="field"><label for="email">Deine E-Mail</label><input id="email" name="email" type="email" autocomplete="email" placeholder="deine@email.at" required></div></div><div class="field"><label for="subject">Betreff</label><input id="subject" name="subject" type="text" placeholder="Worum geht es?"></div><div class="field"><label for="message">Deine Nachricht</label><textarea id="message" name="message" placeholder="Was möchtest du mir mitteilen?" required></textarea></div><button id="submit-btn" class="button button-primary" type="submit">Nachricht senden</button></form>
       </div>
+      <aside class="contact-note" aria-label="Kontaktdaten"><div class="contact-list">
+        <div class="contact-item"><svg fill="none" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7.5 10.9 13a2 2 0 0 0 2.2 0L21 7.5M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z"/></svg><a href="mailto:hello@yogakathi.at">hello@yogakathi.at</a></div>
+        <div class="contact-item"><svg fill="none" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.7 16.7 13.4 21a2 2 0 0 1-2.8 0l-4.3-4.3a8 8 0 1 1 11.4 0Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg><span>Wien, Österreich</span></div>
+        <div class="contact-item"><svg fill="none" viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="4" stroke-width="1.5"/><circle cx="12" cy="12" r="3.25" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r=".75" fill="currentColor" stroke="none"/></svg><a href="https://instagram.com/yogakathi" target="_blank" rel="noopener">@yogakathi</a></div>
+      </div></aside></div>
+    </section>
+  </main>
 
-    </div>
-  </section>
+  <footer class="site-footer"><div class="shell"><div class="footer-main"><nav class="footer-links" aria-label="Footer Navigation links"><a href="#about">Über Kathi</a><a href="#courses">Kurse</a></nav><a class="footer-logo" href="#hero" aria-label="Zurück nach oben"><img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi"></a><nav class="footer-links" aria-label="Footer Navigation rechts"><a href="#stundenplan">Buchen</a><a href="#contact">Kontakt</a></nav></div><div class="footer-meta">© 2026 Yoga Kathi · Wien · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></div></div></footer>
 
-
-  <!-- ══════════════════════════════════════════════════
-       ABOUT
-  ══════════════════════════════════════════════════ -->
-  <section id="about" class="snap-section bg-ocean overflow-hidden">
-    <div class="section-content max-w-7xl mx-auto px-8 lg:px-14">
-      <div class="grid md:grid-cols-[500px_1fr] gap-16 lg:gap-28 items-center">
-
-        <!-- Portrait -->
-        <div class="relative" data-anim="left">
-          <div class="absolute -inset-8 rounded-full bg-sky/20 blur-3xl -z-10 pointer-events-none"></div>
-          <img src="assets/photos/uebermich.jpg"
-            alt="Kathi – Yoga & Breathwork Lehrerin Wien"
-            class="relative w-full max-w-sm md:max-w-full mx-auto object-cover rounded-2xl shadow-2xl"
-            style="aspect-ratio:3/4; object-fit:cover;">
-          <div class="absolute -bottom-5 -right-4 md:-right-8 bg-ocean/80 backdrop-blur-sm rounded-2xl shadow-xl px-5 py-4 text-center border border-white/15">
-            <p class="font-display text-[2rem] leading-tight text-sand">7+</p>
-            <p class="text-cream/60 text-[10px] tracking-[0.18em] uppercase mt-0.5">Jahre Erfahrung</p>
-          </div>
-        </div>
-
-        <!-- Text -->
-        <div data-anim="right">
-          <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-cream/50 mb-4">Über mich</p>
-
-          <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-cream leading-tight mb-8">
-            Hallo, ich bin<br><em>Kathi</em>
-          </h2>
-
-          <p class="text-cream/75 leading-[1.9] mb-5 text-[1.05rem]">
-            Als zertifizierte Yoga-Lehrerin und Breathwork-Teacherin begleite ich Frauen auf ihrem Weg
-            zu mehr Achtsamkeit, Kraft und innerer Balance – mitten in Wien.
-          </p>
-          <p class="text-cream/75 leading-[1.9] mb-10 text-[1.05rem]">
-            In meinen <span class="text-sand font-medium">Yoga Flows</span> verbinden wir Bewegung
-            mit den natürlichen Elementen – geerdet, fließend, lebendig. Im
-            <span class="text-sand font-medium">Breathing</span> nutzen wir den Atem als
-            kraftvolles Werkzeug zur tiefen Transformation.
-          </p>
-
-          <!-- Credentials 2×2 – no nested data-anim (parent handles entrance) -->
-          <div class="grid grid-cols-2 gap-4 mb-10">
-            <div class="bg-white/8 rounded-xl p-5 text-center border border-white/12">
-              <p class="font-display text-2xl text-sand">200h</p>
-              <p class="text-[10px] text-cream/55 tracking-[0.15em] uppercase mt-1">Yoga Ausbildung</p>
-            </div>
-            <div class="bg-white/8 rounded-xl p-5 text-center border border-white/12">
-              <p class="font-display text-2xl text-sand">∞</p>
-              <p class="text-[10px] text-cream/55 tracking-[0.15em] uppercase mt-1">Breathwork Zert.</p>
-            </div>
-            <div class="bg-white/8 rounded-xl p-5 text-center border border-white/12">
-              <p class="font-display text-2xl text-sand">seit 2018</p>
-              <p class="text-[10px] text-cream/55 tracking-[0.15em] uppercase mt-1">Im Flow</p>
-            </div>
-            <div class="bg-white/8 rounded-xl p-5 text-center border border-white/12">
-              <p class="font-display text-2xl text-sand">Wien</p>
-              <p class="text-[10px] text-cream/55 tracking-[0.15em] uppercase mt-1">Österreich</p>
-            </div>
-          </div>
-
-          <a href="#contact"
-            class="inline-flex items-center gap-2 text-sand font-medium text-sm hover:text-cream transition-colors duration-300 group">
-            <span class="border-b border-sand/40 group-hover:border-cream pb-0.5 tracking-wide">
-              Schreib mir eine Nachricht
-            </span>
-            <svg class="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300"
-              fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-
-
-
-  <!-- ══════════════════════════════════════════════════
-       COURSES
-  ══════════════════════════════════════════════════ -->
-  <section id="courses" class="snap-section bg-ocean">
-    <div class="section-content max-w-7xl mx-auto px-8 lg:px-14">
-
-      <div class="text-center mb-10 md:mb-12" data-anim="up">
-        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-cream/50 mb-3">Meine Angebote</p>
-        <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-cream mb-5">Was ich anbiete</h2>
-        <p class="text-cream/65 max-w-lg mx-auto leading-relaxed text-sm md:text-base">
-          Jede Stunde ist eine Einladung, tiefer in dich einzutauchen –
-          mit Bewegung, Atem und Bewusstsein.
-        </p>
-      </div>
-
-      <!-- Cards -->
-      <div class="grid md:grid-cols-2 gap-6 lg:gap-7 mb-10 max-w-4xl mx-auto">
-
-        <article data-anim="up" data-delay="0"
-          class="group bg-white/8 rounded-2xl overflow-hidden border border-white/12 hover:bg-white/12 hover:-translate-y-2 transition-all duration-500">
-          <div class="overflow-hidden h-56 sm:h-64 md:h-60 lg:h-64">
-            <img src="assets/photos/Flow_Option1.JPG" alt="Yoga Flows"
-              class="w-full h-full object-cover object-[center_78%] group-hover:scale-105 transition-transform duration-700 ease-out">
-          </div>
-          <div class="p-6 md:p-7">
-            <span class="text-[10px] font-semibold tracking-[0.2em] uppercase text-sand">Yoga</span>
-            <h3 class="font-display font-light text-[1.5rem] text-cream mt-2 mb-3">Yoga Flows</h3>
-            <p class="text-cream/65 text-sm leading-relaxed mb-4">
-              Fließende Sequenzen, inspiriert von Erde, Wasser, Feuer und Luft –
-              ganzheitlich, meditativ, kraftvoll. Für alle Levels.
-            </p>
-            <a href="#stundenplan"
-              class="inline-flex items-center gap-1.5 text-sand text-sm font-medium hover:text-cream transition-colors duration-300 group/l">
-              <span class="border-b border-sand/40 group-hover/l:border-cream pb-0.5">Zum Stundenplan</span>
-              <svg class="w-3.5 h-3.5 group-hover/l:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-            </a>
-          </div>
-        </article>
-
-        <article data-anim="up" data-delay="150"
-          class="group bg-white/8 rounded-2xl overflow-hidden border border-white/12 hover:bg-white/12 hover:-translate-y-2 transition-all duration-500">
-          <div class="overflow-hidden h-56 sm:h-64 md:h-60 lg:h-64">
-            <img src="assets/photos/kathi-2.jpg" alt="Breathing"
-              class="w-full h-full object-cover object-[center_38%] group-hover:scale-105 transition-transform duration-700 ease-out">
-          </div>
-          <div class="p-6 md:p-7">
-            <span class="text-[10px] font-semibold tracking-[0.2em] uppercase text-sand">Breathwork</span>
-            <h3 class="font-display font-light text-[1.5rem] text-cream mt-2 mb-3">Breathing</h3>
-            <p class="text-cream/65 text-sm leading-relaxed mb-4">
-              Bewusstes Atmen als Weg zur tiefen Transformation – für emotionale Heilung,
-              innere Klarheit und neue Lebensenergie.
-            </p>
-            <a href="#stundenplan"
-              class="inline-flex items-center gap-1.5 text-sand text-sm font-medium hover:text-cream transition-colors duration-300 group/l">
-              <span class="border-b border-sand/40 group-hover/l:border-cream pb-0.5">Mehr erfahren</span>
-              <svg class="w-3.5 h-3.5 group-hover/l:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-            </a>
-          </div>
-        </article>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════
-       SCHEDULE
-  ══════════════════════════════════════════════════ -->
-  <section id="stundenplan" class="snap-section bg-ocean overflow-hidden">
-    <div class="section-content-compact max-w-7xl mx-auto px-8 lg:px-14">
-
-      <div class="text-center mb-10 md:mb-12" data-anim="up">
-        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-cream/50 mb-3">Stunde buchen</p>
-        <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-cream mb-5">Stundenplan & Buchung</h2>
-        <p class="text-cream/65 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
-          Finde die passende Stunde und buche direkt deinen Platz.
-        </p>
-      </div>
-
-      <div class="bg-white/8 rounded-2xl border border-white/12 p-5 md:p-8" data-anim="up">
-        <div id="eversports-widget" class="bg-white/5 rounded-2xl border border-white/10 p-4 md:p-6 overflow-hidden">
-          <div id="eversports-controls" class="hidden mb-5 md:mb-6 rounded-2xl border border-white/10 bg-white/5 p-3 md:p-4 gap-4 md:gap-5 md:items-end md:justify-between flex-col lg:flex-row">
-            <div class="min-w-0 w-full lg:w-auto">
-              <p class="text-[10px] tracking-[0.2em] uppercase font-semibold text-cream/50 mb-2">Filter</p>
-              <div class="inline-flex w-full sm:w-auto rounded-full bg-white/8 border border-white/12 p-1 overflow-x-auto" aria-label="Stundenplan Kategorie">
-                <button type="button" class="schedule-filter-btn shrink-0 px-4 py-2 rounded-full border border-transparent text-[10px] font-semibold tracking-[0.16em] uppercase text-cream/70 transition-colors duration-300" data-schedule-category="all" aria-pressed="true">Alle</button>
-                <button type="button" class="schedule-filter-btn shrink-0 px-4 py-2 rounded-full border border-transparent text-[10px] font-semibold tracking-[0.16em] uppercase text-cream/70 transition-colors duration-300" data-schedule-category="yoga" aria-pressed="false">Yoga</button>
-                <button type="button" class="schedule-filter-btn shrink-0 px-4 py-2 rounded-full border border-transparent text-[10px] font-semibold tracking-[0.16em] uppercase text-cream/70 transition-colors duration-300" data-schedule-category="breathwork" aria-pressed="false">Breathwork</button>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-[minmax(210px,260px)_auto] gap-3 md:gap-4 items-end w-full lg:w-auto">
-              <label class="block">
-                <span class="block text-[10px] tracking-[0.2em] uppercase font-semibold text-cream/50 mb-2">Monat</span>
-                <span class="relative block">
-                  <select id="eversports-month-filter" class="appearance-none w-full h-11 rounded-full bg-ocean/80 border border-sand/70 pl-5 pr-12 text-sm text-cream focus:outline-none focus:border-sand">
-                    <option value="all">Alle kommenden Termine</option>
-                  </select>
-                  <svg class="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-cream/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 9l6 6 6-6"/>
-                  </svg>
-                </span>
-              </label>
-              <p id="eversports-summary" class="h-11 inline-flex items-center text-xs text-cream/55 sm:text-right">Termine werden geladen...</p>
-            </div>
-          </div>
-
-          <div id="eversports-scroll" class="schedule-scroll max-h-[58svh] md:max-h-[520px] overflow-y-auto pr-1 md:pr-2">
-            <div id="eversports-content" class="w-full flex flex-col items-center justify-center min-h-[300px] transition-opacity duration-500">
-              <div class="w-10 h-10 border-[3px] border-white/20 border-t-cream rounded-full animate-spin mb-5"></div>
-              <p class="font-display text-[1.3rem] text-cream mb-1">Lade Stundenplan</p>
-              <p class="text-xs text-cream/55 tracking-wide uppercase">Bitte warten...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════
-       QUOTE STRIPE
-  ══════════════════════════════════════════════════ -->
-  <section class="snap-section relative flex items-center bg-ocean overflow-hidden grain">
-    <div class="absolute -top-16 -left-16 w-72 h-72 rounded-full bg-mauve/25 blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-sky/20 blur-3xl pointer-events-none"></div>
-
-    <div class="relative z-10 max-w-5xl mx-auto px-8 lg:px-14 text-center" data-anim="up">
-      <p class="font-script text-sand text-6xl leading-none mb-6 select-none">&ldquo;</p>
-      <blockquote class="font-display font-light italic text-3xl md:text-[3rem] text-white leading-relaxed mb-8">
-        Atem ist Leben. Wenn wir lernen, bewusst zu atmen,<br class="hidden md:block">
-        lernen wir, bewusst zu leben.
-      </blockquote>
-      <p class="text-clay/70 text-xs tracking-[0.22em] uppercase">— Kathi K.</p>
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════
-       CONTACT
-  ══════════════════════════════════════════════════ -->
-  <section id="contact" class="snap-section relative overflow-hidden grain"
-    style="background:
-      radial-gradient(ellipse 78% 62% at 18% 22%, rgba(201,168,133,0.22) 0%, rgba(201,168,133,0.08) 38%, transparent 72%),
-      radial-gradient(ellipse 70% 58% at 88% 18%, rgba(157,173,206,0.16) 0%, transparent 66%),
-      linear-gradient(145deg, #073F50 0%, #084A5E 48%, #0B3847 100%);">
-
-    <div class="absolute inset-0 pointer-events-none"
-      style="background: linear-gradient(180deg, rgba(250,246,240,0.08) 0%, transparent 28%, rgba(0,0,0,0.12) 100%)"></div>
-
-    <div class="section-content-compact relative z-10 max-w-6xl mx-auto px-8 lg:px-14">
-
-      <div class="text-center mb-16" data-anim="up">
-        <p class="text-[11px] tracking-[0.25em] uppercase font-semibold text-sand/80 mb-3">Lass uns verbinden</p>
-        <h2 class="font-display font-light text-[2.8rem] md:text-5xl text-white leading-tight">
-          Ich freue mich<br><em>von dir zu hören</em>
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-12 items-start">
-
-        <!-- Contact info -->
-        <div class="space-y-8" data-anim="left">
-
-          <div class="flex items-start gap-5">
-            <div class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-clay" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <div>
-              <p class="text-white/50 text-[10px] tracking-[0.2em] uppercase mb-1">Email</p>
-              <a href="mailto:hello@yogakathi.at" class="text-white hover:text-sand transition-colors duration-300 text-sm">
-                hello@yogakathi.at
-              </a>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-5">
-            <div class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-clay" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </div>
-            <div>
-              <p class="text-white/50 text-[10px] tracking-[0.2em] uppercase mb-1">Standort</p>
-              <p class="text-white text-sm">Wien, Österreich</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-5">
-            <div class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-clay" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-              </svg>
-            </div>
-            <div>
-              <p class="text-white/50 text-[10px] tracking-[0.2em] uppercase mb-1">Instagram</p>
-              <a href="https://instagram.com/yogakathi" target="_blank" rel="noopener"
-                class="text-white hover:text-sand transition-colors duration-300 text-sm">
-                @yogakathi
-              </a>
-            </div>
-          </div>
-
-          <div class="pt-8 mt-4 border-t border-white/15">
-            <p class="font-body font-normal text-clay/75 text-sm leading-relaxed tracking-wide">
-              "Jede Reise beginnt mit einem einzigen,<br>tiefen Atemzug."
-            </p>
-          </div>
-        </div>
-
-        <!-- Form -->
-        <div data-anim="right">
-          <form id="contact-form"
-            class="backdrop-blur-sm bg-white/10 rounded-2xl p-7 md:p-8 border border-white/20 space-y-5">
-
-            <div>
-              <label for="name" class="block text-white/60 text-[10px] tracking-[0.2em] uppercase mb-2">Name</label>
-              <input type="text" id="name" name="name" placeholder="Dein Name" required
-                class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white text-sm
-                       placeholder-white/35 focus:outline-none focus:border-sand/60 transition-colors duration-300">
-            </div>
-
-            <div>
-              <label for="email" class="block text-white/60 text-[10px] tracking-[0.2em] uppercase mb-2">Email</label>
-              <input type="email" id="email" name="email" placeholder="deine@email.at" required
-                class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white text-sm
-                       placeholder-white/35 focus:outline-none focus:border-sand/60 transition-colors duration-300">
-            </div>
-
-            <div>
-              <label for="message" class="block text-white/60 text-[10px] tracking-[0.2em] uppercase mb-2">Nachricht</label>
-              <textarea id="message" name="message" rows="4"
-                placeholder="Was möchtest du mir mitteilen?" required
-                class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white text-sm
-                       placeholder-white/35 focus:outline-none focus:border-sand/60 transition-colors duration-300 resize-none"></textarea>
-            </div>
-
-            <button type="submit" id="submit-btn"
-              class="w-full py-3.5 bg-sand text-ocean text-xs font-semibold tracking-[0.18em] uppercase rounded-full
-                     hover:bg-clay hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-              Nachricht senden
-            </button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════
-       FOOTER
-  ══════════════════════════════════════════════════ -->
-  <footer class="footer-section bg-ocean text-cream pt-20 pb-12">
-    <div class="max-w-7xl mx-auto px-8 lg:px-14">
-
-      <div class="grid md:grid-cols-3 gap-10 mb-12">
-
-        <div>
-          <img src="assets/logos/logo-1-white-cropped.png" alt="Yoga Kathi" class="h-[5.25rem] w-auto mb-4 opacity-80">
-          <p class="text-cream/50 text-sm leading-relaxed">
-            Yoga & Breathwork<br>Wien, Österreich
-          </p>
-        </div>
-
-        <div>
-          <h4 class="font-display text-lg text-cream/80 font-light mb-5">Links</h4>
-          <nav class="flex flex-col gap-2.5">
-            <a href="#about"   class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Über Kathi</a>
-            <a href="#courses" class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Kurse</a>
-            <a href="#stundenplan" class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Stunde buchen</a>
-            <a href="#contact" class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Kontakt</a>
-            <a href="#"        class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Impressum</a>
-            <a href="#"        class="text-cream/50 hover:text-sand text-sm transition-colors duration-300 tracking-wide">Datenschutz</a>
-          </nav>
-        </div>
-
-        <div>
-          <h4 class="font-display text-lg text-cream/80 font-light mb-5">Folge mir</h4>
-          <div class="flex gap-3 mb-5">
-            <a href="https://instagram.com/yogakathi" target="_blank" rel="noopener"
-              class="w-9 h-9 rounded-full bg-white/10 hover:bg-mauve flex items-center justify-center transition-all duration-300 group" aria-label="Instagram">
-              <svg class="w-4 h-4 text-cream/60 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-              </svg>
-            </a>
-            <a href="mailto:hello@yogakathi.at"
-              class="w-9 h-9 rounded-full bg-white/10 hover:bg-mauve flex items-center justify-center transition-all duration-300 group" aria-label="Email">
-              <svg class="w-4 h-4 text-cream/60 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-            </a>
-          </div>
-          <a href="mailto:hello@yogakathi.at" class="text-cream/50 hover:text-sand text-sm transition-colors duration-300">
-            hello@yogakathi.at
-          </a>
-        </div>
-
-      </div>
-
-      <div class="border-t border-white/10 pt-8 text-center">
-        <p class="text-cream/30 text-xs tracking-[0.18em]">
-          © 2025 Yoga Kathi · Wien · Alle Rechte vorbehalten
-        </p>
-      </div>
-    </div>
-  </footer>
-
-
-  <!-- ══════════════════════════════════════════════════
-       JAVASCRIPT
-  ══════════════════════════════════════════════════ -->
   <script>
-    /* ── Custom cursor ──────────────────────────────── */
-    const dot  = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    let mx = -100, my = -100, rx = -100, ry = -100;
-
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-    (function animCursor() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      dot.style.left  = mx + 'px';
-      dot.style.top   = my + 'px';
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(animCursor);
-    })();
-
-    document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
-    document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
-
-    /* ── Hero video: slow playback + force autoplay ── */
-    const vid = document.getElementById('hero-video');
-    const allVideos = document.querySelectorAll('#hero video');
-    allVideos.forEach(v => {
-      const setRate = () => { v.playbackRate = 0.75; };
-      v.addEventListener('loadedmetadata', setRate);
-      v.addEventListener('canplay', setRate);
-      setRate();
-      // Force autoplay (Chrome sometimes blocks even muted autoplay)
-      const tryPlay = () => { v.play().catch(() => {}); };
-      v.addEventListener('canplay', tryPlay);
-      tryPlay();
-    });
-
-    /* ── Hero entrance ─────────────────────────────── */
-    document.addEventListener('DOMContentLoaded', () => {
-      // Desktop + mobile element IDs
-      const ids = ['h-pill','h-headline','h-sub','h-cta',
-                   'h-pill-m','h-headline-m','h-sub-m','h-cta-m'];
-      ids.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.add('show');
-      });
-    });
-
-    /* ── Scroll-triggered animations ───────────────── */
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const delay = parseInt(e.target.dataset.delay || 0);
-        setTimeout(() => e.target.classList.add('visible'), delay);
-        io.unobserve(e.target);
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
-
-    document.querySelectorAll('[data-anim]').forEach(el => io.observe(el));
-
-    /* ── Header shrink on scroll ────────────────────── */
-    const hdr   = document.getElementById('site-header');
-    const inner = document.getElementById('header-inner');
-
-    function updateHeaderHeight() {
-      document.documentElement.style.setProperty('--header-height', `${hdr.offsetHeight}px`);
-    }
-
-    function updateHeaderState() {
-      if (window.scrollY > 72) {
-        inner.classList.replace('py-4','py-2');
-        hdr.classList.add('shadow-lg');
-      } else {
-        inner.classList.replace('py-2','py-4');
-        hdr.classList.remove('shadow-lg');
-      }
-      updateHeaderHeight();
-    }
-
-    updateHeaderState();
-    window.addEventListener('scroll', updateHeaderState, { passive: true });
-    window.addEventListener('resize', updateHeaderHeight, { passive: true });
-
-    /* ── Mobile hamburger ───────────────────────────── */
-    const burger   = document.getElementById('hamburger');
-    const mobileNv = document.getElementById('mobile-nav');
-    const b1 = document.getElementById('b1');
-    const b2 = document.getElementById('b2');
-    const b3 = document.getElementById('b3');
-    let open = false;
-
-    burger.addEventListener('click', () => {
-      open = !open;
-      mobileNv.classList.toggle('open', open);
-      if (open) {
-        b1.style.cssText = 'transform:translateY(7px) rotate(45deg)';
-        b2.style.cssText = 'opacity:0';
-        b3.style.cssText = 'width:24px; transform:translateY(-7px) rotate(-45deg)';
-      } else {
-        b1.style.cssText = ''; b2.style.cssText = ''; b3.style.cssText = '';
-      }
-    });
-
-    mobileNv.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => { if (open) burger.click(); });
-    });
-
-    /* ── Smooth scroll with header offset ───────────── */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const sel = a.getAttribute('href');
-        if (sel === '#') return;
-        const tgt = document.querySelector(sel);
-        if (!tgt) return;
-        e.preventDefault();
-        window.scrollTo({ top: tgt.offsetTop, behavior: 'smooth' });
-      });
-    });
-
-    /* ── Contact form ───────────────────────────────── */
-    document.getElementById('contact-form').addEventListener('submit', e => {
-      e.preventDefault();
-      const btn = document.getElementById('submit-btn');
-      btn.textContent = 'Gesendet ✓';
-      btn.classList.replace('bg-sand','bg-white/20');
-      btn.classList.replace('text-ocean','text-white');
-      setTimeout(() => {
-        btn.textContent = 'Nachricht senden';
-        btn.classList.replace('bg-white/20','bg-sand');
-        btn.classList.replace('text-white','text-ocean');
-        e.target.reset();
-      }, 3000);
+    document.addEventListener('DOMContentLoaded',()=>{
+      requestAnimationFrame(()=>document.body.classList.add('is-ready'));
+      const header=document.getElementById('site-header');const updateHeader=()=>header.classList.toggle('is-compact',window.scrollY>36);updateHeader();window.addEventListener('scroll',updateHeader,{passive:true});
+      const menuButton=document.getElementById('menu-button');const mobileMenu=document.getElementById('mobile-menu');
+      const setMenu=open=>{mobileMenu.classList.toggle('open',open);mobileMenu.setAttribute('aria-hidden',String(!open));mobileMenu.toggleAttribute('inert',!open);menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Menü schließen':'Menü öffnen')};
+      menuButton.addEventListener('click',()=>setMenu(menuButton.getAttribute('aria-expanded')!=='true'));mobileMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenu(false)));
+      document.querySelectorAll('a[href^="#"]').forEach(anchor=>anchor.addEventListener('click',event=>{const selector=anchor.getAttribute('href');if(selector==='#')return;const target=document.querySelector(selector);if(!target)return;event.preventDefault();target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}));
+      document.getElementById('contact-form').addEventListener('submit',event=>{event.preventDefault();const button=document.getElementById('submit-btn');button.textContent='Gesendet ✓';button.disabled=true;setTimeout(()=>{event.target.reset();button.textContent='Nachricht senden';button.disabled=false},3000)});
     });
   </script>
 
-  <!-- ── Eversports Integration ─────────────────────── -->
+  <!-- Eversports Integration -->
   <script>
-  (function() {
-    const WIDGET_ID  = 'a67d41ee-5f05-40b4-b30d-e27e6858151f';
-    const TEACHER_ID = 'ca56fb01-8e89-46a9-a6d1-6daa847c66ce';
-    const API_URL    = 'https://graphql-widget-master.production.eversports.cloud/api/graphql';
-    const WEEKS_AHEAD = 8;
-
-    const QUERY = `
+  (function(){
+    const WIDGET_ID='a67d41ee-5f05-40b4-b30d-e27e6858151f';
+    const TEACHER_ID='ca56fb01-8e89-46a9-a6d1-6daa847c66ce';
+    const API_URL='https://graphql-widget-master.production.eversports.cloud/api/graphql';
+    const WEEKS_AHEAD=8;
+    const QUERY=`
       query GetActivities($teacherIds: [ID!], $timeRange: TimeRangeInput, $first: Int) {
         widget(id: "${WIDGET_ID}") {
           ... on WidgetActivitySchedule {
-            activities(
-              teacherIds: $teacherIds
-              isCancelled: false
-              isArchived: false
-              timeRange: $timeRange
-              first: $first
-            ) {
-              nodes {
-                id
-                start
-                end
-                detailsPageURL
-                activityGroup { name venue { name } }
-                room { name }
-              }
+            activities(teacherIds: $teacherIds, isCancelled: false, isArchived: false, timeRange: $timeRange, first: $first) {
+              nodes { id start end detailsPageURL activityGroup { name venue { name } } room { name } }
             }
           }
         }
-      }
-    `;
-
-    const DAYS_DE   = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
-    const MONTHS_DE = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
-    const MONTHS_LONG_DE = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
-    const state = {
-      activities: [],
-      category: 'all',
-      month: 'all'
-    };
-
-    function fmt(date) { return date.toISOString().slice(0, 10); }
-    function addDays(date, n) { const d = new Date(date); d.setDate(d.getDate() + n); return d; }
-    function fmtTime(isoStr) { return new Date(isoStr).toLocaleTimeString('de-AT', { hour: '2-digit', minute: '2-digit', hour12: false }); }
-    function isToday(dateStr) { return dateStr === fmt(new Date()); }
-    function esc(str) { return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-    function classifyActivity(act) {
-      const name = (act.activityGroup?.name || '').toLowerCase();
-      if (/(yoga|flow|vinyasa)/i.test(name)) return 'yoga';
-      if (/(breathwork|breathing|meditation|atem)/i.test(name)) return 'breathwork';
-      return 'yoga';
+      }`;
+    const DAYS_DE=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+    const MONTHS_DE=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+    const MONTHS_LONG_DE=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+    const state={activities:[],category:'all',month:'all'};
+    function fmt(date){return date.toISOString().slice(0,10)}
+    function addDays(date,n){const d=new Date(date);d.setDate(d.getDate()+n);return d}
+    function fmtTime(iso){return new Date(iso).toLocaleTimeString('de-AT',{hour:'2-digit',minute:'2-digit',hour12:false})}
+    function isToday(date){return date===fmt(new Date())}
+    function esc(str){return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+    function classifyActivity(act){const name=(act.activityGroup?.name||'').toLowerCase();if(/(yoga|flow|vinyasa)/i.test(name))return'yoga';if(/(breathwork|breathing|meditation|atem)/i.test(name))return'breathwork';return'yoga'}
+    function normalizeActivity(act){const date=new Date(act.start);const day=act.start.slice(0,10);const month=day.slice(0,7);return{...act,name:act.activityGroup?.name?.trim()||'Yoga Klasse',venue:act.activityGroup?.venue?.name?.trim()||'',room:act.room?.name?.trim()||'',day,month,category:classifyActivity(act),sortTime:date.getTime()}}
+    function getMonthOptions(activities){const seen=new Set();return activities.slice().sort((a,b)=>a.month.localeCompare(b.month)).filter(act=>{if(seen.has(act.month))return false;seen.add(act.month);return true}).map(act=>{const[year,month]=act.month.split('-').map(Number);return{value:act.month,label:`${MONTHS_LONG_DE[month-1]} ${year}`}})}
+    function applyFilters(activities,filters){return activities.filter(act=>(filters.category==='all'||act.category===filters.category)&&(filters.month==='all'||act.month===filters.month))}
+    window.YogaKathiSchedule={classifyActivity,normalizeActivity,getMonthOptions,applyFilters};
+    async function fetchActivities(start,end){const response=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:QUERY,variables:{teacherIds:[TEACHER_ID],timeRange:{start:fmt(start),end:fmt(end)},first:500}})});if(!response.ok)throw new Error(`HTTP ${response.status}`);const json=await response.json();if(json.errors)throw new Error(json.errors.map(error=>error.message).join('; '));return json.data.widget.activities.nodes}
+    function setControlsVisible(visible){const controls=document.getElementById('eversports-controls');if(!controls)return;controls.classList.toggle('hidden',!visible);controls.classList.toggle('flex',visible)}
+    function updateSummary(count){const summary=document.getElementById('eversports-summary');if(summary)summary.textContent=count===1?'1 Termin gefunden':`${count} Termine gefunden`}
+    function populateMonthFilter(activities){const select=document.getElementById('eversports-month-filter');if(!select)return;select.innerHTML='<option value="all">Alle kommenden Termine</option>'+getMonthOptions(activities).map(option=>`<option value="${esc(option.value)}">${esc(option.label)}</option>`).join('');select.value=state.month}
+    function syncCategoryButtons(){document.querySelectorAll('[data-schedule-category]').forEach(button=>button.setAttribute('aria-pressed',button.dataset.scheduleCategory===state.category?'true':'false'))}
+    function setupControls(){document.querySelectorAll('[data-schedule-category]').forEach(button=>button.addEventListener('click',()=>{state.category=button.dataset.scheduleCategory||'all';syncCategoryButtons();renderSchedule()}));const select=document.getElementById('eversports-month-filter');if(select)select.addEventListener('change',()=>{state.month=select.value||'all';renderSchedule()})}
+    function renderSchedule(){render(applyFilters(state.activities,state));const scroller=document.getElementById('eversports-scroll');if(scroller)scroller.scrollTop=0}
+    function render(nodes){
+      const content=document.getElementById('eversports-content');if(!content)return;updateSummary(nodes.length);
+      if(!nodes.length){content.innerHTML='<div class="text-center py-12 px-4 text-ocean/70 text-sm">Für diesen Filter sind aktuell keine Termine geplant.</div>';content.classList.remove('items-center','justify-center','min-h-[300px]');return}
+      const byDay={};nodes.forEach(activity=>{const day=activity.start.slice(0,10);if(!byDay[day])byDay[day]=[];byDay[day].push(activity)});
+      let html='<div class="w-full flex flex-col gap-8">';
+      Object.keys(byDay).sort().forEach(dayStr=>{
+        const date=new Date(dayStr+'T12:00:00');const label=`${DAYS_DE[date.getDay()]}, ${date.getDate()}. ${MONTHS_DE[date.getMonth()]} ${date.getFullYear()}`;const todayBadge=isToday(dayStr)?'<span class="bg-ocean text-cream text-[10px] px-2 py-1 ml-2 inline-flex font-semibold uppercase tracking-wider">Heute</span>':'';
+        html+=`<section><h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-ocean/80 px-1 pb-3 flex items-center">${label}${todayBadge}</h3><div class="border-y border-ocean/20 divide-y divide-ocean/20">`;
+        byDay[dayStr].sort((a,b)=>a.sortTime-b.sortTime).forEach(activity=>{
+          const meta=[activity.venue,activity.room].filter(Boolean).map(esc).join('<span class="text-ocean/40 px-1.5">·</span>');const categoryLabel=activity.category==='breathwork'?'Breathwork':'Yoga';const bookingLabel=`${activity.name} am ${label} um ${fmtTime(activity.start)} buchen`;
+          html+=`<div class="py-5 grid grid-cols-[64px_1fr] md:grid-cols-[84px_1fr] gap-4 md:gap-6 items-start"><div class="font-semibold text-ocean tabular-nums">${fmtTime(activity.start)}<span class="block text-xs font-normal text-ocean/65 mt-1">${fmtTime(activity.end)}</span></div><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"><div class="min-w-0"><span class="text-[10px] font-semibold tracking-[0.12em] uppercase text-ocean/70">${categoryLabel}</span><div class="font-display text-2xl leading-tight text-ocean mt-1">${esc(activity.name)}</div>${meta?`<div class="text-xs text-ocean/65 flex flex-wrap items-center mt-1">${meta}</div>`:''}</div>${activity.detailsPageURL?`<a class="button button-primary shrink-0 w-full sm:w-auto" href="${esc(activity.detailsPageURL)}" target="_blank" rel="noopener" aria-label="${esc(bookingLabel)}">Buchen</a>`:''}</div></div>`;
+        });html+='</div></section>';
+      });content.innerHTML=html+'</div>';content.classList.remove('items-center','justify-center','min-h-[300px]');
     }
-
-    function normalizeActivity(act) {
-      const date = new Date(act.start);
-      const day = act.start.slice(0, 10);
-      const month = day.slice(0, 7);
-      return {
-        ...act,
-        name: act.activityGroup?.name?.trim() || 'Yoga Klasse',
-        venue: act.activityGroup?.venue?.name?.trim() || '',
-        room: act.room?.name?.trim() || '',
-        day,
-        month,
-        category: classifyActivity(act),
-        sortTime: date.getTime()
-      };
-    }
-
-    function getMonthOptions(activities) {
-      const seen = new Set();
-      return activities
-        .slice()
-        .sort((a, b) => a.month.localeCompare(b.month))
-        .filter((act) => {
-          if (seen.has(act.month)) return false;
-          seen.add(act.month);
-          return true;
-        })
-        .map((act) => {
-          const [year, month] = act.month.split('-').map(Number);
-          return { value: act.month, label: `${MONTHS_LONG_DE[month - 1]} ${year}` };
-        });
-    }
-
-    function applyFilters(activities, filters) {
-      return activities.filter((act) => {
-        const categoryMatch = filters.category === 'all' || act.category === filters.category;
-        const monthMatch = filters.month === 'all' || act.month === filters.month;
-        return categoryMatch && monthMatch;
-      });
-    }
-
-    window.YogaKathiSchedule = {
-      classifyActivity,
-      normalizeActivity,
-      getMonthOptions,
-      applyFilters
-    };
-
-    async function fetchActivities(start, end) {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: QUERY,
-          variables: { teacherIds: [TEACHER_ID], timeRange: { start: fmt(start), end: fmt(end) }, first: 500 }
-        })
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json = await res.json();
-      if (json.errors) throw new Error(json.errors.map(e => e.message).join('; '));
-      return json.data.widget.activities.nodes;
-    }
-
-    function setControlsVisible(visible) {
-      const controls = document.getElementById('eversports-controls');
-      if (!controls) return;
-      controls.classList.toggle('hidden', !visible);
-      controls.classList.toggle('flex', visible);
-    }
-
-    function updateSummary(count) {
-      const summary = document.getElementById('eversports-summary');
-      if (!summary) return;
-      if (count === 1) {
-        summary.textContent = '1 Termin gefunden';
-      } else {
-        summary.textContent = `${count} Termine gefunden`;
-      }
-    }
-
-    function populateMonthFilter(activities) {
-      const select = document.getElementById('eversports-month-filter');
-      if (!select) return;
-      const options = getMonthOptions(activities);
-      select.innerHTML = '<option value="all">Alle kommenden Termine</option>' +
-        options.map((option) => `<option value="${esc(option.value)}">${esc(option.label)}</option>`).join('');
-      select.value = state.month;
-    }
-
-    function syncCategoryButtons() {
-      document.querySelectorAll('[data-schedule-category]').forEach((button) => {
-        button.setAttribute('aria-pressed', button.dataset.scheduleCategory === state.category ? 'true' : 'false');
-      });
-    }
-
-    function setupControls() {
-      document.querySelectorAll('[data-schedule-category]').forEach((button) => {
-        button.addEventListener('click', () => {
-          state.category = button.dataset.scheduleCategory || 'all';
-          syncCategoryButtons();
-          renderSchedule();
-        });
-      });
-
-      const select = document.getElementById('eversports-month-filter');
-      if (select) {
-        select.addEventListener('change', () => {
-          state.month = select.value || 'all';
-          renderSchedule();
-        });
-      }
-    }
-
-    function renderSchedule() {
-      render(applyFilters(state.activities, state));
-      const scroller = document.getElementById('eversports-scroll');
-      if (scroller) scroller.scrollTop = 0;
-    }
-
-    function render(nodes) {
-      const content = document.getElementById('eversports-content');
-      if (!content) return;
-
-      updateSummary(nodes.length);
-
-      if (!nodes.length) {
-        content.innerHTML = '<div class="text-center py-12 px-4 text-cream/70 text-sm">Für diesen Filter sind aktuell keine Termine geplant.</div>';
-        content.classList.remove('items-center', 'justify-center', 'min-h-[300px]');
-        return;
-      }
-
-      const byDay = {};
-      for (const act of nodes) {
-        const day = act.start.slice(0, 10);
-        if (!byDay[day]) byDay[day] = [];
-        byDay[day].push(act);
-      }
-
-      let html = '<div class="w-full flex flex-col gap-7">';
-      for (const dayStr of Object.keys(byDay).sort()) {
-        const d = new Date(dayStr + 'T12:00:00');
-        const label = `${DAYS_DE[d.getDay()]}, ${d.getDate()}. ${MONTHS_DE[d.getMonth()]} ${d.getFullYear()}`;
-        const todayBadge = isToday(dayStr) ? '<span class="bg-sand text-ocean text-[9px] px-2.5 py-0.5 rounded-full ml-2 lowercase tracking-wider align-middle inline-flex font-semibold">Heute</span>' : '';
-
-        html += `<div>
-          <div class="text-[11px] font-bold uppercase tracking-[0.2em] text-cream/60 px-1 pb-4 flex items-center">${label}${todayBadge}</div>
-          <div class="flex flex-col gap-3">`;
-
-        for (const act of byDay[dayStr].sort((a, b) => a.sortTime - b.sortTime)) {
-          const metaParts = [act.venue, act.room].filter(Boolean);
-          const meta = metaParts.map(esc).join('<span class="text-cream/30 px-1.5">•</span>');
-          const categoryLabel = act.category === 'breathwork' ? 'Breathwork' : 'Yoga';
-
-          html += `
-            <div class="group bg-white/8 border border-white/12 rounded-2xl p-4 md:p-5 grid grid-cols-[64px_1fr] md:grid-cols-[82px_1fr] gap-4 md:gap-5 items-start hover:bg-white/12 hover:-translate-y-0.5 transition-all duration-300">
-              <div class="text-sm md:text-base font-semibold text-cream leading-tight mt-0.5">
-                ${fmtTime(act.start)}
-                <span class="block text-[11px] font-normal text-cream/55 mt-1">${fmtTime(act.end)}</span>
-              </div>
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div class="min-w-0">
-                  <span class="inline-flex mb-2 rounded-full bg-white/10 px-2.5 py-1 text-[9px] font-semibold tracking-[0.16em] uppercase text-sand">${categoryLabel}</span>
-                  <div class="text-[1.05rem] font-medium leading-snug text-cream font-display">${esc(act.name)}</div>
-                  ${meta ? `<div class="text-[11px] text-cream/55 flex items-center flex-wrap mt-1.5 uppercase tracking-wide">${meta}</div>` : ''}
-                </div>
-                ${act.detailsPageURL ? `<a class="self-start sm:self-center inline-flex justify-center px-6 py-2.5 bg-sand text-ocean text-[10px] font-bold rounded-full tracking-[0.18em] uppercase hover:bg-cream hover:text-ocean transition-colors duration-300 shrink-0 w-full sm:w-auto" href="${esc(act.detailsPageURL)}" target="_blank" rel="noopener">Buchen</a>` : ''}
-              </div>
-            </div>`;
-        }
-        html += `</div></div>`;
-      }
-      html += '</div>';
-
-      content.innerHTML = html;
-      content.classList.remove('items-center', 'justify-center', 'min-h-[300px]');
-    }
-
-    async function load() {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const end = addDays(today, WEEKS_AHEAD * 7);
-
-      try {
-        const nodes = await fetchActivities(today, end);
-        state.activities = nodes.map(normalizeActivity).sort((a, b) => a.sortTime - b.sortTime);
-        populateMonthFilter(state.activities);
-        setupControls();
-        syncCategoryButtons();
-        setControlsVisible(true);
-        renderSchedule();
-      } catch (err) {
-        setControlsVisible(false);
-        const content = document.getElementById('eversports-content');
-        if(content) {
-          content.innerHTML = `<div class="text-center py-12 text-cream/70 text-sm">Fehler beim Laden des Stundenplans:<br><small class="opacity-70 mt-2 block">${esc(err.message)}</small></div>`;
-          content.classList.remove('items-center', 'justify-center', 'min-h-[300px]');
-        }
-      }
-    }
-
-    if(document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', load);
-    } else {
-      load();
-    }
+    async function load(){const today=new Date();today.setHours(0,0,0,0);try{const nodes=await fetchActivities(today,addDays(today,WEEKS_AHEAD*7));state.activities=nodes.map(normalizeActivity).sort((a,b)=>a.sortTime-b.sortTime);populateMonthFilter(state.activities);setupControls();syncCategoryButtons();setControlsVisible(true);renderSchedule()}catch(error){setControlsVisible(false);const content=document.getElementById('eversports-content');if(content){content.innerHTML=`<div class="text-center py-12 text-ocean/70 text-sm"><strong class="block text-ocean mb-2">Der Stundenplan konnte nicht geladen werden.</strong>Bitte versuche es später erneut.<small class="opacity-70 mt-2 block">${esc(error.message)}</small></div>`;content.classList.remove('items-center','justify-center','min-h-[300px]')}}}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',load);else load();
   })();
   </script>
-
 </body>
 </html>

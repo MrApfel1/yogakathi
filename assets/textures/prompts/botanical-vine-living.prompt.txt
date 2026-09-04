@@ -1,0 +1,11 @@
+Use case: photorealistic-natural
+Asset type: transparent botanical edge asset for the Yoga Kathi editorial website — LIVING VINE
+Input images: Image 1 is the user's approved full-page visual reference, used only for its quiet editorial rhythm, delicate edge framing, generous negative space, and tactile restraint; do not copy the page, text, logo, people, photos, or dried plants.
+Primary request: Create one slim freshly growing vine with a flowing S-curve and small young green leaves.
+Subject: healthy flexible vine, fresh varied leaves and two tiny new shoots, subtle veins, hydrated edges, natural asymmetry and light dimensional overlap.
+Style/medium: premium photorealistic botanical cutout with cultivated editorial simplicity; alive and gently flowing, never a flat decorative border.
+Composition/framing: long diagonal S-shaped silhouette with generous openings, entire vine visible, designed to follow an irregular paper edge on a website without enclosing content.
+Lighting/mood: soft natural daylight, fresh and calm, minimal self-shadow.
+Color palette: restrained living greens, from pale new growth to medium leaf green; compatible with cream paper and ocean ink.
+Constraints: create actual transparent background, not a depicted checkerboard; one coherent vine only; clean fine edges; no words, labels, logos, watermark, border, paper, vase, pot, soil, hands, people, insects, flowers, extra loose leaves, props, or scene.
+Avoid: dried, pressed, brown, beige, yellowed, wilted, brittle, dusty, herbarium, vintage scan, ivy-wall pattern, wreath, plastic foliage, neon green, visible checkerboard, hard halo, stock-photo gloss.

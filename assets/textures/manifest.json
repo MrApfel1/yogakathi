@@ -1,0 +1,241 @@
+{
+  "collection": "Yoga Kathi Botanical Element Atlas",
+  "generatedAt": "2026-09-03",
+  "generator": "OpenAI built-in image generation",
+  "styleReference": ".impeccable/mocks/fullpage-02-element-atlas.png",
+  "livingBotanicalStyleReference": "User-provided full-page editorial reference supplied on 2026-09-03; used for composition and materiality only.",
+  "livingBotanicalProductionStatus": "After the third 2026-09-03 user review, index.html uses only botanical-peony-white-living-v2.png and botanical-lotus-open-living-v2.png as sparse floral accents. The earlier wildflower, eucalyptus, lotus-bud, and all large garden compositions remain provenance-only; Ocean paper carries the primary framing.",
+  "brandGround": "#F9FBF2",
+  "brandInk": "#084A5E",
+  "provenance": "The exact generation prompt is embedded in every PNG under the impeccable:prompt metadata key and duplicated in assets/textures/prompts/.",
+  "assets": [
+    {
+      "path": "assets/textures/element-earth.png",
+      "prompt": "assets/textures/prompts/element-earth.prompt.txt",
+      "dimensions": "1120x1400",
+      "format": "PNG RGB",
+      "transparent": false,
+      "bytes": 2938157,
+      "sha256": "3f93dc6837f0811658f904756a471952a036e4b3b696a4ad8f88084bf5ab7f16"
+    },
+    {
+      "path": "assets/textures/element-water.png",
+      "prompt": "assets/textures/prompts/element-water.prompt.txt",
+      "dimensions": "1120x1400",
+      "format": "PNG RGB",
+      "transparent": false,
+      "bytes": 2830553,
+      "sha256": "24e735bd5acd6460733955b657f27fc1efedb4bb4c24400923780e443b6df9d7"
+    },
+    {
+      "path": "assets/textures/element-fire.png",
+      "prompt": "assets/textures/prompts/element-fire.prompt.txt",
+      "dimensions": "1120x1400",
+      "format": "PNG RGB",
+      "transparent": false,
+      "bytes": 2997977,
+      "sha256": "9c7169309b93731ea0307210e05adc16a0f4f6b62ab4a5123e7de62bc56ea25c"
+    },
+    {
+      "path": "assets/textures/element-air.png",
+      "prompt": "assets/textures/prompts/element-air.prompt.txt",
+      "dimensions": "1120x1400",
+      "format": "PNG RGB",
+      "transparent": false,
+      "bytes": 2217041,
+      "sha256": "193c09dc8a32433770afa0e336a31d36927f672783190026af6f375a9a9b3974"
+    },
+    {
+      "path": "assets/textures/element-ether.png",
+      "prompt": "assets/textures/prompts/element-ether.prompt.txt",
+      "dimensions": "1120x1400",
+      "format": "PNG RGB",
+      "transparent": false,
+      "bytes": 2131798,
+      "sha256": "ee47771cb80f1baa9504a0f77ed80413913dc9271ac44bf8646991a1cc20389b"
+    },
+    {
+      "path": "assets/textures/botanical-sprig.png",
+      "prompt": "assets/textures/prompts/botanical-sprig.prompt.txt",
+      "dimensions": "736x2135",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 1087344,
+      "sha256": "d64bc651f627782dc4d13762270d01c897030564322e60487551fbeb06158ff3",
+      "postprocess": "Removed a baked neutral checkerboard by deriving alpha from chroma; visually checked over cream and ocean grounds."
+    },
+    {
+      "path": "assets/textures/botanical-fern.png",
+      "prompt": "assets/textures/prompts/botanical-fern.prompt.txt",
+      "dimensions": "860x1829",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 1576934,
+      "sha256": "7cd5ce32b1dfaa088e7897c0f797055cc72197815a1800bbcffb6d53eb12e47f",
+      "postprocess": "Removed a baked neutral checkerboard by deriving alpha from chroma; visually checked over cream and ocean grounds."
+    },
+    {
+      "path": "assets/textures/ocean-paper-wash.png",
+      "prompt": "assets/textures/prompts/ocean-paper-wash.prompt.txt",
+      "dimensions": "1536x1024",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-254",
+      "bytes": 2530416,
+      "sha256": "51f7fdc5feea40b44b0915b3b8ac47a70c1432a6c421842fc4e1173e693b8dda"
+    },
+    {
+      "path": "assets/textures/cream-paper-grain.png",
+      "prompt": "assets/textures/prompts/cream-paper-grain.prompt.txt",
+      "dimensions": "1254x1254",
+      "format": "PNG RGB",
+      "transparent": false,
+      "bytes": 1830653,
+      "sha256": "a209b9e4ccbfa8456f004ccc11fbc0591b914f0799a0827a41abab3231426868",
+      "tiling": "Near-seamless; visually checked in a 2x2 repeat."
+    },
+    {
+      "path": "assets/textures/botanical-lotus-living.png",
+      "prompt": "assets/textures/prompts/botanical-lotus-living.prompt.txt",
+      "dimensions": "664x1400",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 444173,
+      "sha256": "82310cbdc40a1594f63ae4cd5d3e5902133df53e8de6f55b5f5dde6b788613be",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance, cropped transparent margins, resized to a 1400 px long edge, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-leafy-branch-living.png",
+      "prompt": "assets/textures/prompts/botanical-leafy-branch-living.prompt.txt",
+      "dimensions": "849x1400",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 528575,
+      "sha256": "2937b1ad08c6c51f099cc30f9921c335de97e0ef6e070ae63a9954f7db707a77",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance, cropped transparent margins, resized to a 1400 px long edge, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-fern-living.png",
+      "prompt": "assets/textures/prompts/botanical-fern-living.prompt.txt",
+      "dimensions": "843x1400",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 466871,
+      "sha256": "8aa2a96e27e1c6a584e7de728b829bdcf24b6b539d06458f82521796d4dd220f",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance, cropped transparent margins, resized to a 1400 px long edge, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-wildflower-living.png",
+      "prompt": "assets/textures/prompts/botanical-wildflower-living.prompt.txt",
+      "dimensions": "549x1400",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 336604,
+      "sha256": "6c1d24a5117f216d355224c5c9f0a2be88bf69969dd2658946b45a747a763f74",
+      "postprocess": "Preserved the generated alpha, removed fully transparent padding, resized to a 1400 px long edge, normalized the transparent boundary, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-eucalyptus-living.png",
+      "prompt": "assets/textures/prompts/botanical-eucalyptus-living.prompt.txt",
+      "dimensions": "585x1400",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 365240,
+      "sha256": "4526a0e1b2abd360e7efaa68224be7da8330d247087ca9a4276e7f306a250d4e",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance, cropped transparent margins, resized to a 1400 px long edge, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-vine-living.png",
+      "prompt": "assets/textures/prompts/botanical-vine-living.prompt.txt",
+      "dimensions": "475x1400",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 240343,
+      "sha256": "0617e1f2a6db05e44ac5b96de2e28f389704bad16f71e507252a98ff744d679c",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance, cropped transparent margins, resized to a 1400 px long edge, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-lotus-bud-living.png",
+      "prompt": "assets/textures/prompts/botanical-lotus-bud-living.prompt.txt",
+      "dimensions": "372x1400",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 195928,
+      "sha256": "6066027710fe996637d208e7a4456d00e2782b1349fcbe09e8f21d96314b40f7",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance, cropped transparent margins, resized to a 1400 px long edge, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-blossom-branch-living.png",
+      "prompt": "assets/textures/prompts/botanical-blossom-branch-living.prompt.txt",
+      "dimensions": "692x1400",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 416298,
+      "sha256": "d4f17111a96a0439e0fa4c0c89ea89d4a7878f5c6a971666988a63fed443f44e",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance, cropped transparent margins, resized to a 1400 px long edge, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-hero-garden-living.png",
+      "prompt": "assets/textures/prompts/botanical-hero-garden-living.prompt.txt",
+      "dimensions": "1536x1024",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 2064177,
+      "sha256": "c021202b76841e49a9d6998236da4e75791b38cfc8bbd20d4ed5a9a05cacc724",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance while preserving the full open-center composition; visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-transition-garden-living.png",
+      "prompt": "assets/textures/prompts/botanical-transition-garden-living.prompt.txt",
+      "dimensions": "1600x800",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 1366822,
+      "sha256": "98034755dd8499d8a398429f50052711e0615a1549c6ca18c4a7603a5e65a76f",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance, resized to 1600x800, retained the wide open transition field, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-corner-garden-living.png",
+      "prompt": "assets/textures/prompts/botanical-corner-garden-living.prompt.txt",
+      "dimensions": "1103x1400",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "alphaRange": "0-255",
+      "bytes": 1594136,
+      "sha256": "d46cca7df3151f0369c0d64893d2e92cb16363017fb43c462280465064b13aec",
+      "postprocess": "Removed the generated neutral checkerboard by deriving alpha from chroma and luminance, resized to a 1400 px long edge, retained the open-corner field, and visually checked over the cream brand ground."
+    },
+    {
+      "path": "assets/textures/botanical-peony-white-living-v2.png",
+      "prompt": "assets/textures/prompts/botanical-peony-white-living-v2.prompt.txt",
+      "dimensions": "1024x1536",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "bytes": 1811648,
+      "sha256": "8def48a5d6893c25cee902efff6504b1e189314cbb2c1fa9cd0864f7ad168843",
+      "postprocess": "Built-in ImageGen output copied without alpha alteration; visually checked before integration."
+    },
+    {
+      "path": "assets/textures/botanical-lotus-open-living-v2.png",
+      "prompt": "assets/textures/prompts/botanical-lotus-open-living-v2.prompt.txt",
+      "dimensions": "1024x1536",
+      "format": "PNG RGBA",
+      "transparent": true,
+      "bytes": 1416230,
+      "sha256": "7a194e9566a8384cb9c4ad89fbe8895b177818b2e467965d2239262d5fc03269",
+      "postprocess": "Built-in ImageGen output copied without alpha alteration; visually checked before integration."
+    }
+  ]
+}

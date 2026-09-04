@@ -1,0 +1,11 @@
+Use case: photorealistic-natural
+Asset type: transparent botanical edge asset for the Yoga Kathi editorial website — LIVING LOTUS BUD
+Input images: Image 1 is the user's approved full-page visual reference, used only for its quiet editorial rhythm, delicate edge framing, generous negative space, and tactile restraint; do not copy the page, text, logo, people, photos, or dried plants.
+Primary request: Create one living lotus bud just before opening on a long resilient green stem, paired with one small young lotus leaf on its own curved stem.
+Subject: fresh closed lotus bud with cream petals and a restrained blush tip, hydrated green stems and a tender newly unfurled leaf with visible veins.
+Style/medium: premium photorealistic botanical cutout, refined and poetic but botanically believable; a quiet companion to a full lotus bloom.
+Composition/framing: slender tall asymmetric silhouette, bud in upper third, small leaf lower and offset, entire stems visible, generous transparent negative space.
+Lighting/mood: soft natural morning light, serene and fresh, barely perceptible self-shadow.
+Color palette: living greens, warm cream, faint natural blush; compatible with #F9FBF2 and #084A5E.
+Constraints: create actual transparent background, not a depicted checkerboard; one bud-and-leaf arrangement only; clean semitransparent edges; no open bloom, words, labels, logos, watermark, border, paper, vase, pot, soil, hands, people, insects, props, or scene.
+Avoid: dried, pressed, brown, beige, yellowed, wilted, brittle, dusty, herbarium, vintage scan, mandala, spiritual icon, plastic plant, neon saturation, visible checkerboard, hard halo, stock-photo gloss.

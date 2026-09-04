@@ -1,0 +1,11 @@
+Use case: photorealistic-natural
+Asset type: transparent botanical edge asset for the Yoga Kathi editorial website — LIVING LOTUS BLOOM
+Input images: Image 1 is the user's approved full-page visual reference, used only for refined editorial rhythm, delicacy, generous negative space, and calm materiality; do not copy its page, text, logo, people, photos, or dried plants.
+Primary request: Create one elegant living lotus flower in fresh bloom on a long naturally curved green stem, accompanied by one young round lotus leaf and one smaller partial leaf.
+Subject: a real healthy lotus, petals softly cream with the faintest natural blush, hydrated green stem and leaves with subtle veins and dimensional volume.
+Style/medium: premium photorealistic botanical cutout, fresh garden specimen photographed with cultivated editorial restraint; delicate like the reference but unmistakably alive, not pressed.
+Composition/framing: tall vertical asymmetric silhouette with open gaps and a gentle inward curve, suitable for framing a website photo edge; the entire specimen visible with generous transparent margin.
+Lighting/mood: soft natural morning daylight, calm and luminous, very subtle believable contact shading within the plant only.
+Color palette: natural fresh greens, warm cream petals, restrained pale blush; compatible with #F9FBF2 cream and #084A5E ocean.
+Constraints: genuinely transparent background with clean semi-transparent fine edges; one coherent specimen only; no words, labels, logos, watermark, border, paper, vase, pot, soil, hands, people, insects, extra props, or background scene.
+Avoid: dried, pressed, brown, beige, yellowed, wilted, brittle, herbarium, vintage scan, mandala, spiritual icon, plastic plant, neon saturation, hard studio cutout halo, stock-photo gloss.
