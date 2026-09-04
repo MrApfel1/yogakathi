@@ -1,0 +1,11 @@
+Use case: photorealistic-natural
+Asset type: transparent botanical edge asset for the Yoga Kathi editorial website — LIVING BLOSSOM BRANCH
+Input images: Image 1 is the user's approved full-page visual reference, used only for its quiet editorial rhythm, delicate edge framing, generous negative space, and tactile restraint; do not copy the page, text, logo, people, photos, or dried plants.
+Primary request: Create one delicate fresh green blossom branch with a restrained number of tiny open cream-white flowers and several living buds.
+Subject: flexible healthy green branch, sparse natural offshoots, small fresh leaves, subtle veins, tiny luminous flowers and young buds; elegant, airy and alive.
+Style/medium: premium photorealistic botanical cutout with editorial restraint; visually related to the reference's delicate florals but never dried, flattened or preserved.
+Composition/framing: tall asymmetric branch with a gentle inward arc and visible negative space between offshoots, entire specimen visible, suitable for an outer website edge.
+Lighting/mood: soft diffused daylight, fresh and tranquil, no dramatic background shadow.
+Color palette: fresh layered greens and warm cream-white blossoms with the faintest blush; compatible with cream and ocean.
+Constraints: create actual transparent background, not a depicted checkerboard; one coherent branch only; clean fine stem, bud, and petal edges; no words, labels, logos, watermark, border, paper, vase, pot, soil, hands, people, insects, props, or scene.
+Avoid: dried, pressed, brown, beige, yellowed, wilted, brittle, dusty, herbarium, vintage scan, dense bouquet, wedding arrangement, plastic flowers, neon saturation, visible checkerboard, hard halo, stock-photo gloss.

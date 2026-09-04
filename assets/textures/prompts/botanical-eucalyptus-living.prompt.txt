@@ -1,0 +1,11 @@
+Use case: photorealistic-natural
+Asset type: transparent botanical edge asset for the Yoga Kathi editorial website — LIVING EUCALYPTUS
+Input images: Image 1 is the user's approved full-page visual reference, used only for its quiet editorial rhythm, delicate edge framing, generous negative space, and tactile restraint; do not copy the page, text, logo, people, photos, or dried plants.
+Primary request: Create one fresh living eucalyptus branch with round softly overlapping leaves and an elegant natural bend.
+Subject: healthy hydrated eucalyptus, flexible green stem, dimensional coin-shaped leaves with subtle veins and soft sage-to-blue-green tonal variation, a few young leaves at the tip.
+Style/medium: premium photorealistic botanical cutout, contemporary wellness editorial; the graceful silhouette relates to the reference while the plant is unmistakably alive and fresh.
+Composition/framing: tall gently curved vertical branch, airy spacing, entire specimen visible, suitable for framing the right edge of website hero copy.
+Lighting/mood: soft diffused natural daylight, quiet and luminous, restrained self-shadowing.
+Color palette: fresh muted sage and blue-green compatible with #F9FBF2 cream and #084A5E ocean.
+Constraints: create actual transparent background, not a depicted checkerboard; preserve clean semi-transparent leaf edges; one coherent branch only; no words, labels, logos, watermark, border, paper, vase, pot, soil, hands, people, insects, props, or scene.
+Avoid: dried, pressed, brown, beige, yellowed, wilted, brittle, dusty, herbarium, vintage scan, plastic leaves, dense shrub, neon saturation, visible checkerboard, hard halo, stock-photo gloss.

@@ -1,0 +1,11 @@
+Use case: photorealistic-natural
+Asset type: transparent botanical cutout for an editorial yoga website
+Primary request: Create one elegant tall stem of cream-white peony flowers, with one large half-open peony as the focus and one smaller partially opening bloom, gently leaning to the left.
+Scene/backdrop: genuinely transparent background with clean alpha, no visible checkerboard, no colored or gray backdrop.
+Subject: fresh living peony stem, soft layered petals, a few restrained natural green leaves, graceful asymmetrical curve.
+Style/medium: high-end botanical editorial photography, realistic, refined, calm, tactile, not stock photography.
+Composition/framing: isolated vertical full plant, generous transparent breathing room, complete stem, designed to enter from a page edge at a slight diagonal.
+Lighting/mood: soft natural window light, quiet and premium.
+Color palette: warm cream and white petals, muted natural green, subtle blush only near petal centers; compatible with #F9FBF2 cream and #084A5E ocean blue.
+Constraints: actual transparent alpha channel; crisp fine petal and stem edges; no text, no logo, no watermark, no pot, no vase, no soil, no hands, no people.
+Avoid: dense bouquet, bushy foliage, multiple unrelated flowers, dried or pressed appearance, gray halo, white matte, black background, checkerboard baked into pixels, artificial neon colors, plastic appearance.

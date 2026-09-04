@@ -1,0 +1,12 @@
+Use case: stylized-concept
+Asset type: transparent botanical framing raster for the Yoga Kathi website — BOTANICAL SPRIG
+Input images: Image 1 is the approved full-page design comp and is a STYLE AND MATERIALITY REFERENCE ONLY; use its quiet pressed-plant herbarium materiality, but do not copy any text, logos, people, or layout.
+Primary request: Isolate one elegant pressed local European meadow sprig with a slim natural stem, sparse small seed heads and a few faded leaves, photographed/scanned straight-on as a genuine herbarium specimen.
+Scene/backdrop: genuinely transparent background with alpha; no paper, white, cream, colored, checkerboard, studio sweep, or shadow rectangle.
+Subject: one complete botanical specimen, plausibly native to Central Europe/Austria, dry and pressed, delicate branching silhouette, intact fine edges.
+Style/medium: real pressed plant scan, archival botanical specimen, premium artist field notebook; refined, quiet, imperfect and natural rather than decorative clip art.
+Composition/framing: tall vertical isolated cutout, entire specimen visible with breathing room and no cropping; approximately 1:3 overall silhouette; suitable for placement along page edges.
+Lighting/mood: flat diffuse archival scan with tiny believable contact shadow contained closely under the specimen only.
+Color palette: sun-faded straw, muted olive, warm taupe, small ochre seed heads; no vivid green.
+Materials/textures: brittle stem fibers, papery leaves, tiny dry seeds, authentic irregularities.
+Constraints: output must contain real transparency outside the specimen and preserve semi-transparent fine botanical edges; no words, labels, tape, pins, logos, watermark, border, vase, soil, extra loose objects, or generated paper background. One specimen only.
